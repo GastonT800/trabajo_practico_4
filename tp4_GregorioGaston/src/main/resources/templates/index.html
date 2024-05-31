@@ -4,22 +4,345 @@
 	<head>
 		
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=l">
-		<title>Inicio</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Inicio | Facultad de Humanidades y Ciencias Sociales</title>
 		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" th:href="@{/css/estilos.css}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 		
 	</head>
 		
-		
-		<script type="text/javascript" src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<body >
+		
+		<!-- Encabezado -->
+		<header class="d-flex justify-content-center ">
+			
+			<a href="http://www.fhycs.unju.edu.ar/index.php" target="_blank"><img class="logo_facultad" th:src="@{/images/logo-fhycs.png}" alt="logo_facultad" height="250"></a>
+			
+			<div class="tituloHeader ">
+				
+                <h1>Facultad de Humanidades y Ciencias Sociales</h1>
+                <p>"Construyendo conexiones, desafiando convenciones, cultivando humanidad y cambiando realidades"</p>
+            
+            </div>
+            
+            <a href="https://www.unju.edu.ar/" target="_blank"><img class="logo_Unju" th:src="@{/images/logo-UNJU.png}" alt="logo_Unju" height="250"></a>
+            
+		</header>
 		
 		<div class="container">
 			
-			<h3>Hola Mundo</h3>
+		<!-- Barra de Navegacion-->
+		<nav class="navbar navbar-expand-lg bg-primary">
+			
+            <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/index}"><i class="bi bi-stack"></i> Inicio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item">
+                    <a id="acercaDe" class="nav-link active" aria-current="page" href="#acerca-de"><i class="bi bi-info-lg"></i> Acerca de</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#carreras"><i class="bi bi-award"></i> Carreras</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#noticias"><i class="bi bi-newspaper"></i> Noticias</i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contactos"><i class="bi bi-envelope-arrow-down"></i> Contacto</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> 
+                    Temas de Interes
+                    </a>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" ><i class="bi bi-bootstrap"></i> Bootstrap</a></li>
+                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Web/javascript" target="_blank" ><i class="bi bi-filetype-css"></i> Css</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Learn/CSS" target="_blank" ><i class="bi bi-filetype-java"></i> Java Script</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" id="disabled">
+                    <a class="nav-link disabled" aria-disabled="true"><i class="bi bi-list-ol"></i> Temas de Interes</a>
+                </li>
+                </ul>
+                <form class="d-flex bg-primary-subtle text-primary-emphasis" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+            </div>
+        </nav>
+		
+		
+			<div class="row">
+				
+					<!--Aside -->
+					<aside class="col-md-2 order-md-1">
+						<div class="aside bg-dark ">
+				            <h4>Enlaces</h5>
+				            <ul>
+								
+				                <li><a href="https://www.fhycs.unju.edu.ar/biblioteca.html" target="_blank">Biblioteca</a></li>
+				                <li><a href="https://www.fhycs.unju.edu.ar/calendario_academico.html" target="_blank">Calendario Académico</a></li>
+				                <li><a href="https://virtual.unju.edu.ar/" target="_blank">UNJu Virtual</a></li>
+				                <li><a href="https://noticias.unju.edu.ar/" target="_blank">UNJu Noticias</a></li>
+				                <li><a href="https://tv.unju.edu.ar/" target="_blank">UNJu TV</a></li>
+				                <li><a href="https://www.fhycs.unju.edu.ar/egresados.html" target="_blank">Egresados</a></li>
+				                <li><a href="https://www.fhycs.unju.edu.ar/investigacion.html" target="_blank">Investigación</a></li>
+				                <li><a href="https://www.fhycs.unju.edu.ar/areas.html" target="_blank">Áreas</a></li>
+				                <li><a href="https://www.fhycs.unju.edu.ar/coordinaciones.html" target="_blank">Coordinaciones</a></li>
+				                <li><a href="https://www.fhycs.unju.edu.ar/concursos_docentes.html" target="_blank">Concursos</a></li>
+				                <li><a href="https://www.fhycs.unju.edu.ar/publicaciones.html" target="_blank">Publicaciones</a></li>
+				                
+				            </ul>
+			            </div>
+		        	</aside>
+				
+				<!-- Contenido Principal -->
+				<h2>¡Bienvenidos a la Facultad de Humanidades y Ciencias Sociales!</h2>
+				
+				<div class="col-md-10 order-md-2" >
+					
+					
+					<section id="acerca-de">
+		                
+		                <h3>Breve Historia de la Facultad</h3>
+		                
+		                <p>La Facultad de Humanidades y Ciencias Sociales (FHyCS) de la Universidad Nacional de Jujuy (UNJu) fue creada el 14 de septiembre de 1984 por iniciativa del entonces Rector Dr. Fernando Zurueta, quien vio la necesidad de la creación de carreras humanísticas mediante una nueva unidad académica responsable de actividades como docencia, investigación y extensión en el campo de las Humanidades y Ciencias Sociales.</p>
+		                <p>En sus inicios la FHyCS compartió el edificio con la Escuela de Minas “Dr. Horacio Carrillo”, situada en Avenida Italia. Hasta que el 28 de enero del año 1986 mediante un acto oficial la empresa Encotel realizó la entrega de las llaves del edificio que ocupaba antiguamente el Correo, ubicado en Otero 262, donde se pondría en funcionamiento hasta el día de hoy las instalaciones de esta casa de altos estudios.</p>
+		            	<p>Actualmente se dictan las carreras de Profesorado y Licenciatura en Ciencias de la Educación, Tecnicatura y Licenciatura en Comunicación Social, Auxiliar Técnico y Licenciatura en Antropología, Profesorado y Licenciatura en Letras, Educador Sanitario y Licenciatura en Educación para la Salud, Licenciatura en Trabajo Social, Profesorado y Licenciatura en Filosofía, Profesorado y Licenciatura en Historia, Ciclo Superior de Licenciatura en Filosofía, Ciclo Especial de Licenciatura en Historia, Ciclo Superior de Licenciatura en Trabajo Social, Licenciatura en Turismo y Profesorado en Educacion para la Salud.</p>
+		            	<p>A lo largo de sus más de 30 años se convirtió en una de las facultades con mayor matrícula estudiantil e ingresan por año alrededor de 2000 estudiantes. A su vez cuenta con un gran número de egresados que cursan el Doctorado en Ciencias Sociales, Maestrías, Posgrados y cursos de perfeccionamiento, que ofrece esta prestigiosa institución.</p>
+	            	
+	            	</section>
+	            	
+	            	<section id="carreras">
+						
+						<h3>Ofertas Académicas</h3>
+						
+						<div id="carouselExampleDark" class="carousel carousel-dark slide">
+							
+							  <div class="carousel-indicators">
+							    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+							    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+							    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+							    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+							    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
+							  
+							  </div>
+							  <div class="carousel-inner">
+							    <div class="carousel-item active" data-bs-interval="10000">
+							      <img th:src="@{/images/Tecnico_Gestion_Produccion.jpg}" class="d-block w-80" alt="Tecnico_Gestion_Produccion">
+							      <div class="carousel-caption d-none d-md-block">
+							        <h5>Tec. Univ. en Gestión y Prod. Editorial</h5>
+							        <p>Duracion 3 años</p>
+							      </div>
+							    </div>
+							    <div class="carousel-item" data-bs-interval="2000">
+							      <img th:src="@{/images/Licenciatura_Salud.jpg}" class="d-block w-80" alt="Licenciatura_Salud">
+							      <div class="carousel-caption d-none d-md-block" >
+							        <h5>Licenciatura en Educación para la Salud</h5>
+							        <P>Duracion 4 años</P>
+							      </div>
+							    </div>
+							    <div class="carousel-item" data-bs-interval="3000">
+							      <img th:src="@{/images/Licenciatura_Historia.jpg}" class="d-block w-80" alt="Licenciatura_Historia">
+							      <div class="carousel-caption d-none d-md-block" >
+							        <h5>Licenciatura en Historia</h5>
+							        <p>Duracion 5 <small>1/2</small> años</p>
+							      </div>
+							    </div>
+							    <div class="carousel-item" data-bs-interval="4000">
+							      <img th:src="@{/images/Profesorado_Letras.jpg}" class="d-block w-80" alt="Profesorado_Letras">
+							      <div class="carousel-caption d-none d-md-block" >
+							        <h5>Profesorado en Letras</h5>
+							        <p>Duracion de 5 años</p>
+							      </div>
+							    </div>
+							    <div class="carousel-item" data-bs-interval="5000">
+							      <img th:src="@{/images/Licenciatura_Antropologia.jpg}" class="d-block w-80" alt="Licenciatura_Antropologia">
+							      <div class="carousel-caption d-none d-md-block" >
+							        <p>Licenciatura en Antropología</h5>
+							        <p>Duracion 5 años</p>
+							      </div>
+							    </div>
+							  </div>
+							  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+							    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							    <span class="visually-hidden">Previous</span>
+							  </button>
+							  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+							    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							    <span class="visually-hidden">Next</span>
+							  </button>
+							  
+							</div>
+						
+					</section>
+					
+					
+					<section id="noticias">
+						<div class="noticias bg-body-secondary">
+							
+							<h3>Noticias</h3>
+						
+						<div class="row row-cols-1 row-cols-md-2 g-4 ">
+							
+							  <div class="col">
+							    <div class="card">
+							      <img th:src="@{/images/noticia1.jpg}" class="card-img-top" alt="noticia1">
+							      <div class="card-body">
+							        <h5 class="card-title">INICIARON LAS CLASES DE LA TECNICATURA EN GESTIÓN Y PRODUCCIÓN EDITORIAL</h5>
+							        <p class="card-text">La primera clase fue dictada por Vanina Colagiovanni, Magister en Escritura creativa por UNTREF y Licenciada en Ciencias de la Comunicación (UBA).</p>
+							      	<p class="card-text"><small>21 de mayo 2024</small></p>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card">
+							      <img th:src="@{/images/noticia2.jpeg}" class="card-img-top" alt="noticia2">
+							      <div class="card-body">
+							        <h5 class="card-title">VISITAMOS LA ESCUELA DE PURMAMARCA DONDE SE DICTA LA CARRERA DE TURISMO</h5>
+							        <p class="card-text">En dicha institución se dictan desde el mes de abril las clases de la Tecnicatura y Licenciatura en Turismo.</p>
+							      	<p class="card-text"><small>20 de mayo 2024</small></p>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card">
+							      <img th:src="@{/images/noticia3.jpg}" class="card-img-top" alt="noticia3">
+							      <div class="card-body">
+							        <h5 class="card-title">REUNIÓN EN HUMAHUACA CON LA NUEVA COORDINACIÓN</h5>
+							        <p class="card-text">Gisella Mamaní, la primera egresada de la carrera de Turismo de sede Humahuaca será la nueva coordinadora.</p>
+							        <p class="card-text"><small>20 de mayo 2024</small></p>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card">
+							      <img th:src="@{/images/noticia4.jpg}" class="card-img-top" alt="noticia4">
+							      <div class="card-body">
+							        <h5 class="card-title">SE REALIZÓ LA JORNADA DE AMBIENTACIÓN PARA LXS INGRESANTES DE LA NUEVA CARRERA</h5>
+							        <p class="card-text">La Jornada contó con la participación de una gran cantidad de ingresantes a la carrera Tecnicatura en Gestión y Producción Editorial.</p>
+							      	<p class="card-text"><small>14 de mayo 2024</small></p>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card">
+							      <img th:src="@{/images/noticia5.jpg}" class="card-img-top" alt="noticia5">
+							      <div class="card-body">
+							        <h5 class="card-title">CURSO INTRODUCTORIO DE LENGUA QUECHUA Y SU CULTURA</h5>
+							        <p class="card-text">El curso es gratuito para estudiantes de la UNJU y tendrá un valor de 8000 pesos por mes para docentes, investigadores y personas interesadas.</p>
+							      	<p class="card-text"><small>13 de mayo 2024</small></p>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="col">
+							    <div class="card">
+							      <img th:src="@{/images/noticia6.jpg}" class="card-img-top" alt="noticia6">
+							      <div class="card-body">
+							        <h5 class="card-title">TALLER DE DISEÑO GRÁFICO</h5>
+							      	<p class="card-text">Está destinado a egresadxs de la carrera Comunicación Social y será dictado por el Lic. Pablo Ruiz y el Prof. Mario Girón.</p>
+							      	<p class="card-text"><small>08 de mayo 2024</small></p>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							
+						</div>
+						
+						
+						
+					</section>
+					
+				</div>
+				
 			
 		</div>
 		
+		<!-- Pie de Pagina -->
+		<footer class="footer bg-secondary text-white">
+				
+				<div class="row">
+					
+					<div class="col-sm-12 col-md-8 col-xl-8" id="contactos">
+						
+						<h5>Informacion de Contacto</h5>
+						
+						<div class="row">
+							
+							<div class="col-sm-12 col-md-12 col-lg-5">
+							
+								<img class="logo2_facultad" th:src="@{/images/logo2-fhycs.png}" alt="logo2_facultad" width="270">
+						
+							</div>
+						
+							<div class="col-sm-12 col-md-12 col-lg-7">
+								
+								<p>Dirección: Otero 262, S.S. de Jujuy Arg.</p>
+								<p>Telefono: +54(0388) 4221563 - 4221604</p>
+								<p>E-mail: E-mail: infoweb@fhycs.unju.edu.ar</p>
+								
+							</div>
+							
+						</div>
+						
+						<div class="row">
+							
+							<div class="col-sm-12 col-md-12 col-lg-5">
+								
+								<img class="logo2_UNju" th:src="@{/images/logo2-Unju.png}" alt="logo2_Unju" width="270">
+								
+							</div>
+							
+							<div class="col-sm-12 col-md-12 col-lg-7">
+								
+								<p>Dirección: Av. Bolivia 1239 - S.S. de Jujuy, Jujuy. Arg.</p>
+								<p>Telefono: +54(0388) 4244196 - 42441107</p>
+								<p>E-mail: consultas@unju.edu.ar</p>
+								
+							</div>
+							
+						</div>
+						
+					</div>
+					
+					<div class="col-sm-12 col-md-4 col-xl-4">
+						
+						<div class="row">
+							
+							<h5>Redes Sociales</h5>
+							<a href="https://www.facebook.com/universidadnacionaldejujuy/?locale=es_LA" target="_blank"><i class="bi bi-facebook">Facebook UNJu</i></a><br>
+							<a href="https://www.facebook.com/fhycsunju" target="_blank"><i class="bi bi-facebook">Facebook FHyCS</i></a><br>
+							<a href="https://twitter.com/prensaunju?lang=es" target="_blank"><i class="bi bi-twitter">Twitter</i></a><br>
+							<a href="http://tv.unju.edu.ar/" target="_blank"><i class="bi bi-youtube">Youtube</i></a><br>
+							
+						</div>
+						
+						
+						<div class="row" id="autor">
+							
+							<h5>@Autor</h5>
+							<p>GREGORIO, GASTON LU: 4151</p>
+							<p>&copy; 2024 Facultad de Humanidades y Ciencias Sociales</p>
+		                	<p>Todos los derechos reservados</p>
+							
+						</div>						
+						
+					</div>
+					
+				</div>
+			
+	    </footer>
+		
+		</div>
+		
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		
 	</body>
 	
-</html >
+</html>

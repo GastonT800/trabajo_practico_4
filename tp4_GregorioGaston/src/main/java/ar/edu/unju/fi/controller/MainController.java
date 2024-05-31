@@ -5,12 +5,51 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/principal")
+//@RequestMapping("/principal")
 public class MainController {
 	
-	@GetMapping("/inicio")
+	@GetMapping("/index")
 	public String getIndexPage() {
 		return "index";
 	}
-
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 * @return
+	@GetMapping("/biblioteca")
+	public String getBibliotecaPage() {
+		return "biblioteca";
+	}
+	
+	@GetMapping("/calendario_academico")
+	public String getCalendarioAcadenicoPage() {
+		return "calendario_academico";
+	}
+	
+	 
+	@GetMapping("/acerca_de")
+	public String getAcercaDePage() {
+		return "acerca_de";
+	}
+	
+	@GetMapping("/carreras")
+	public String getCarrerasPage() {
+		return "carreras";
+	}
+	
+	@GetMapping("/noticias")
+	public String getNoticiasPage() {
+		return "noticias";
+	}
+	
+	
+	@GetMapping("/contacto")
+	public String getContactoPage() {
+		return "contacto";
+	}
+	*/
 }

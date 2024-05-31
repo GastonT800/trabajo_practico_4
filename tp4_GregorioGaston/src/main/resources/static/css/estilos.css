@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+/*Cuerpo*/
+body{
+	
+	background-image:url(../images/fondo_principal.jpg);
+
+}
+
+/*Estilos de Header*/
+header{
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+header a{
+	border: 5px solid #003B46; 
+	margin-left: 25px;
+	margin-right: 25px;
+}
+header img{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.tituloHeader {
+    background-color: #005B96; 
+    border: 5px solid #003B46; 
+    padding: 20px; 
+    text-align: center;
+    font-weight: bold;
+}
+.tituloHeader h1{
+	
+	padding-top: 50px;
+	text-align: center;
+	font-weight: bold;
+	color: #FFDC00;
+	
+}
+.tituloHeader p{
+	
+	padding-top: 30px;
+	text-align: center;
+	font-weight: bold;
+	color: #FFDC00;
+	
+}
+
+/*Estilos del Nav*/
+nav{
+	
+	border: 5px solid #003B46; 
+	font-weight: bold;
+}
+
+.navbar-brand{
+	color: #FFDC00;
+}
+#acercaDe{
+	color: #FFDC00;
+}
+.nav-link{
+	color: #FFDC00;
+}
+.dropdown-menu{
+	background: #005B96;
+	border: 5px solid #003B46; 
+	
+}
+.dropdown-item{
+	font-weight: bold;
+	color: #FFDC00;
+}
+#disabled a{
+	font-weight: bold;
+	color: rgb(255, 255, 255);
+}
+form{
+	border: 3px solid #003B46;
+	margin: 1px;
+	padding: 1px;
+}
+
+/*Titulo Principal*/
+h2{
+	font-weight: bold;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom:15px;
+	color:#005B96;
+}
+
+/*Estilos Aside*/
+.aside{
+	
+	border-radius: 10%;
+	padding: 5px;
+	margin: 5px;
+	font-weight: bold;
+	/*border: 6px solid #5900b3;*/
+}
+.aside h4{
+	margin: 4px;
+	color: rgb(21, 175, 208);
+	text-align: center;
+}
+.aside ul{
+	color: white;
+}
+.aside a{
+	color: white;
+}
+
+/*Estilo de seccion acerca-de*/
+#acerca-de {
+	background-color: rgb(198, 227, 255);
+	border: 10px solid rgb(128, 255, 255);
+	border-radius: 5%;
+	padding: 30px;
+	margin: 17px;
+	
+}
+#acerca-de h3{
+	color: rgb(18, 211, 130);
+	text-decoration: #003B46;
+}
+
+/*Estilo de seccion carreras*/
+
+#carreras h3{
+	
+	background-color: #005B96;
+	color: #FFDC00;
+	font-weight: bold;
+	text-align: center;
+	padding: 15px;
+}
+.carousel-caption{
+	background-color: #005B96;
+	padding: 5px;
+	border-radius: 5%;
+}
+.carousel-item h5{
+	color: #FFDC00;
+	font-weight: bold;
+}
+.carousel-item p{
+	color: #FFDC00;
+	font-weight: bold;
+}
+
+/*Estilo de seccion noticias*/
+.noticias{
+	padding: 25px;
+	margin: 10px;
+	border-radius: 5%;
+}
+.noticias h3{
+	padding: 2px;
+	text-align: center;
+	font-weight: bold;
+	color: #005B96;
+}
+.card{
+	border: 5px solid #003B46; 
+	border-radius: 2%;
+	background-color: #003B46;
+}
+.card-title{
+	color: #FFDC00;
+	font-weight: bold;
+}
+.card-text{
+	color: #FFDC00;
+	font-weight: bold;
+}
+
+/* Estilos Pie de Pagina */
+.footer {
+	padding: 8px;
+	margin: 10px;
+	border-radius: 1%;
+	border: 5px solid rgb(89, 89, 0); 
+	font-family: cursive;
+}
+.footer h5{
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
+	
+}
+.footer img{
+	border: 3px solid rgb(89, 89, 0);
+	border-radius: 5%;
+	padding: 5px;
+}
+.footer a{
+	color: aqua;
+	text-align:  center;
+}
+#autor {
+	padding-top: 25px;
+}
+#autor p{
+	font-weight: bold;
+	text-align:  center;
+	
+}
