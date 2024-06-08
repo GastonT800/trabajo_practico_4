@@ -1,34 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
 	
-	<head>
-		
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Inicio | Facultad de Humanidades y Ciencias Sociales</title>
-		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-		<link th:rel="stylesheet" th:href="@{/css/estilos.css}">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-		
-	</head>
+	<head data-th-replace="~{/layouts/header :: head}"></head>
 		
 	<body >
 		
 		<!-- Encabezado -->
-		<header class="d-flex justify-content-center ">
-			
-			<a href="http://www.fhycs.unju.edu.ar/index.php" target="_blank"><img class="logo_facultad" th:src="@{/images/logo-fhycs.png}" alt="logo_facultad" height="250"></a>
-			
-			<div class="tituloHeader ">
-				
-                <h1>Facultad de Humanidades y Ciencias Sociales</h1>
-                <p>"Construyendo conexiones, desafiando convenciones, cultivando humanidad y cambiando realidades"</p>
-            
-            </div>
-            
-            <a href="https://www.unju.edu.ar/" target="_blank"><img class="logo_Unju" th:src="@{/images/logo-UNJU.png}" alt="logo_Unju" height="250"></a>
-            
-		</header>
+		<header data-th-replace="~{/layouts/header :: header}" ></header>
 		
 		<div class="container">
 			
@@ -36,7 +14,7 @@
 		<nav class="navbar navbar-expand-lg bg-primary">
 			
             <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/index}"><i class="bi bi-stack"></i> Inicio</a>
+            <a class="navbar-brand" th:href="@{/principal/inicio}"><i class="bi bi-stack"></i> Inicio</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -49,7 +27,7 @@
                     <a class="nav-link" href="#carreras"><i class="bi bi-award"></i> Carreras</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#noticias"><i class="bi bi-newspaper"></i> Noticias</i></a>
+                    <a class="nav-link" href="#noticias"><i class="bi bi-newspaper"></i> Noticias</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contactos"><i class="bi bi-envelope-arrow-down"></i> Contacto</a>
@@ -265,79 +243,7 @@
 		</div>
 		
 		<!-- Pie de Pagina -->
-		<footer class="footer bg-secondary text-white">
-				
-				<div class="row">
-					
-					<div class="col-sm-12 col-md-8 col-xl-8" id="contactos">
-						
-						<h5>Informacion de Contacto</h5>
-						
-						<div class="row">
-							
-							<div class="col-sm-12 col-md-12 col-lg-5">
-							
-								<img class="logo2_facultad" th:src="@{/images/logo2-fhycs.png}" alt="logo2_facultad" width="270">
-						
-							</div>
-						
-							<div class="col-sm-12 col-md-12 col-lg-7">
-								
-								<p>Dirección: Otero 262, S.S. de Jujuy Arg.</p>
-								<p>Telefono: +54(0388) 4221563 - 4221604</p>
-								<p>E-mail: E-mail: infoweb@fhycs.unju.edu.ar</p>
-								
-							</div>
-							
-						</div>
-						
-						<div class="row">
-							
-							<div class="col-sm-12 col-md-12 col-lg-5">
-								
-								<img class="logo2_UNju" th:src="@{/images/logo2-Unju.png}" alt="logo2_Unju" width="270">
-								
-							</div>
-							
-							<div class="col-sm-12 col-md-12 col-lg-7">
-								
-								<p>Dirección: Av. Bolivia 1239 - S.S. de Jujuy, Jujuy. Arg.</p>
-								<p>Telefono: +54(0388) 4244196 - 42441107</p>
-								<p>E-mail: consultas@unju.edu.ar</p>
-								
-							</div>
-							
-						</div>
-						
-					</div>
-					
-					<div class="col-sm-12 col-md-4 col-xl-4">
-						
-						<div class="row">
-							
-							<h5>Redes Sociales</h5>
-							<a href="https://www.facebook.com/universidadnacionaldejujuy/?locale=es_LA" target="_blank"><i class="bi bi-facebook">Facebook UNJu</i></a><br>
-							<a href="https://www.facebook.com/fhycsunju" target="_blank"><i class="bi bi-facebook">Facebook FHyCS</i></a><br>
-							<a href="https://twitter.com/prensaunju?lang=es" target="_blank"><i class="bi bi-twitter">Twitter</i></a><br>
-							<a href="http://tv.unju.edu.ar/" target="_blank"><i class="bi bi-youtube">Youtube</i></a><br>
-							
-						</div>
-						
-						
-						<div class="row" id="autor">
-							
-							<h5>@Autor</h5>
-							<p>GREGORIO, GASTON LU: 4151</p>
-							<p>&copy; 2024 Facultad de Humanidades y Ciencias Sociales</p>
-		                	<p>Todos los derechos reservados</p>
-							
-						</div>						
-						
-					</div>
-					
-				</div>
-			
-	    </footer>
+		<footer data-th-replace="~{/layouts/footer :: footer}" ></footer>
 		
 		</div>
 		
