@@ -1,15 +1,34 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 	
-	<head>
+	<head th:fragment="head">
 		
 	    <meta charset="UTF-8">
+	    <title data-th-text="${titulo}"></title>
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>Header</title>
+	    <link th:rel="stylesheet" data-th-href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" data-th-href="@{/css/estilos.css}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 	    
 	</head>
 	
 	<body>
+	    
+	    <header class="d-flex justify-content-center " th:fragment="header">
+			
+			<a href="http://www.fhycs.unju.edu.ar/index.php" target="_blank"><img class="logo_facultad" th:src="@{/images/logo-fhycs.png}" alt="logo_facultad" height="250"></a>
+			
+			<div class="tituloHeader ">
+				
+                <h1>Facultad de Humanidades y Ciencias Sociales</h1>
+                <p>"Construyendo conexiones, desafiando convenciones, cultivando humanidad y cambiando realidades"</p>
+            
+            </div>
+            
+            <a href="https://www.unju.edu.ar/" target="_blank"><img class="logo_Unju" th:src="@{/images/logo-UNJU.png}" alt="logo_Unju" height="250"></a>
+            
+			
+		</header>
 	    
 	</body>
 	

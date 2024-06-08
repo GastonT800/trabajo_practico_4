@@ -1,15 +1,83 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http//www.thymeleaf.org" lang="es">
 	
-	<head>
-		
-	    <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>Footer</title>
-	    
-	</head>
+	<head data-th-replace="~{/layouts/header :: head}"></head>
 	
 	<body>
+		
+		<footer class="footer bg-secondary text-white" th-fragment="footer">
+			
+			<div class="row">
+					
+					<div class="col-sm-12 col-md-8 col-xl-8" id="contactos">
+						
+						<h5>Informacion de Contacto</h5>
+						
+						<div class="row">
+							
+							<div class="col-sm-12 col-md-12 col-lg-5">
+							
+								<img class="logo2_facultad" th:src="@{/images/logo2-fhycs.png}" alt="logo2_facultad" width="270">
+						
+							</div>
+						
+							<div class="col-sm-12 col-md-12 col-lg-7">
+								
+								<p>Dirección: Otero 262, S.S. de Jujuy Arg.</p>
+								<p>Telefono: +54(0388) 4221563 - 4221604</p>
+								<p>E-mail: E-mail: infoweb@fhycs.unju.edu.ar</p>
+								
+							</div>
+							
+						</div>
+						
+						<div class="row">
+							
+							<div class="col-sm-12 col-md-12 col-lg-5">
+								
+								<img class="logo2_UNju" th:src="@{/images/logo2-Unju.png}" alt="logo2_Unju" width="270">
+								
+							</div>
+							
+							<div class="col-sm-12 col-md-12 col-lg-7">
+								
+								<p>Dirección: Av. Bolivia 1239 - S.S. de Jujuy, Jujuy. Arg.</p>
+								<p>Telefono: +54(0388) 4244196 - 42441107</p>
+								<p>E-mail: consultas@unju.edu.ar</p>
+								
+							</div>
+							
+						</div>
+						
+					</div>
+					
+					<div class="col-sm-12 col-md-4 col-xl-4">
+						
+						<div class="row">
+							
+							<h5>Redes Sociales</h5>
+							<a href="https://www.facebook.com/universidadnacionaldejujuy/?locale=es_LA" target="_blank"><i class="bi bi-facebook">Facebook UNJu</i></a><br>
+							<a href="https://www.facebook.com/fhycsunju" target="_blank"><i class="bi bi-facebook">Facebook FHyCS</i></a><br>
+							<a href="https://twitter.com/prensaunju?lang=es" target="_blank"><i class="bi bi-twitter">Twitter</i></a><br>
+							<a href="http://tv.unju.edu.ar/" target="_blank"><i class="bi bi-youtube">Youtube</i></a><br>
+							
+						</div>
+						
+						
+						<div class="row" id="autor">
+							
+							<h5>@Autor</h5>
+							<p>GREGORIO, GASTON LU: 4151</p>
+							<p>&copy; 2024 Facultad de Humanidades y Ciencias Sociales</p>
+		                	<p>Todos los derechos reservados</p>
+							
+						</div>						
+						
+					</div>
+					
+				</div>
+			
+		</footer>
 	    
 	</body>
 	
