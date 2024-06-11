@@ -21,16 +21,16 @@
 	            <div class="collapse navbar-collapse" id="navbarScroll">
 	                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 		                <li class="nav-item">
-		                    <a id="acercaDe" class="nav-link active" aria-current="page" href="#acerca-de"> Materia</a>
+		                    <a id="acercaDe" class="nav-link active" aria-current="page" th:href="@{/materias/listado}"> Materia</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" href="#"> Docente</a>
+		                    <a class="nav-link" th:href="@{/docentes/listado}"> Docente</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" href="#"> Alumno</i></a>
+		                    <a class="nav-link" th:href="@{/alumnos/listado}"> Alumno</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" href="#"> Carrera</a>
+		                    <a class="nav-link" th:href="@{/carreras/listado}"> Carrera</a>
 		                </li>
 		                <li class="nav-item dropdown">
 		                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> Temas de Interes</a>
@@ -50,6 +50,63 @@
 	            </div>
             </div>
         </nav>
+        
+        
+        <!-- Tabla de Listado de Materias-->
+        
+        <div class="row">
+			
+			<div class="col col-sm-12 fondo-form p-5">
+				
+				<div class="row mb-5">
+					
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+						
+						<!--<a class="btn btn-primary" data-th-href="@{/materias/nuevo}" role="button">Agregar Nueva Materia</a>-->
+						<a class="btn btn-primary" href="#" role="button">Agregar Nueva Materia</a>
+						
+					</div>
+					
+					<table class="table table-striped table-hover">
+						
+						  <thead>
+						    <tr>
+						      <th class="text-center" scope="col">Código</th>
+						      <th class="text-center" scope="col">Nombre</th>
+						      <th class="text-center" scope="col">Curso</th>
+						      <th class="text-center" scope="col">Cantidad Horas</th>
+						      <th class="text-center" scope="col">Modalidad</th>
+						      <th class="text-center" scope="col">Docente</th>
+						      <th class="text-center" scope="col">Carrera</th>
+						      <th class="text-center"scope="col">Opciones</th>
+						    </tr>
+						  </thead>
+						  <tbody class="table-group-divider">
+						    <tr data-th-each="materia : ${materias}">
+						      <td class="text-center" data-th-text="${materia.codigo}"></td>
+						      <td class="text-center" data-th-text="${materia.nombre}"></td>
+						      <td class="text-center" data-th-text="${materia.curso}"></td>
+						      <td class="text-center" data-th-text="${materia.cantidadHoras}+' horas'"></td>
+						      <td class="text-center" data-th-text="${materia.modalidad}"></td>
+						      <td class="text-center" data-th-text="${materia.docente}"></td>
+						      <td class="text-center" data-th-text="${materia.carrera}"></td>
+							  <td class="text-center">
+								  <!--
+								  <a class="btn btn-warning" data-th-href="@{/materias/modificar/}+${materia.codigo}" role="button">Editar</a>
+								  <a class="btn btn-danger" data-th-href="@{/materias/eliminar/}+${materia.codigo}" role="button">Eliminar</a>-->
+								  <a class="btn btn-warning" href="#" role="button">Editar</a>
+								  <a class="btn btn-danger" href="#" role="button">Eliminar</a>
+							  </td>
+						    </tr>
+						    
+						  </tbody>
+					</table>
+					
+				</div>
+				
+			</div>
+			
+		</div>
         
 	    <!-- Pie de Pagina -->
 		<footer data-th-replace="~{/layouts/footer :: footer}" ></footer>

@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Docente {
 	
 	//Se definen los atributos para esta clase
@@ -7,7 +10,7 @@ public class Docente {
 	private String nombre;
 	private String apellido;
 	private String email;
-	private short telefono;
+	private long telefono;
 	
 	//Constructo por defecto
 	public Docente() {
@@ -15,7 +18,7 @@ public class Docente {
 	}
 	
 	//Constructor parametrizado
-	public Docente(short legajo, String nombre, String apellido, String email, short telefono) {
+	public Docente(short legajo, String nombre, String apellido, String email, long telefono) {
 		super();
 		this.legajo = legajo;
 		this.nombre = nombre;
@@ -57,11 +60,11 @@ public class Docente {
 		this.email = email;
 	}
 
-	public short getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(short telefono) {
+	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
 
