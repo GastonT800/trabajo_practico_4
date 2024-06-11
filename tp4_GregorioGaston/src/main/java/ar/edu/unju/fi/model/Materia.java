@@ -1,20 +1,22 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Materia {
 	
 	//Se definen los atributos para esta clase
 	private int codigo;
 	private String nombre;
 	private String curso;
-	private short cantidad;
 	private short cantidadHoras;
 	private Modalidad modalidad;
 	private Docente docente;
-	private String carrera;
+	private Carrera carrera;
 		
 	//Se define enum Modalidad
 	public enum Modalidad {
-		VIRTUAL, PRESENCIAL
+		VIRTUAL, PRESENCIAL, MIXTA
 	}
 
 	//Constructor por defecto
@@ -23,13 +25,12 @@ public class Materia {
 	}
 	
 	//Constructor parametrizado
-	public Materia(int codigo, String nombre, String curso, short cantidad, short cantidadHoras, Modalidad modalidad,
-			Docente docente, String carrera) {
+	public Materia(int codigo, String nombre, String curso, short cantidadHoras, Modalidad modalidad,
+			Docente docente, Carrera carrera) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.curso = curso;
-		this.cantidad = cantidad;
 		this.cantidadHoras = cantidadHoras;
 		this.modalidad = modalidad;
 		this.docente = docente;
@@ -55,12 +56,6 @@ public class Materia {
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
-	public short getCantidad() {
-		return cantidad;
-	}
-	public void setCantidad(short cantidad) {
-		this.cantidad = cantidad;
-	}
 	public short getCantidadHoras() {
 		return cantidadHoras;
 	}
@@ -79,18 +74,17 @@ public class Materia {
 	public void setDocente(Docente docente) {
 		this.docente = docente;
 	}
-	public String getCarrera() {
+	public Carrera getCarrera() {
 		return carrera;
 	}
-	public void setCarrera(String carrera) {
+	public void setCarrera(Carrera carrera) {
 		this.carrera = carrera;
 	}
 		
 	//toString
 	@Override
 	public String toString() {
-		return "Carrera [codigo=" + codigo + ", nombre=" + nombre + ", curso=" + curso + ", cantidad=" + cantidad
-				+ ", cantidadHoras=" + cantidadHoras + ", modalidad=" + modalidad + ", docente=" + docente
+		return "Carrera [codigo=" + codigo + ", nombre=" + nombre + ", curso=" + curso + ", cantidadHoras=" + cantidadHoras + ", modalidad=" + modalidad + ", docente=" + docente
 				+ ", carrera=" + carrera + "]";
 	}
 		

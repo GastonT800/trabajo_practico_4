@@ -21,16 +21,16 @@
 	            <div class="collapse navbar-collapse" id="navbarScroll">
 	                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 		                <li class="nav-item">
-		                    <a id="acercaDe" class="nav-link active" aria-current="page" href="#"> Alumno</a>
+		                    <a id="acercaDe" class="nav-link active" aria-current="page" th:href="@{/alumnos/listado}"> Alumno</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" href="#"> Materia</a>
+		                    <a class="nav-link" th:href="@{/materias/listado}"> Materia</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" href="#"> Docente</a>
+		                    <a class="nav-link" th:href="@{/docentes/listado}"> Docente</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" href="#"> Carrera</a>
+		                    <a class="nav-link" th:href="@{/carreras/listado}"> Carrera</a>
 		                </li>
 		                <li class="nav-item dropdown">
 		                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> Temas de Interes</a>
@@ -50,6 +50,63 @@
 	            </div>
             </div>
         </nav>
+        
+        
+        <!-- Tabla de Listado de Alumnos-->
+        
+        <div class="row">
+			
+			<div class="col col-sm-12 fondo-form p-5">
+				
+				<div class="row mb-5">
+					
+					<!-- Botón Agregar -->
+					
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+						
+						<a class="btn btn-primary" data-th-href="@{/alumnos/nuevo}" role="button">Agregar Nuevo Alumno</a>
+						
+					</div>
+					
+					<table class="table table-striped table-hover">
+						
+						  <thead>
+						    <tr>
+						      <th class="text-center" scope="col">DNI</th>
+						      <th class="text-center" scope="col">Nombre</th>
+						      <th class="text-center" scope="col">Apellido</th>
+						      <th class="text-center" scope="col">Email</th>
+						      <th class="text-center" scope="col">Teléfono</th>
+						      <th class="text-center" scope="col">Fecha de Nacimiento</th>
+						      <th class="text-center" scope="col">Domicilio</th>
+						      <th class="text-center" scope="col">LU</th>
+						      <th class="text-center" scope="col">Opciones</th>
+						    </tr>
+						  </thead>
+						  <tbody class="table-group-divider">
+						    <tr data-th-each="alumno : ${alumnos}">
+						      <td class="text-center" data-th-text="${alumno.dni}"></td>
+						      <td class="text-center" data-th-text="${alumno.nombre}"></td>
+						      <td class="text-center" data-th-text="${alumno.apellido}"></td>
+						      <td class="text-center" data-th-text="${alumno.email}"></td>
+						      <td class="text-center" data-th-text="${alumno.telefono}"></td>
+						      <td class="text-center" data-th-text="${alumno.fechaNacimiento}"></td>
+						      <td class="text-center" data-th-text="${alumno.domicilio}"></td>
+						      <td class="text-center" data-th-text="${alumno.lu}"></td>
+							  <td class="text-center">
+								  <a class="btn btn-warning" data-th-href="@{/alumnos/modificar/}+${alumno.dni}" role="button">Editar</a>
+								  <a class="btn btn-danger" data-th-href="@{/alumnos/eliminar/}+${alumno.dni}" role="button">Eliminar</a>
+							  </td>
+						    </tr>
+						    
+						  </tbody>
+					</table>
+					
+				</div>
+				
+			</div>
+			
+		</div>
         
 	    <!-- Pie de Pagina -->
 		<footer data-th-replace="~{/layouts/footer :: footer}" ></footer>

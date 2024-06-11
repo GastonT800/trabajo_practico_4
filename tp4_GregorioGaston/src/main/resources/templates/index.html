@@ -20,36 +20,40 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                <li class="nav-item">
-                    <a id="acercaDe" class="nav-link active" aria-current="page" href="#acerca-de"><i class="bi bi-info-lg"></i> Acerca de</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#carreras"><i class="bi bi-award"></i> Carreras</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#noticias"><i class="bi bi-newspaper"></i> Noticias</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contactos"><i class="bi bi-envelope-arrow-down"></i> Contacto</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> 
-                    Temas de Interes
-                    </a>
+	                <li class="nav-item">
+	                    <a id="acercaDe" class="nav-link active" aria-current="page" href="#acerca-de"><i class="bi bi-info-lg"></i> Acerca de</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#carreras"><i class="bi bi-award"></i> Carreras</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#noticias"><i class="bi bi-newspaper"></i> Noticias</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#contactos"><i class="bi bi-envelope-arrow-down"></i> Contacto</a>
+	                </li>
+	                <li class="nav-item dropdown">
+	                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i>Temas de Interes</a>
+	                    <ul class="dropdown-menu">
+	                    <li><a class="dropdown-item" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" ><i class="bi bi-bootstrap"></i> Bootstrap</a></li>
+	                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Web/javascript" target="_blank" ><i class="bi bi-filetype-css"></i> Css</a></li>
+	                    <li><hr class="dropdown-divider"></li>
+	                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Learn/CSS" target="_blank" ><i class="bi bi-filetype-java"></i> Java Script</a></li>
+	                    </ul>
+	                </li>
+	                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> Otras Paginas</a>
                     <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" ><i class="bi bi-bootstrap"></i> Bootstrap</a></li>
-                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Web/javascript" target="_blank" ><i class="bi bi-filetype-css"></i> Css</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Learn/CSS" target="_blank" ><i class="bi bi-filetype-java"></i> Java Script</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item" id="disabled">
-                    <a class="nav-link disabled" aria-disabled="true"><i class="bi bi-list-ol"></i> Temas de Interes</a>
+	                    <li><a class="dropdown-item" th:href="@{/materias/listado}"> Materias</a></li>
+	                    <li><a class="dropdown-item" th:href="@{/docentes/listado}"> Docente</a></li>
+	                    <li><a class="dropdown-item" th:href="@{/alumnos/listado}"> Alumno</a></li>
+	                    <li><a class="dropdown-item" th:href="@{/carreras/listado}"> Carrera</a></li>
+	                </ul>
                 </li>
                 </ul>
                 <form class="d-flex bg-primary-subtle text-primary-emphasis" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+	                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+	                <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
             </div>

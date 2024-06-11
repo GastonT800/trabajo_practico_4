@@ -2,16 +2,20 @@ package ar.edu.unju.fi.model;
 
 import java.time.LocalDate;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Alumno {
 	
 	//Se definen los atributos para esta clase
-	private short dni;
+	private int dni;
 	private String nombre;
 	private String apellido;
 	private String email;
-	private short telefono;
+	private long telefono;
 	private LocalDate fechaNacimiento;
-	private short lu;
+	private String domicilio;
+	private String lu;
 	
 	//Constructor por defecto
 	public Alumno() {
@@ -19,8 +23,8 @@ public class Alumno {
 	}
 	
 	//Constructor parametrizado
-	public Alumno(short dni, String nombre, String apellido, String email, short telefono, LocalDate fechaNacimiento,
-			short lu) {
+	public Alumno(int dni, String nombre, String apellido, String email, long telefono, LocalDate fechaNacimiento,
+			String domicilio, String lu) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;
@@ -28,14 +32,15 @@ public class Alumno {
 		this.email = email;
 		this.telefono = telefono;
 		this.fechaNacimiento = fechaNacimiento;
+		this.domicilio = domicilio;
 		this.lu = lu;
 	}
 	
 	//Getters and Setters
-	public short getDni() {
+	public int getDni() {
 		return dni;
 	}
-	public void setDni(short dni) {
+	public void setDni(int dni) {
 		this.dni = dni;
 	}
 	public String getNombre() {
@@ -56,10 +61,10 @@ public class Alumno {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public short getTelefono() {
+	public long getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(short telefono) {
+	public void setTelefono(long telefono) {
 		this.telefono = telefono;
 	}
 	public LocalDate getFechaNacimiento() {
@@ -68,10 +73,16 @@ public class Alumno {
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	public short getLu() {
+	public String getDomicilio() {
+		return domicilio;
+	}
+	public void setDomicilio(String domicilio) {
+		this.domicilio = domicilio;
+	}
+	public String getLu() {
 		return lu;
 	}
-	public void setLu(short lu) {
+	public void setLu(String lu) {
 		this.lu = lu;
 	}
 	
@@ -79,7 +90,7 @@ public class Alumno {
 	@Override
 	public String toString() {
 		return "Alumno [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
-				+ ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", lu=" + lu + "]";
+				+ ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", domicilio=" + domicilio +", lu=" + lu + "]";
 	}
 	
 
