@@ -42,9 +42,9 @@ public class CollectionAlumno {
 	 * agrega un objeto alumno al arrayList de alumnos
 	 * @param alumno
 	 */
-	public static void agregarAlumno(Alumno alumno) {
+	public static boolean agregarAlumno(Alumno alumno) {
 		
-		alumnos.add(alumno);
+		return alumnos.add(alumno) ? true : false;
 	}
 	
 	/**
@@ -66,26 +66,36 @@ public class CollectionAlumno {
 	 * modifica un objeto alumno con los nuevos valores en
 	 * @param alumno objeto con los valores de atributos modificados
 	 */
-	public static void modificarAlumno(Alumno alumno) {
+	public static void modificarAlumno(Alumno alumno) throws Exception {
 		
-		for(Alumno alumn : alumnos) {
-			
-			if(alumn.getDni() == alumno.getDni()) {
+		boolean encontrado = false;
+		
+		try {
+			for(Alumno alumn : alumnos) {
 				
-				alumn.setNombre(alumno.getNombre());
-				alumn.setApellido(alumno.getApellido());
-				alumn.setEmail(alumno.getEmail());
-				alumn.setTelefono(alumno.getTelefono());
-				alumn.setFechaNacimiento(alumno.getFechaNacimiento());
-				alumn.setDomicilio(alumno.getDomicilio());
-				alumn.setLu(alumno.getLu());
-				
-			}else {
-				
-				System.out.println("El DNI no es valido");
+				if(alumn.getDni() == alumno.getDni()) {
+					
+					alumn.setNombre(alumno.getNombre());
+					alumn.setApellido(alumno.getApellido());
+					alumn.setEmail(alumno.getEmail());
+					alumn.setTelefono(alumno.getTelefono());
+					alumn.setFechaNacimiento(alumno.getFechaNacimiento());
+					alumn.setDomicilio(alumno.getDomicilio());
+					alumn.setLu(alumno.getLu());
+					encontrado = true;
+					
+				}
+			}
+			if(!encontrado) {
+				throw new Exception ("El alumno con DNI " + alumno.getDni() + " no existe");
 			}
 			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			throw e;
 		}
+		
+		
 	}
 	
 	/**

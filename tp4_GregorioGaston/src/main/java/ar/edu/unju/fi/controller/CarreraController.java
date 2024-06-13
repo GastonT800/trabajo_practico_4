@@ -25,6 +25,8 @@ public class CarreraController {
 		
 		model.addAttribute("carreras", CollectionCarrera.getCarreras());
 		model.addAttribute("titulo", "Carreras Listado");
+		model.addAttribute("exito", false);
+		model.addAttribute("mensaje", "");
 		
 		return ("carreraList");
 		
@@ -42,11 +44,21 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/guardar")
-	public ModelAndView guardarCarrera(@ModelAttribute("carrera") Carrera carrera) {
+	public ModelAndView guardarCarrera(@ModelAttribute("carrera") Carrera carrera, Model model) {
 		
 		ModelAndView modelView = new ModelAndView("carreraList");
+		String mensaje;
 		carrera.setEstado(true);
-		CollectionCarrera.agregarCarrera(carrera);
+		
+		boolean exito = CollectionCarrera.agregarCarrera(carrera);
+		if(exito) {
+			mensaje = "Carrera guardada con éxito!";
+			
+		}else {
+			mensaje = "Carrera no se pudo guardar";
+		}
+		modelView.addObject("exito", exito);
+		modelView.addObject("mensaje", mensaje);
 		modelView.addObject("carreras", CollectionCarrera.getCarreras());
 		
 		return modelView;
@@ -67,11 +79,28 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/modificar")
-	public String modificarCarrera(@ModelAttribute("carrera") Carrera carrera) {
+	public String modificarCarrera(@ModelAttribute("carrera") Carrera carrera, Model model) {
 		
-		CollectionCarrera.modificarCarrera(carrera);
+		boolean exito = false;
+		String mensaje = "";
 		
-		return "redirect:/carreras/listado";
+		try {
+			
+			CollectionCarrera.modificarCarrera(carrera);
+			mensaje = "La carrera con código " + carrera.getCodigo() + " fue modificada con exito!";
+			exito = true;
+			
+		}catch(Exception e) {
+			mensaje = e.getMessage();
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("exito", exito);
+		model.addAttribute("mensaje", mensaje);
+		model.addAttribute("carreras", CollectionCarrera.getCarreras());
+		model.addAttribute("titulo", "Carreras Listado");
+		
+		return "carreraList";
 	}
 	
 	@GetMapping("/eliminar/{codigo}")

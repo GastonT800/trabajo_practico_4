@@ -47,9 +47,9 @@ public class CollectionMateria {
 	 * agrega un objeto materia al arrayList de materias
 	 * @param materia
 	 */
-	public static void agregarMateria(Materia materia) {
+	public static boolean agregarMateria(Materia materia) {
 		
-		materias.add(materia);
+		return materias.add(materia) ? true : false;
 	}
 	
 	/**
@@ -71,23 +71,34 @@ public class CollectionMateria {
 	 * modifica un objeto con los nuevos valores en 
 	 * @param materia objeto con los valores de atributos modificados
 	 */
-	public static void modificarMateria(Materia materia) {
+	public static void modificarMateria(Materia materia)throws Exception {
 		
-		for (Materia materi : materias) {
+		boolean encontrado = false;
+		
+		try {
 			
-			if(materi.getCodigo() == materia.getCodigo()) {
+			for (Materia materi : materias) {
 				
-				materi.setNombre(materia.getNombre());
-				materi.setCurso(materia.getCurso());
-				materi.setCantidadHoras(materia.getCantidadHoras());
-				materi.setModalidad(materia.getModalidad());
-				materi.setDocente(materia.getDocente());
-				materi.setCarrera(materia.getCarrera());
-				
-			}else {
-				System.out.println("El CODIGO no es valido");
+				if(materi.getCodigo() == materia.getCodigo()) {
+					
+					materi.setNombre(materia.getNombre());
+					materi.setCurso(materia.getCurso());
+					materi.setCantidadHoras(materia.getCantidadHoras());
+					materi.setModalidad(materia.getModalidad());
+					materi.setDocente(materia.getDocente());
+					materi.setCarrera(materia.getCarrera());
+					encontrado = true;
+				}
 			}
+			if(!encontrado) {
+				throw new Exception ("La materia con código " +  materia.getCodigo() + " no existe");
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			throw e;
 		}
+		
 	}
 	
 	/**

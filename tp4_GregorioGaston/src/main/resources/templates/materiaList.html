@@ -60,10 +60,24 @@
 				
 				<div class="row mb-5">
 					
+					<!-- Alerta -->
+					<div th:if="${exito}" class="alert alert-success alert-dismissible fade show" role="alert">
+						
+						<strong data-th-text="${mensaje}"></strong>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						
+					</div>
+					<div th:if="${!exito && mensaje != '' }" class="alert alert-danger alert-dismissible fade show" role="alert">
+						
+						<strong data-th-text="${mensaje}"></strong>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						
+					</div>
+					<!-- Botón Agregar -->
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
 						
-						<!--<a class="btn btn-primary" data-th-href="@{/materias/nuevo}" role="button">Agregar Nueva Materia</a>-->
-						<a class="btn btn-primary" href="#" role="button">Agregar Nueva Materia</a>
+						<a class="btn btn-primary" data-th-href="@{/materias/nuevo}" role="button">Agregar Nueva Materia</a>
+						
 						
 					</div>
 					
@@ -90,12 +104,9 @@
 						      <td class="text-center" data-th-text="${materia.modalidad}"></td>
 						      <td class="text-center" data-th-text="${materia.docente}"></td>
 						      <td class="text-center" data-th-text="${materia.carrera}"></td>
-							  <td class="text-center">
-								  <!--
+							  <td class="text-center"><!-- Botones para Modificar o Eliminar -->
 								  <a class="btn btn-warning" data-th-href="@{/materias/modificar/}+${materia.codigo}" role="button">Editar</a>
-								  <a class="btn btn-danger" data-th-href="@{/materias/eliminar/}+${materia.codigo}" role="button">Eliminar</a>-->
-								  <a class="btn btn-warning" href="#" role="button">Editar</a>
-								  <a class="btn btn-danger" href="#" role="button">Eliminar</a>
+								  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-codMateria="${materia.codigo}">Eliminar</button>
 							  </td>
 						    </tr>
 						    
@@ -112,6 +123,45 @@
 		<footer data-th-replace="~{/layouts/footer :: footer}" ></footer>
 		
 		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" th:id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+			
+			<div class="modal-dialog" role="document">
+				
+				<div class="modal-content">
+					
+					<div class="modal-header">
+						
+						<h5 class="modal-title fs-5" id="deleteModalLabel">Confirmar Eliminación</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						
+					</div>
+					<div class="modal-body">
+							¿Estás seguro de que desea eliminar esta carrera?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<form th:action="@{/materias/eliminar/{codMateria=${selectedCodMateria}}}" method="get">
+							<button type="submit" class="btn btn-danger">Eliminar</button>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				var deleteModal = document.getElementById('deleteModal');
+				deleteModal.addEventListener('show.bs.modal', function (event) {
+					var button = event.relatedTarget;
+					var codMateria = button.getAttribute('data-codmateria');
+					var form = deleteModal.querySelector('form');
+					form.setAttribute('action', '/materias/eliminar/' + codMateria);
+				});
+			});
+		</script>
 		
 		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 		

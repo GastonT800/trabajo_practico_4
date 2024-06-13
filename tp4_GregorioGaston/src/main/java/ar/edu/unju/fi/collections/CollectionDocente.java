@@ -23,10 +23,10 @@ public class CollectionDocente {
 		
 		if(docentes.isEmpty()) {
 			
-			docentes.add(new Docente((short) 1, "Lucas", "Gómez", "juanG@gmail.com",(long)3885723459L));
-	        docentes.add(new Docente((short) 2, "María", "Pérez", "mariaP@gmail.com", (long)3884633902L));
-	        docentes.add(new Docente((short) 3, "Jorge", "Luna", "jorgeL@gmail.com", (long)3885729439L));
-	        docentes.add(new Docente((short) 4, "Valeria", "Corro", "valeriaC@gmail.com", (long)3885849402L));
+			docentes.add(new Docente((short) 10001, "Lucas", "Gómez", "juanG@gmail.com",(long)3885723459L));
+	        docentes.add(new Docente((short) 10002, "María", "Pérez", "mariaP@gmail.com", (long)3884633902L));
+	        docentes.add(new Docente((short) 10003, "Jorge", "Luna", "jorgeL@gmail.com", (long)3885729439L));
+	        docentes.add(new Docente((short) 10004, "Valeria", "Corro", "valeriaC@gmail.com", (long)3885849402L));
 	        
 			return docentes;
 			
@@ -40,9 +40,9 @@ public class CollectionDocente {
 	 * agrega un objeto docente al arrayList de docentes
 	 * @param docente
 	 */
-	public static void agregarDocente(Docente docente){
+	public static boolean  agregarDocente(Docente docente){
 		
-		docentes.add(docente);
+		return docentes.add(docente) ? true : false;
 		
 	}
 	
@@ -65,22 +65,30 @@ public class CollectionDocente {
 	 * modifica un objeto docente con los nuevos valores en 
 	 * @param docente objeto con los valores de atributos modificados
 	 */
-	public static void modificarDocente(Docente docente) {
+	public static void modificarDocente(Docente docente)throws Exception {
 		
-		for(Docente docent : docentes) {
+		boolean encontrado = false;
+		
+		try {
 			
-			if(docent.getLegajo() == docente.getLegajo()) {
+			for(Docente docent : docentes) {
 				
-				docent.setNombre(docente.getNombre());
-				docent.setApellido(docente.getApellido());
-				docent.setEmail(docente.getEmail());
-				docent.setTelefono(docente.getTelefono());
-				
-			}else {
-				
-				System.out.println("El LEGAJO no es valido");
+				if(docent.getLegajo() == docente.getLegajo()) {
+					
+					docent.setNombre(docente.getNombre());
+					docent.setApellido(docente.getApellido());
+					docent.setEmail(docente.getEmail());
+					docent.setTelefono(docente.getTelefono());
+					encontrado = true;
+					
+				}
 			}
-			
+			if(!encontrado) {
+				throw new Exception ("El docente con legajo " + docente.getLegajo() + " no existe");
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			throw e;
 		}
 		
 	}
