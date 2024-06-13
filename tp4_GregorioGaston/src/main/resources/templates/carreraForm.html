@@ -68,7 +68,7 @@
 						
 						<label for="codigo" class="col-sm-12 col-lg-2 col -form-label text-lg-end">Código</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="number" class="form-control" id="codigo" th:field="*{codigo}" th:disabled="${edicion}?true:false">
+							<input type="number" class="form-control" id="codigo" th:field="*{codigo}" th:disabled="${edicion}?true:false" required min="1" max="50">
 							<input type="hidden" class="form-control" id="codigo" th:field="*{codigo}" th:if="${edicion}">
 						</div>
 						
@@ -78,7 +78,7 @@
 						
 						<label for="nombre" class="col-sm-12 col-lg-2 col -form-label text-lg-end">Nombre</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" required minlength="10" maxlength="60">
 						</div>
 						
 					</div>
@@ -87,7 +87,7 @@
 						
 						<label for="duracion" class="col-sm-12 col-lg-2 col -form-label text-lg-end">Duración</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="number" class="form-control" id="duracion" th:field="*{cantAnios}">
+							<input type="number" class="form-control" id="duracion" th:field="*{cantAnios}" required min="1" max="7">
 						</div>
 						
 					</div>

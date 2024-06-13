@@ -60,6 +60,19 @@
 				
 				<div class="row mb-5">
 					
+					<!-- Alerta -->
+					<div th:if="${exito}" class="alert alert-success alert-dismissible fade show" role="alert">
+						
+						<strong data-th-text="${mensaje}"></strong>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						
+					</div>
+					<div th:if="${!exito && mensaje != '' }" class="alert alert-danger alert-dismissible fade show" role="alert">
+						
+						<strong data-th-text="${mensaje}"></strong>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						
+					</div>
 					<!-- Botón Agregar -->
 					
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
@@ -87,10 +100,10 @@
 						      <td class="text-center">
 								  <span th:if="${carrera.estado}">Activa</span>
 								  <span th:if="${!carrera.estado}">Inactiva</span>
-							  </td>
-							  <td class="text-center">
+							  </td> 
+							  <td class="text-center"><!-- Botones para Modificar o Eliminar -->
 								  <a class="btn btn-warning" data-th-href="@{/carreras/modificar/}+${carrera.codigo}" role="button">Editar</a>
-								  <a class="btn btn-danger" data-th-href="@{/carreras/eliminar/}+${carrera.codigo}" role="button">Eliminar</a>
+								  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-codCarrera="${carrera.codigo}">Eliminar</button>
 							  </td>
 						    </tr>
 						    
@@ -107,6 +120,45 @@
 		<footer data-th-replace="~{/layouts/footer :: footer}" ></footer>
 		
 		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" th:id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+			
+			<div class="modal-dialog" role="document">
+				
+				<div class="modal-content">
+					
+					<div class="modal-header">
+						
+						<h5 class="modal-title fs-5" id="deleteModalLabel">Confirmar Eliminación</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						
+					</div>
+					<div class="modal-body">
+							¿Estás seguro de que desea eliminar esta materia?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<form th:action="@{/carreras/eliminar/{codCarrera=${selectedCodCarrera}}}" method="get">
+							<button type="submit" class="btn btn-danger">Eliminar</button>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				var deleteModal = document.getElementById('deleteModal');
+				deleteModal.addEventListener('show.bs.modal', function (event) {
+					var button = event.relatedTarget;
+					var codCarrera = button.getAttribute('data-codcarrera');
+					var form = deleteModal.querySelector('form');
+					form.setAttribute('action', '/carreras/eliminar/' + codCarrera);
+				});
+			});
+		</script>
 		
 		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 		
