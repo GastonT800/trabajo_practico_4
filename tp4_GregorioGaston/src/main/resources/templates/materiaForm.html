@@ -134,7 +134,7 @@
 						<label for="docente" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Docente</label>
 						<div class="col-sm-12 col-lg-4">
 							
-							<select id="docente" name="docente" class="form-select" th:field="*{docente.legajo}">
+							<select id="docente" name="docente" class="form-select" th:field="*{docente.legajo}" required>
 								<!--<option value="" disabled selected>Seleccione un Docente</option>-->
 								<!-- CollectionDocente -->
 								<option th:each="docent : ${docentes}" th:value="${docent.legajo}" th:text="${docent.nombre + ' ' + docent.apellido}"></option>
@@ -149,7 +149,7 @@
 						<label for="carrera" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Carrera</label>
 						<div class="col-sm-12 col-lg-4">
 							
-							<select id="carrera" name="carrera" class="form-select" th:field="*{carrera.codigo}">
+							<select id="carrera" name="carrera" class="form-select" th:field="*{carrera.codigo}" required>
 								<!--<option value="" disabled selected>Seleccione una Carrera</option>-->
 								<!-- CollectionCarrera -->
 								<option th:each="carre : ${carreras}" th:value="${carre.codigo}" th:text="${carre.nombre}"></option>

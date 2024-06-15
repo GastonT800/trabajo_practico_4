@@ -27,13 +27,14 @@ public class CollectionMateria {
 		
 		if(materias.isEmpty()) {
 			
-			Docente docente = CollectionDocente.buscarDocente((short)2);
-			Carrera carrera = CollectionCarrera.buscarCarrera((int)2);
-			materias.add(new Materia(001, "Profesorado en Letras", "TERCERO", (short)36, Modalidad.VIRTUAL, docente, carrera ));
+			//Docente docente = CollectionDocente.buscarDocente((short)2);
+			//Carrera carrera = CollectionCarrera.buscarCarrera((int)2);
+			materias.add(new Materia(001, "Antropología Biológica II", "TERCERO", (short)36, Modalidad.VIRTUAL, new Docente((short) 10001, "Lucas", "Gómez", "juanG@gmail.com",(long)3885723459L), new Carrera(1, "Licenciatura en Antropologia",(short) 5 ,true)));
 			
-			Docente docente2 = CollectionDocente.buscarDocente((short)1);
-			Carrera carrera2 = CollectionCarrera.buscarCarrera((int)1);
-			materias.add(new Materia(002, "Licenciatura en Historia", "PRIMERO", (short)40, Modalidad.MIXTA, docente2, carrera2 ));
+			//Docente docente2 = CollectionDocente.buscarDocente((short)1);
+			//Carrera carrera2 = CollectionCarrera.buscarCarrera((int)1);
+			materias.add(new Materia(002, "Introducción a la Literatura", "PRIMERO", (short)40, Modalidad.MIXTA, new Docente((short) 10002, "María", "Pérez", "mariaP@gmail.com", (long)3884633902L), new Carrera(2, "Profesorado en Letras",(short) 5, false)));
+			//System.out.println(materias);
 			
 			return materias;
 			
