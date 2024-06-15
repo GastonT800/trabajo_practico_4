@@ -44,14 +44,13 @@ import ar.edu.unju.fi.model.Materia;
 		
 		@GetMapping("/nuevo")
 		public String getNuevaMateriaPage(Model model) {
-			
 
-			model.addAttribute("docentes", CollectionDocente.getDocentes());
-			model.addAttribute("carreras", CollectionCarrera.getCarreras());
 			boolean edicion=false;
 			model.addAttribute("materia", materia);
 			model.addAttribute("edicion", edicion);
 			model.addAttribute("titulo", "Nueva Materia");
+			model.addAttribute("docentes", CollectionDocente.getDocentes());
+			model.addAttribute("carreras", CollectionCarrera.getCarreras());
 			
 			return "materiaForm";
 		}
@@ -87,11 +86,11 @@ import ar.edu.unju.fi.model.Materia;
 			boolean edicion = true;
 			materiaEncontrada = CollectionMateria.buscarMateria(codigo);
 
-			model.addAttribute("carreras", CollectionCarrera.getCarreras());
-			model.addAttribute("docentes", CollectionDocente.getDocentes());
 			model.addAttribute("edicion", edicion);
 			model.addAttribute("materia", materiaEncontrada);
 			model.addAttribute("titulo", "Modificar Materia");
+			model.addAttribute("carreras", CollectionCarrera.getCarreras());
+			model.addAttribute("docentes", CollectionDocente.getDocentes());
 			
 			return "materiaForm";
 		}
@@ -118,7 +117,7 @@ import ar.edu.unju.fi.model.Materia;
 			}
 			model.addAttribute("exito", exito);
 			model.addAttribute("mensaje", mensaje);
-			model.addAttribute("carreras", CollectionMateria.getMaterias());
+			model.addAttribute("materias", CollectionMateria.getMaterias());
 			model.addAttribute("titulo", "Materias Listado");
 			
 			return "materiaList";

@@ -102,8 +102,8 @@
 						      <td class="text-center" data-th-text="${materia.curso}"></td>
 						      <td class="text-center" data-th-text="${materia.cantidadHoras}+' horas'"></td>
 						      <td class="text-center" data-th-text="${materia.modalidad}"></td>
-						      <td class="text-center" data-th-text="${materia.docente}"></td>
-						      <td class="text-center" data-th-text="${materia.carrera}"></td>
+						      <td class="text-center" data-th-text="${materia.docente.apellido} + ', ' + ${materia.docente.nombre}"></td>
+						      <td class="text-center" data-th-text="${materia.carrera.nombre}"></td>
 							  <td class="text-center"><!-- Botones para Modificar o Eliminar -->
 								  <a class="btn btn-warning" data-th-href="@{/materias/modificar/}+${materia.codigo}" role="button">Editar</a>
 								  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-codMateria="${materia.codigo}">Eliminar</button>
