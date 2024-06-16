@@ -24,10 +24,11 @@ public class CollectionAlumno {
 		
 		if(alumnos.isEmpty()) {
 			
-			alumnos.add(new Alumno(45613488, "Carla", "Gutierrez", "carlaG@gmail.com",(long)3884277345L, LocalDate.of(2000, 5, 12), "Av. Libertador 172","FH-1001"));
-	        alumnos.add(new Alumno(33278457, "Eugenia", "Lobo", "eugeniaL@gmail.com",(long)3886789001L, LocalDate.of(1999, 8, 20), "Calle San Martín 436","FH-1002"));
-	        alumnos.add(new Alumno(53731591, "Marcos", "Castro", "marcosC@gmail.com",(long)3885512345L, LocalDate.of(1988, 2, 27), "Av. General Paz 377", "FH-1003"));
-	        alumnos.add(new Alumno(44613455, "Hector", "Zarate", "hectorZ@gmail.com",(long)3886252789L, LocalDate.of(1979, 7, 10), "Calle Aleman 1156", "FH-1004"));
+			//alumnos.add(new Alumno(45613488, "Carla", "Gutierrez", "carlaG@gmail.com",(long)3884277345L, LocalDate.of(2000, 5, 12), "Av. Libertador 172","FH-1001"));
+			alumnos.add(new Alumno(45613488, "Carla", "Gutierrez", "carlaG@gmail.com",(long)3884277345L, LocalDate.of(2000, 5, 12), "Av. Libertador 172",1001));
+	        alumnos.add(new Alumno(33278457, "Eugenia", "Lobo", "eugeniaL@gmail.com",(long)3886789001L, LocalDate.of(1999, 8, 20), "Calle San Martín 436",1002));
+	        alumnos.add(new Alumno(53731591, "Marcos", "Castro", "marcosC@gmail.com",(long)3885512345L, LocalDate.of(1988, 2, 27), "Av. General Paz 377", 1003));
+	        alumnos.add(new Alumno(44613455, "Hector", "Zarate", "hectorZ@gmail.com",(long)3886252789L, LocalDate.of(1979, 7, 10), "Calle Aleman 1156", 1004));
 		
 	        return alumnos;
 	        
@@ -51,12 +52,12 @@ public class CollectionAlumno {
 	 * elimina un objeto alumno del arrayList de alumnos
 	 * @param dniAlumno
 	 */
-	public static void eliminarAlumno(int dniAlumno) {
+	public static void eliminarAlumno(int lu) {
 		
 		Iterator<Alumno> iterator = alumnos.iterator();
 		while(iterator.hasNext()) {
 			
-			if(iterator.next().getDni()== dniAlumno) {
+			if(iterator.next().getLu()== lu) {
 				iterator.remove();
 			}
 		}
@@ -73,7 +74,7 @@ public class CollectionAlumno {
 		try {
 			for(Alumno alumn : alumnos) {
 				
-				if(alumn.getDni() == alumno.getDni()) {
+				if(alumn.getLu() == alumno.getLu()) {
 					
 					alumn.setNombre(alumno.getNombre());
 					alumn.setApellido(alumno.getApellido());
@@ -87,7 +88,7 @@ public class CollectionAlumno {
 				}
 			}
 			if(!encontrado) {
-				throw new Exception ("El alumno con DNI " + alumno.getDni() + " no existe");
+				throw new Exception ("El alumno con Libreta Universitaria " + alumno.getLu() + " no existe");
 			}
 			
 		}catch(Exception e) {
@@ -103,17 +104,14 @@ public class CollectionAlumno {
 	 * @param dni a buscar en el ArrayList alumnos
 	 * @return
 	 */
-	public static Alumno buscarAlumno(int dni) {
+	public static Alumno buscarAlumno(int lu) {
 		
-		Predicate<Alumno> filterDni = d -> d.getDni() == dni;
-		Optional<Alumno> alumno = alumnos.stream().filter(filterDni).findFirst();
-		
-		if(alumno.isPresent()) {
+		Predicate<Alumno> filterLU = d -> d.getLu() == lu;
+		Optional<Alumno> alumno = alumnos.stream().filter(filterLU).findFirst();
+		if(alumno.isPresent()) 
 			return alumno.get();
-			
-		}else {
+		else 
 			return null;
-		}
 	}
 
 }

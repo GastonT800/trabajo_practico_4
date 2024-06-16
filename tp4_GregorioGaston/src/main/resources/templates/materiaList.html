@@ -9,47 +9,9 @@
 		<header data-th-replace="~{/layouts/header :: header}" ></header>
 		
 		<div class="container">
-			
+		
 		<!-- Barra de Navegacion-->
-		<nav class="navbar navbar-expand-lg bg-primary">
-			
-            <div class="container-fluid">
-	            <a class="navbar-brand" th:href="@{/principal/inicio}"><i class="bi bi-stack"></i> Inicio</a>
-	            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-	                <span class="navbar-toggler-icon"></span>
-	            </button>
-	            <div class="collapse navbar-collapse" id="navbarScroll">
-	                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-		                <li class="nav-item">
-		                    <a id="acercaDe" class="nav-link active" aria-current="page" th:href="@{/materias/listado}"> Materia</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/docentes/listado}"> Docente</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/alumnos/listado}"> Alumno</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/carreras/listado}"> Carrera</a>
-		                </li>
-		                <li class="nav-item dropdown">
-		                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> Temas de Interes</a>
-		                    <ul class="dropdown-menu">
-			                    <li><a class="dropdown-item" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" ><i class="bi bi-bootstrap"></i> Bootstrap</a></li>
-			                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Web/javascript" target="_blank" ><i class="bi bi-filetype-css"></i> Css</a></li>
-			                    <li><hr class="dropdown-divider"></li>
-			                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Learn/CSS" target="_blank" ><i class="bi bi-filetype-java"></i> Java Script</a></li>
-		                    </ul>
-		                </li>
-	                
-	                </ul>
-	                <form class="d-flex bg-primary-subtle text-primary-emphasis" role="search">
-	                	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	                	<button class="btn btn-outline-success" type="submit">Search</button>
-	                </form>
-	            </div>
-            </div>
-        </nav>
+		<nav data-th-replace="~{/layouts/header :: navbar}"></nav>
         
         
         <!-- Tabla de Listado de Materias-->
@@ -76,7 +38,7 @@
 					<!-- Botón Agregar -->
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
 						
-						<a class="btn btn-primary" data-th-href="@{/materias/nuevo}" role="button">Agregar Nueva Materia</a>
+						<a class="btn btn-primary" data-th-href="@{/materia/nuevo}" role="button">Agregar Nueva Materia</a>
 						
 						
 					</div>
@@ -105,7 +67,7 @@
 						      <td class="text-center" data-th-text="${materia.docente.apellido} + ', ' + ${materia.docente.nombre}"></td>
 						      <td class="text-center" data-th-text="${materia.carrera.nombre}"></td>
 							  <td class="text-center"><!-- Botones para Modificar o Eliminar -->
-								  <a class="btn btn-warning" data-th-href="@{/materias/modificar/}+${materia.codigo}" role="button">Editar</a>
+								  <a class="btn btn-warning" data-th-href="@{/materia/modificar/}+${materia.codigo}" role="button">Editar</a>
 								  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-codMateria="${materia.codigo}">Eliminar</button>
 							  </td>
 						    </tr>
@@ -142,7 +104,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-						<form th:action="@{/materias/eliminar/{codMateria=${selectedCodMateria}}}" method="get">
+						<form th:action="@{/materia/eliminar/{codMateria=${selectedCodMateria}}}" method="get">
 							<button type="submit" class="btn btn-danger">Eliminar</button>
 						</form>
 						
@@ -158,7 +120,7 @@
 					var button = event.relatedTarget;
 					var codMateria = button.getAttribute('data-codmateria');
 					var form = deleteModal.querySelector('form');
-					form.setAttribute('action', '/materias/eliminar/' + codMateria);
+					form.setAttribute('action', '/materia/eliminar/' + codMateria);
 				});
 			});
 		</script>

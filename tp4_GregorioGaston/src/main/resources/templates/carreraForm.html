@@ -21,7 +21,7 @@
 	            <div class="collapse navbar-collapse" id="navbarScroll">
 	                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 		                <li class="nav-item">
-		                    <a id="acercaDe" class="nav-link active" aria-current="page" th:href="@{/carreras/listado}"> Carrera</a>
+		                    <a id="acercaDe" class="nav-link active" aria-current="page" th:href="@{/carrera/listado}"> Carrera</a>
 		                </li>
 		                <li class="nav-item">
 		                    <a class="nav-link" th:href="@{/materias/listado}"> Materia</a>
@@ -30,7 +30,7 @@
 		                    <a class="nav-link" th:href="@{/docentes/listado}"> Docente</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/alumnos/listado}"> Alumno</a>
+		                    <a class="nav-link" th:href="@{/alumno/listado}"> Alumno</a>
 		                </li>
 		                <li class="nav-item dropdown">
 		                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> Temas de Interes</a>
@@ -62,7 +62,7 @@
 			
 			<div class="row">
 				
-				<form data-th-action="${edicion}?@{/carreras/modificar} : @{/carreras/guardar}" th:object="${carrera}" method="post">
+				<form data-th-action="${edicion}?@{/carrera/modificar} : @{/carrera/guardar}" th:object="${carrera}" method="post">
 					
 					<div class="row mb-3 justify-content-center">
 						

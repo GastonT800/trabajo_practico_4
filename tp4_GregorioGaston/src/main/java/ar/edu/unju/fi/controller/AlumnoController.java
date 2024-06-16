@@ -10,21 +10,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.collections.CollectionAlumno;
-import ar.edu.unju.fi.model.Alumno;
+import ar.edu.unju.fi.dto.AlumnoDTO;
+import ar.edu.unju.fi.service.IAlumnoService;
 
 
 @Controller
-@RequestMapping("/alumnos")
+@RequestMapping("/alumno")
 public class AlumnoController {
 	
 	@Autowired
-	private Alumno alumno;
+	private AlumnoDTO alumnoDTO;
+	
+	@Autowired
+	private IAlumnoService alumnoService;
 	
 	@GetMapping("/listado")
 	public String getAlumnoPage(Model model) {
 		
-		model.addAttribute("alumnos", CollectionAlumno.getAlumnos());
+		model.addAttribute("alumnos", alumnoService.findAll());
 		model.addAttribute("titulo", "Alumnos Listado");
 		model.addAttribute("exito", false);
 		model.addAttribute("mensaje", "");
@@ -37,7 +40,7 @@ public class AlumnoController {
 	public String getNuevaAlumnoPage(Model model) {
 		
 		boolean edicion=false;
-		model.addAttribute("alumno", alumno);
+		model.addAttribute("alumno", alumnoDTO);
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("titulo", "Nuevo Alumno");
 		
@@ -45,11 +48,11 @@ public class AlumnoController {
 	}
 	
 	@PostMapping("/guardar")
-	public ModelAndView guardarAlumno(@ModelAttribute("alumno") Alumno alumno, Model model){
+	public ModelAndView guardarAlumno(@ModelAttribute("alumno") AlumnoDTO alumnoDTO, Model model){
 		
 		ModelAndView modelView = new ModelAndView("alumnoList");
 		String mensaje;
-		boolean exito = CollectionAlumno.agregarAlumno(alumno);
+		boolean exito = alumnoService.save(alumnoDTO);
 		if(exito) {
 			mensaje = "Alumno guardado con éxito!";
 			
@@ -58,19 +61,18 @@ public class AlumnoController {
 		}
 		modelView.addObject("exito", exito);
 		modelView.addObject("mensaje", mensaje);
-		modelView.addObject("alumnos", CollectionAlumno.getAlumnos());
+		modelView.addObject("alumnos", alumnoService.findAll());
 		
 		return modelView;
 	}
 	
-	@GetMapping("/modificar/{dni}")
-	public String getModificarAlumnoPage(Model model, @PathVariable(value="dni") int dni) {
+	@GetMapping("/modificar/{lu}")
+	public String getModificarAlumnoPage(Model model, @PathVariable(value="lu") int lu) {
 		
-		Alumno alumnoEncontrado = new Alumno();
+		AlumnoDTO alumnoEncontradoDTO = alumnoService.findById(lu);
 		boolean edicion = true;
-		alumnoEncontrado = CollectionAlumno.buscarAlumno(dni);
 		model.addAttribute("edicion", edicion);
-		model.addAttribute("alumno", alumnoEncontrado);
+		model.addAttribute("alumno", alumnoEncontradoDTO);
 		model.addAttribute("titulo", "Modificar Alumno");
 		
 		return "alumnoForm";
@@ -78,36 +80,32 @@ public class AlumnoController {
 	}
 	
 	@PostMapping("/modificar")
-	public String modificarAlumno(@ModelAttribute("alumno") Alumno alumno, Model model) {
+	public String modificarAlumno(@ModelAttribute("alumno") AlumnoDTO alumnoDTO, Model model) {
 		
 		boolean exito = false;
 		String mensaje = "";
-		
 		try {
-			
-			CollectionAlumno.modificarAlumno(alumno);
-			mensaje = "El alumno con el DNI " + alumno.getDni() + " fue modificado con exito!";
+			alumnoService.edit(alumnoDTO);
+			mensaje = "El alumno con Libreta Universitaria " + alumnoDTO.getLu() + " fue modificado con exito!";
 			exito = true;
-			
 		}catch(Exception e) {
 			mensaje = e.getMessage();
 			e.printStackTrace();
 		}
-		
 		model.addAttribute("exito", exito);
 		model.addAttribute("mensaje", mensaje);
-		model.addAttribute("alumnos", CollectionAlumno.getAlumnos());
+		model.addAttribute("alumnos", alumnoService.findAll());
 		model.addAttribute("titulo", "Alumnos Listado");
 		
 		return "alumnoList";
 	}
 	
-	@GetMapping("/eliminar/{dni}")
-	public String eliminarAlumno(@PathVariable(value="dni") int dni) {
+	@GetMapping("/eliminar/{lu}")
+	public String eliminarAlumno(@PathVariable(value="lu") int lu) {
 		
-		CollectionAlumno.eliminarAlumno(dni);
+		alumnoService.deleteById(lu);
 		
-		return "redirect:/alumnos/listado";
+		return "redirect:/alumno/listado";
 	}
 
 }

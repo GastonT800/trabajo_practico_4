@@ -15,7 +15,7 @@ import ar.edu.unju.fi.collections.CollectionDocente;
 import ar.edu.unju.fi.model.Docente;
 
 @Controller
-@RequestMapping("/docentes")
+@RequestMapping("/docente")
 public class DocenteController {
 	
 	@Autowired
@@ -105,6 +105,6 @@ public class DocenteController {
 		
 		CollectionDocente.eliminarDocente(legajo);
 		
-		return "redirect:/docentes/listado";
+		return "redirect:/docente/listado";
 	}
 }

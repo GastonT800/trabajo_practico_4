@@ -14,7 +14,7 @@ import ar.edu.unju.fi.collections.CollectionCarrera;
 import ar.edu.unju.fi.model.Carrera;
 
 @Controller
-@RequestMapping("/carreras")
+@RequestMapping("/carrera")
 public class CarreraController {
 	
 	@Autowired
@@ -108,7 +108,7 @@ public class CarreraController {
 		
 		CollectionCarrera.eliminarCarrera(codigo);
 		
-		return "redirect:/carreras/listado";
+		return "redirect:/carrera/listado";
 	}
 
 }
