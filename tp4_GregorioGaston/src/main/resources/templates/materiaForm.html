@@ -21,16 +21,16 @@
 	            <div class="collapse navbar-collapse" id="navbarScroll">
 	                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 		                <li class="nav-item">
-		                    <a id="acercaDe" class="nav-link active" aria-current="page" th:href="@{/materias/listado}"> Materia</a>
+		                    <a id="acercaDe" class="nav-link active" aria-current="page" th:href="@{/materia/listado}"> Materia</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/docentes/listado}"> Docente</a>
+		                    <a class="nav-link" th:href="@{/docente/listado}"> Docente</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/alumnos/listado}"> Alumno</a>
+		                    <a class="nav-link" th:href="@{/alumno/listado}"> Alumno</a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/carreras/listado}"> Carrera</a>
+		                    <a class="nav-link" th:href="@{/carrera/listado}"> Carrera</a>
 		                </li>
 		                <li class="nav-item dropdown">
 		                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> Temas de Interes</a>
@@ -62,7 +62,7 @@
 			
 			<div class="row">
 				
-				<form data-th-action="${edicion}?@{/materias/modificar} : @{/materias/guardar}" th:object="${materia}" method="post">
+				<form data-th-action="${edicion}?@{/materia/modificar} : @{/materia/guardar}" th:object="${materia}" method="post">
 					
 					<div class="row mb-3 justify-content-center">
 						

@@ -11,45 +11,7 @@
 		<div class="container">
 			
 		<!-- Barra de Navegacion-->
-		<nav class="navbar navbar-expand-lg bg-primary">
-			
-            <div class="container-fluid">
-	            <a class="navbar-brand" th:href="@{/principal/inicio}"><i class="bi bi-stack"></i> Inicio</a>
-	            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-	                <span class="navbar-toggler-icon"></span>
-	            </button>
-	            <div class="collapse navbar-collapse" id="navbarScroll">
-	                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-		                <li class="nav-item">
-		                    <a id="acercaDe" class="nav-link active" aria-current="page" th:href="@{/alumnos/listado}"> Alumno</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/materias/listado}"> Materia</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/docentes/listado}"> Docente</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/carreras/listado}"> Carrera</a>
-		                </li>
-		                <li class="nav-item dropdown">
-		                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> Temas de Interes</a>
-		                    <ul class="dropdown-menu">
-			                    <li><a class="dropdown-item" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" ><i class="bi bi-bootstrap"></i> Bootstrap</a></li>
-			                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Web/javascript" target="_blank" ><i class="bi bi-filetype-css"></i> Css</a></li>
-			                    <li><hr class="dropdown-divider"></li>
-			                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Learn/CSS" target="_blank" ><i class="bi bi-filetype-java"></i> Java Script</a></li>
-		                    </ul>
-		                </li>
-	                
-	                </ul>
-	                <form class="d-flex bg-primary-subtle text-primary-emphasis" role="search">
-	                	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	                	<button class="btn btn-outline-success" type="submit">Search</button>
-	                </form>
-	            </div>
-            </div>
-        </nav>
+        <nav data-th-replace="~{/layouts/header :: navbar}"></nav>
         
         
         <!-- Tabla de Listado de Alumnos-->
@@ -77,38 +39,39 @@
 					
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
 						
-						<a class="btn btn-primary" data-th-href="@{/alumnos/nuevo}" role="button">Agregar Nuevo Alumno</a>
+						<a class="btn btn-primary" data-th-href="@{/alumno/nuevo}" role="button">Agregar Nuevo Alumno</a>
 						
 					</div>
 					
 					<table class="table table-striped table-hover">
 						
 						  <thead>
-						    <tr>
-						      <th class="text-center" scope="col">DNI</th>
-						      <th class="text-center" scope="col">Nombre</th>
-						      <th class="text-center" scope="col">Apellido</th>
-						      <th class="text-center" scope="col">Email</th>
-						      <th class="text-center" scope="col">Teléfono</th>
-						      <th class="text-center" scope="col">Fecha de Nacimiento</th>
-						      <th class="text-center" scope="col">Domicilio</th>
-						      <th class="text-center" scope="col">LU</th>
+						    <tr class="text-center">
+						      <th scope="col">LU</th>
+						      <th scope="col">Apellido</th>
+						      <th scope="col">Nombre</th>
+						      <th scope="col">DNI</th>
+						      <th scope="col">Email</th>
+						      <th scope="col">Teléfono</th>
+						      <th scope="col">Fecha de Nacimiento</th>
+						     <!--  <th class="text-center" scope="col">Domicilio</th> -->
+						     
 						      <th class="text-center" scope="col">Opciones</th>
 						    </tr>
 						  </thead>
 						  <tbody class="table-group-divider">
 						    <tr data-th-each="alumno : ${alumnos}">
-						      <td class="text-center" data-th-text="${alumno.dni}"></td>
-						      <td class="text-center" data-th-text="${alumno.nombre}"></td>
-						      <td class="text-center" data-th-text="${alumno.apellido}"></td>
-						      <td class="text-center" data-th-text="${alumno.email}"></td>
-						      <td class="text-center" data-th-text="${alumno.telefono}"></td>
-						      <td class="text-center" data-th-text="${alumno.fechaNacimiento}"></td>
-						      <td class="text-center" data-th-text="${alumno.domicilio}"></td>
-						      <td class="text-center" data-th-text="${alumno.lu}"></td>
+						      <th class="text-center" scope="row" data-th-text="'FH-' + ${alumno.lu}"></th>
+						      <td class="text-start" data-th-text="${alumno.apellido}"></td>
+						      <td class="text-start" data-th-text="${alumno.nombre}"></td>
+						      <td class="text-sm-center" data-th-text="${alumno.dni}"></td>
+						      <td class="text-start" data-th-text="${alumno.email}"></td>
+						      <td class="text-sm-center" data-th-text="${alumno.telefono}"></td>
+						      <td class="text-sm-center" data-th-text="${alumno.fechaNacimiento}"></td>
+						     <!--  <td class="text-center" data-th-text="${alumno.domicilio}"></td> -->
 							  <td class="text-center"><!-- Botones para Modificar o Eliminar -->
-								  <a class="btn btn-warning" data-th-href="@{/alumnos/modificar/}+${alumno.dni}" role="button">Editar</a>
-								  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-dniAlumno="${alumno.dni}">Eliminar</button>
+								  <a class="btn btn-warning" data-th-href="@{/alumno/modificar/}+${alumno.lu}" role="button">Editar</a>
+								  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-LUAlumno="${alumno.lu}">Eliminar</button>
 							  </td>
 						    </tr>
 						    
@@ -144,7 +107,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-						<form th:action="@{/alumnos/eliminar/{dniAlumno=${selectedDniAlumno}}}" method="get">
+						<form th:action="@{/alumno/eliminar/{LUAlumno=${selectedLUAlumno}}}" method="get">
 							<button type="submit" class="btn btn-danger">Eliminar</button>
 						</form>
 						
@@ -158,9 +121,9 @@
 				var deleteModal = document.getElementById('deleteModal');
 				deleteModal.addEventListener('show.bs.modal', function (event) {
 					var button = event.relatedTarget;
-					var dniAlumno = button.getAttribute('data-dnialumno');
+					var LUAlumno = button.getAttribute('data-lualumno');
 					var form = deleteModal.querySelector('form');
-					form.setAttribute('action', '/alumnos/eliminar/' + dniAlumno);
+					form.setAttribute('action', '/alumno/eliminar/' + LUAlumno);
 				});
 			});
 		</script>

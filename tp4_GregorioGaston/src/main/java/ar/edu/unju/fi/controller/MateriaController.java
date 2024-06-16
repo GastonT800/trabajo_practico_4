@@ -18,7 +18,7 @@ import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.model.Materia;
 
 	@Controller
-	@RequestMapping("/materias")
+	@RequestMapping("/materia")
 	public class MateriaController {
 		
 		@Autowired
@@ -129,7 +129,7 @@ import ar.edu.unju.fi.model.Materia;
 			
 			CollectionMateria.eliminarMateria(codigo);
 			
-			return "redirect:/materias/listado";
+			return "redirect:/materia/listado";
 		}
 	
 	}
