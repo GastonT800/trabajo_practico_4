@@ -2,7 +2,14 @@ package ar.edu.unju.fi.model;
 
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Component
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Carrera {
 	
 	//Se definen los atributos para esta clase
@@ -10,7 +17,7 @@ public class Carrera {
 	private String nombre;
 	private short cantAnios;
 	private boolean estado;
-	
+/*	
 	//Constructor por defecto
 	public Carrera() {
 		super();
@@ -58,5 +65,5 @@ public class Carrera {
 				+ estado + "]";
 	}
 	
-	
+	*/
 }
