@@ -8,7 +8,6 @@ public interface IAlumnoService {
   
 	List<AlumnoDTO> findAll();
 	
-	//FIJARME SI ES ID o DEBERIA SER OTRO EL NOMBRE DEL CAMPO ENVIADO POR PARAMETRO
 	
 	AlumnoDTO findById(int id);
 	
