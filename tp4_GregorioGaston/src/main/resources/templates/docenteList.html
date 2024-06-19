@@ -35,13 +35,13 @@
 						
 					</div>
 					<!-- Botón Agregar -->
-					<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+					<div class="container text-end">
 						
-						<a class="btn btn-primary" data-th-href="@{/docente/nuevo}" role="button">Agregar Nuevo Docente</a>
+						<a class="btn btn-primary my-3 b" data-th-href="@{/docente/nuevo}" role="button">Agregar Nuevo Docente</a>
 						
 					</div>
-					
-					<table class="table table-striped table-hover">
+					<div class=" overflow-x-scroll s">
+					<table class="table table-striped table-hover align-middle">
 						
 						  <thead>
 						    <tr>
@@ -61,14 +61,14 @@
 						      <td class="text-center" data-th-text="${docente.email}"></td>
 						      <td class="text-center" data-th-text="${docente.telefono}"></td>
 							  <td class="text-center"><!-- Botones para Modificar o Eliminar -->
-								  <a class="btn btn-warning" data-th-href="@{/docente/modificar/}+${docente.legajo}" role="button">Editar</a>
-								  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-legjDocente="${docente.legajo}">Eliminar</button>
+								  <a class="btn btn-warning me-lg-3 b" style="min-width: 83px;" data-th-href="@{/docente/modificar/}+${docente.legajo}" role="button">Editar</a>
+								  <button class="btn btn-danger b" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-legjDocente="${docente.legajo}">Eliminar</button>
 							  </td>
 						    </tr>
 						    
 						  </tbody>
 					</table>
-					
+					</div>
 				</div>
 				
 			</div>
