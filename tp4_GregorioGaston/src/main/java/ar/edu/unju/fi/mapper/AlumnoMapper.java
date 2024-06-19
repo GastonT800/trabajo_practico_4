@@ -14,7 +14,7 @@ import ar.edu.unju.fi.model.Alumno;
 
 public interface AlumnoMapper {
 	
-	@Mapping(source = "fechaNacimiento", target = "fechaNacimiento", dateFormat = "yyyy-MM-dd")
+	@Mapping(source = "fechaNacimiento", target = "fechaNacimiento", dateFormat = "dd/MM/yyyy")
 	AlumnoDTO toAlumnoDTO(Alumno alumno);
 	
 	@InheritInverseConfiguration
