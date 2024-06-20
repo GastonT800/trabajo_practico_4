@@ -1,12 +1,20 @@
 package ar.edu.unju.fi.service.imp;
-/*
+
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.collections.CollectionMateria;
 import ar.edu.unju.fi.dto.MateriaDTO;
+import ar.edu.unju.fi.mapper.MateriaMapper;
 import ar.edu.unju.fi.service.IMateriaService;
 
+@Service
 public class MateriaServiceImpl implements IMateriaService {
+	
+	@Autowired
+	private MateriaMapper materiaMapper;
 
 	@Override
 	public List<MateriaDTO> findAll() {
@@ -27,7 +35,7 @@ public class MateriaServiceImpl implements IMateriaService {
 	@Override
 	public boolean save(MateriaDTO materiaDTO) {
 		
-		boolean respuesta = CollectionMateria.getMaterias(materiaMapper.toMateria(materiaDTO));
+		boolean respuesta = CollectionMateria.agregarMateria(materiaMapper.toMateria(materiaDTO));
 		
 		return respuesta;
 	}
@@ -47,4 +55,3 @@ public class MateriaServiceImpl implements IMateriaService {
 	}
 
 }
-*/
