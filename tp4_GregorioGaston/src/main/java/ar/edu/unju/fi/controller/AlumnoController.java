@@ -69,7 +69,7 @@ public class AlumnoController {
 	@GetMapping("/modificar/{lu}")
 	public String getModificarAlumnoPage(Model model, @PathVariable(value="lu") int lu) {
 		
-		AlumnoDTO alumnoEncontradoDTO = alumnoService.findById(lu);
+		AlumnoDTO alumnoEncontradoDTO = alumnoService.findByLu(lu);
 		boolean edicion = true;
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("alumno", alumnoEncontradoDTO);
@@ -103,7 +103,7 @@ public class AlumnoController {
 	@GetMapping("/eliminar/{lu}")
 	public String eliminarAlumno(@PathVariable(value="lu") int lu) {
 		
-		alumnoService.deleteById(lu);
+		alumnoService.deleteByLu(lu);
 		
 		return "redirect:/alumno/listado";
 	}
