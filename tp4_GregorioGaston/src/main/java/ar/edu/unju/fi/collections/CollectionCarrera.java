@@ -96,15 +96,17 @@ public class CollectionCarrera {
 	 */
 	public static Carrera buscarCarrera(int codigo) {
 		
-		Predicate<Carrera> filterCodigo = c -> c.getCodigo() == codigo;
-		Optional<Carrera> carrera = carreras.stream().filter(filterCodigo).findFirst();
+//		Predicate<Carrera> filterCodigo = c -> c.getCodigo() == codigo;
+//		Optional<Carrera> carrera = carreras.stream().filter(filterCodigo).findFirst();
+//		
+//		if(carrera.isPresent()) {
+//			return carrera.get();
+//			
+//		}else {
+//			return null;
+//		}	
 		
-		if(carrera.isPresent()) {
-			return carrera.get();
-			
-		}else {
-			return null;
-		}	
+		return null;
 	}
 
 }
