@@ -22,21 +22,21 @@ public class CollectionAlumno {
 	 */
 	public static List<Alumno> getAlumnos(){
 		
-		if(alumnos.isEmpty()) {
-			
-			//alumnos.add(new Alumno(45613488, "Carla", "Gutierrez", "carlaG@gmail.com",(long)3884277345L, LocalDate.of(2000, 5, 12), "Av. Libertador 172","FH-1001"));
-			alumnos.add(new Alumno(45613488, "Carla", "Gutierrez", "carlaG@gmail.com",(long)3884277345L, LocalDate.of(2000, 5, 12), "Av. Libertador 172",1001));
-	        alumnos.add(new Alumno(33278457, "Eugenia", "Lobo", "eugeniaL@gmail.com",(long)3886789001L, LocalDate.of(1999, 8, 20), "Calle San Martín 436",1002));
-	        alumnos.add(new Alumno(53731591, "Marcos", "Castro", "marcosC@gmail.com",(long)3885512345L, LocalDate.of(1988, 2, 27), "Av. General Paz 377", 1003));
-	        alumnos.add(new Alumno(44613455, "Hector", "Zarate", "hectorZ@gmail.com",(long)3886252789L, LocalDate.of(1979, 7, 10), "Calle Aleman 1156", 1004));
-		
-	        return alumnos;
-	        
-		}else {
-			return alumnos;
-		}
-		
-		
+//		if(alumnos.isEmpty()) {
+//			
+//			//alumnos.add(new Alumno(45613488, "Carla", "Gutierrez", "carlaG@gmail.com",(long)3884277345L, LocalDate.of(2000, 5, 12), "Av. Libertador 172","FH-1001"));
+//			alumnos.add(new Alumno(45613488, "Carla", "Gutierrez", "carlaG@gmail.com",(long)3884277345L, LocalDate.of(2000, 5, 12), "Av. Libertador 172",1001));
+//	        alumnos.add(new Alumno(33278457, "Eugenia", "Lobo", "eugeniaL@gmail.com",(long)3886789001L, LocalDate.of(1999, 8, 20), "Calle San Martín 436",1002));
+//	        alumnos.add(new Alumno(53731591, "Marcos", "Castro", "marcosC@gmail.com",(long)3885512345L, LocalDate.of(1988, 2, 27), "Av. General Paz 377", 1003));
+//	        alumnos.add(new Alumno(44613455, "Hector", "Zarate", "hectorZ@gmail.com",(long)3886252789L, LocalDate.of(1979, 7, 10), "Calle Aleman 1156", 1004));
+//		
+//	        return alumnos;
+//	        
+//		}else {
+//			return alumnos;
+//		}
+//		
+		 return alumnos;
 	}
 	
 	/**
@@ -106,12 +106,13 @@ public class CollectionAlumno {
 	 */
 	public static Alumno buscarAlumno(int lu) {
 		
-		Predicate<Alumno> filterLU = d -> d.getLu() == lu;
-		Optional<Alumno> alumno = alumnos.stream().filter(filterLU).findFirst();
-		if(alumno.isPresent()) 
-			return alumno.get();
-		else 
-			return null;
+//		Predicate<Alumno> filterLU = d -> d.getLu() == lu;
+//		Optional<Alumno> alumno = alumnos.stream().filter(filterLU).findFirst();
+//		if(alumno.isPresent()) 
+//			return alumno.get();
+//		else 
+//			return null;
+		return null;
 	}
 
 }

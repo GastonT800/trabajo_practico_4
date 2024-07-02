@@ -109,15 +109,17 @@ public class CollectionMateria {
 	 */
 	public static Materia buscarMateria(int codigo) {
 		
-		Predicate<Materia> filterCodigo = cod -> cod.getCodigo() == codigo;
-		Optional<Materia> materia = materias.stream().filter(filterCodigo).findFirst();
+//		Predicate<Materia> filterCodigo = cod -> cod.getCodigo() == codigo;
+//		Optional<Materia> materia = materias.stream().filter(filterCodigo).findFirst();
+//		
+//		if(materia.isPresent()) {
+//			return materia.get();
+//			
+//		}else {
+//			return null;
+//		}
 		
-		if(materia.isPresent()) {
-			return materia.get();
-			
-		}else {
-			return null;
-		}
+		return null;
 	}
 
 }
