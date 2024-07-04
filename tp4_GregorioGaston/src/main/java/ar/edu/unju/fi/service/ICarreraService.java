@@ -3,6 +3,7 @@ package ar.edu.unju.fi.service;
 import java.util.List;
 
 import ar.edu.unju.fi.dto.CarreraDTO;
+import ar.edu.unju.fi.model.Carrera;
 
 public interface ICarreraService {
 	
@@ -12,7 +13,7 @@ public interface ICarreraService {
 	//Metodos
 	CarreraDTO findByCod(int codigo);
 	
-	boolean save(CarreraDTO carreraDTO);
+	Carrera save(CarreraDTO carreraDTO);
 	
 	void deleteByCod(int codigo);
 	

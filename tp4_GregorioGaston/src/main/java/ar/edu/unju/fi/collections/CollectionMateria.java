@@ -8,10 +8,10 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.Carrera;
-import ar.edu.unju.fi.model.Docente;
+//import ar.edu.unju.fi.model.Carrera;
+//import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.model.Materia;
-import ar.edu.unju.fi.model.Materia.Modalidad;
+//import ar.edu.unju.fi.model.Materia.Modalidad;
 
 @Component
 public class CollectionMateria {
@@ -24,7 +24,7 @@ public class CollectionMateria {
 	 * @return
 	 */
 	public static List<Materia> getMaterias(){
-		
+		/*
 		if(materias.isEmpty()) {
 			
 			//Docente docente = CollectionDocente.buscarDocente((short)2);
@@ -40,8 +40,9 @@ public class CollectionMateria {
 			
 		}else {
 			return materias;
-		}
+		}*/
 		
+		return materias;
 	}
 	
 	/**
@@ -109,17 +110,16 @@ public class CollectionMateria {
 	 */
 	public static Materia buscarMateria(int codigo) {
 		
-//		Predicate<Materia> filterCodigo = cod -> cod.getCodigo() == codigo;
-//		Optional<Materia> materia = materias.stream().filter(filterCodigo).findFirst();
-//		
-//		if(materia.isPresent()) {
-//			return materia.get();
-//			
-//		}else {
-//			return null;
-//		}
+		Predicate<Materia> filterCodigo = cod -> cod.getCodigo() == codigo;
+		Optional<Materia> materia = materias.stream().filter(filterCodigo).findFirst();
 		
-		return null;
+		if(materia.isPresent()) {
+			return materia.get();
+			
+		}else {
+			return null;
+		}
+		
 	}
 
 }

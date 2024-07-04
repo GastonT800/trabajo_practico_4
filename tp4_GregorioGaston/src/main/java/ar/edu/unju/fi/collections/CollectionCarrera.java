@@ -23,15 +23,17 @@ public class CollectionCarrera {
 		
 		if(carreras.isEmpty()){
 			
-			carreras.add(new Carrera(1, "Licenciatura en Antropologia",(short) 5 ,true));
-			carreras.add(new Carrera(2, "Profesorado en Letras",(short) 5, false));
-			carreras.add(new Carrera(3, "Tecnicatura y Lic. en Turismo",(short) 4, true));
+			carreras.add(new Carrera(1, "Licenciatura en Antropologia",5 ,true, true));
+			carreras.add(new Carrera(2, "Profesorado en Letras",5, false, true));
+			carreras.add(new Carrera(3, "Tecnicatura y Lic. en Turismo",4, true, true));
 			
 			return carreras;
 			
 		}else {
 			return carreras;
 		}
+		
+		//return carreras;
 		
 	}
 	
@@ -96,17 +98,16 @@ public class CollectionCarrera {
 	 */
 	public static Carrera buscarCarrera(int codigo) {
 		
-//		Predicate<Carrera> filterCodigo = c -> c.getCodigo() == codigo;
-//		Optional<Carrera> carrera = carreras.stream().filter(filterCodigo).findFirst();
-//		
-//		if(carrera.isPresent()) {
-//			return carrera.get();
-//			
-//		}else {
-//			return null;
-//		}	
+		Predicate<Carrera> filterCodigo = c -> c.getCodigo() == codigo;
+		Optional<Carrera> carrera = carreras.stream().filter(filterCodigo).findFirst();
 		
-		return null;
+		if(carrera.isPresent()) {
+			return carrera.get();
+			
+		}else {
+			return null;
+		}	
+		
 	}
 
 }

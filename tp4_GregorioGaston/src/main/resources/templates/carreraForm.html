@@ -11,45 +11,7 @@
 		<div class="container">
 			
 		<!-- Barra de Navegacion-->
-		<nav class="navbar navbar-expand-lg bg-primary">
-			
-            <div class="container-fluid">
-	            <a class="navbar-brand" th:href="@{/principal/inicio}"><i class="bi bi-stack"></i> Inicio</a>
-	            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-	                <span class="navbar-toggler-icon"></span>
-	            </button>
-	            <div class="collapse navbar-collapse" id="navbarScroll">
-	                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-		                <li class="nav-item">
-		                    <a id="acercaDe" class="nav-link active" aria-current="page" th:href="@{/carrera/listado}"> Carrera</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/materias/listado}"> Materia</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/docentes/listado}"> Docente</a>
-		                </li>
-		                <li class="nav-item">
-		                    <a class="nav-link" th:href="@{/alumno/listado}"> Alumno</a>
-		                </li>
-		                <li class="nav-item dropdown">
-		                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-card-list"></i> Temas de Interes</a>
-		                    <ul class="dropdown-menu">
-			                    <li><a class="dropdown-item" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" ><i class="bi bi-bootstrap"></i> Bootstrap</a></li>
-			                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Web/javascript" target="_blank" ><i class="bi bi-filetype-css"></i> Css</a></li>
-			                    <li><hr class="dropdown-divider"></li>
-			                    <li><a class="dropdown-item" href="https://developer.mozilla.org/en-US/docs/Learn/CSS" target="_blank" ><i class="bi bi-filetype-java"></i> Java Script</a></li>
-		                    </ul>
-		                </li>
-	                
-	                </ul>
-	                <form class="d-flex bg-primary-subtle text-primary-emphasis" role="search">
-	                	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	                	<button class="btn btn-outline-success" type="submit">Search</button>
-	                </form>
-	            </div>
-            </div>
-        </nav>
+		<nav data-th-replace="~{/layouts/header :: navbar}"></nav>
         
         
         <!-- Formulario para Carrera-->
@@ -68,8 +30,11 @@
 						
 						<label for="codigo" class="col-sm-12 col-lg-2 col -form-label text-lg-end">Código</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="number" class="form-control" id="codigo" th:field="*{codigo}" th:disabled="${edicion}?true:false" required min="1" max="50">
-							<input type="hidden" class="form-control" id="codigo" th:field="*{codigo}" th:if="${edicion}">
+							<!-- <input type="number" class="form-control" id="codigo" th:field="*{codigo}" th:disabled="${edicion}?true:false"> 
+							<input type="number" class="form-control" id="codigo" th:field="*{codigo}" th:disabled="${edicion}?true:false">
+							<input type="hidden" class="form-control" id="codigo" th:field="*{codigo}" th:if="${edicion}"> -->
+							<input type="hidden" th:field="*{codigo}">
+				       		<input type="text" class="form-control" th:value="*{codigo}" disabled>
 						</div>
 						
 					</div>
@@ -78,16 +43,18 @@
 						
 						<label for="nombre" class="col-sm-12 col-lg-2 col -form-label text-lg-end">Nombre</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" required minlength="10" maxlength="60">
+							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Nombre de la Carrera" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
+							<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"  th:errors="*{nombre}"></p>
 						</div>
 						
 					</div>
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="duracion" class="col-sm-12 col-lg-2 col -form-label text-lg-end">Duración</label>
+						<label for="cantAnios" class="col-sm-12 col-lg-2 col -form-label text-lg-end">Duración</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="number" class="form-control" id="duracion" th:field="*{cantAnios}" required min="1" max="7">
+							<input type="number" class="form-control" id="cantAnios" th:field="*{cantAnios}" placeholder="Cantidad de Años de la Carrera" th:classappend="${#fields.hasErrors('cantAnios')} ? 'is-invalid' : ''">
+							<p class="form-text text-danger" th:if="${#fields.hasErrors('cantAnios')}"  th:errors="*{cantAnios}"></p> 
 						</div>
 						
 					</div>
@@ -105,8 +72,17 @@
 						
 					</div>
 						
-					<p class="text-center"><input type="submit" class="btn btn-primary" th:value="${edicion}?'Modificar':'Guardar'"></p>
-					
+					<div class="row mb-3 justify-content-center">
+					    <div class="col-12 text-center">
+					        <p class="text-center">
+					            <input type="submit" class="btn btn-primary" th:value="${edicion}?'Modificar':'Guardar'">
+					        </p>
+					        <p class="text-center mt-3">
+					            <a th:href="@{/carrera/listado}" id="cancel" name="cancel" class="btn btn-secondary">Cancelar</a>
+					        </p>
+					    </div>
+					</div>
+
 				</form>
 				
 			</div>

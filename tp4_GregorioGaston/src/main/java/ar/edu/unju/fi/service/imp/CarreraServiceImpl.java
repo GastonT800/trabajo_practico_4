@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import ar.edu.unju.fi.collections.CollectionCarrera;
 import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.mapper.CarreraMapper;
+import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.service.ICarreraService;
 
-@Service
+@Service("carreraServiceCollection")
 public class CarreraServiceImpl implements ICarreraService {
 
 	@Autowired
@@ -33,11 +34,13 @@ public class CarreraServiceImpl implements ICarreraService {
 	}
 
 	@Override
-	public boolean save(CarreraDTO carreraDTO) {
-
-		boolean respuesta = CollectionCarrera.agregarCarrera(carreraMapper.toCarrera(carreraDTO));
+	public Carrera save(CarreraDTO carreraDTO) {
 		
-		return respuesta;
+		CollectionCarrera.agregarCarrera(carreraMapper.toCarrera(carreraDTO));
+
+		Carrera carrera = CollectionCarrera.buscarCarrera(carreraDTO.getCodigo());
+		
+		return carrera;
 	}
 
 	@Override

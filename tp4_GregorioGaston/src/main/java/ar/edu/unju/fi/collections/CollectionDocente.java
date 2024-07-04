@@ -100,17 +100,16 @@ public class CollectionDocente {
 	 */
 	public static Docente buscarDocente(short legajo) {
 		
-//		Predicate<Docente> filterLegajo = l -> l.getLegajo() == legajo;
-//		Optional<Docente> docente = docentes.stream().filter(filterLegajo).findFirst();
-//		
-//		if(docente.isPresent()) {
-//			return docente.get();
-//			
-//		}else {
-//			return null;
-//		}
+		Predicate<Docente> filterLegajo = l -> l.getLegajo() == legajo;
+		Optional<Docente> docente = docentes.stream().filter(filterLegajo).findFirst();
 		
-		return null;
+		if(docente.isPresent()) {
+			return docente.get();
+			
+		}else {
+			return null;
+		}
+		
 	}
 
 }

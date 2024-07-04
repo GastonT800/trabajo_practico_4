@@ -1,11 +1,11 @@
 package ar.edu.unju.fi.collections;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
+//import java.util.Optional;
+//import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
