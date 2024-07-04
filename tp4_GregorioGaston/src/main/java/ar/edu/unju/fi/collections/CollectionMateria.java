@@ -24,7 +24,7 @@ public class CollectionMateria {
 	 * @return
 	 */
 	public static List<Materia> getMaterias(){
-		
+		/*
 		if(materias.isEmpty()) {
 			
 			//Docente docente = CollectionDocente.buscarDocente((short)2);
@@ -40,8 +40,9 @@ public class CollectionMateria {
 			
 		}else {
 			return materias;
-		}
+		}*/
 		
+		return materias;
 	}
 	
 	/**

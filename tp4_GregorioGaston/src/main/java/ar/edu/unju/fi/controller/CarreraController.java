@@ -1,8 +1,10 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.service.ICarreraService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/carrera")
@@ -21,6 +24,7 @@ public class CarreraController {
 	private CarreraDTO carreraDTO;
 	
 	@Autowired
+	@Qualifier("carreraServiceMysql")
 	private ICarreraService carreraService;
 	
 	@GetMapping("/listado")
@@ -47,22 +51,37 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/guardar")
-	public ModelAndView guardarCarrera(@ModelAttribute("carrera") CarreraDTO carreraDTO, Model model) {
+	public ModelAndView guardarCarrera(@Valid @ModelAttribute("carrera") CarreraDTO carreraDTO, BindingResult bindingResult, Model model) {
 		
-		ModelAndView modelView = new ModelAndView("carreraList");
-		String mensaje;
-		carreraDTO.setEstado(true);
+		ModelAndView modelView = new ModelAndView();
 		
-		boolean exito = carreraService.save(carreraDTO);
-		if(exito) {
-			mensaje = "Carrera guardada con éxito!";
+		if(bindingResult.hasErrors()) {
+			
+			modelView.setViewName("carreraForm");
 			
 		}else {
-			mensaje = "Carrera no se pudo guardar";
+			
+			modelView = new ModelAndView("carreraList");
+			
+			String mensaje;
+			carreraDTO.setEstado(true);
+			
+			boolean exito= false;
+			//boolean exito = carreraService.save(carreraDTO);
+			carreraDTO.setActivo(true);
+			if(carreraService.save(carreraDTO) !=null) {
+				mensaje = "Carrera guardada con éxito!";
+				exito = true;
+				
+			}else {
+				mensaje = "Carrera no se pudo guardar";
+			}
+			modelView.addObject("exito", exito);
+			modelView.addObject("mensaje", mensaje);
+			modelView.addObject("carreras", carreraService.findAll());
+			
+			
 		}
-		modelView.addObject("exito", exito);
-		modelView.addObject("mensaje", mensaje);
-		modelView.addObject("carreras", carreraService.findAll());
 		
 		return modelView;
 		
@@ -81,28 +100,42 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/modificar")
-	public String modificarCarrera(@ModelAttribute("carrera") CarreraDTO carreraDTO, Model model) {
+	public String modificarCarrera(@Valid @ModelAttribute("carrera") CarreraDTO carreraDTO, BindingResult bindingResult, Model model) {
 		
-		boolean exito = false;
-		String mensaje = "";
-		
-		try {
+		if(bindingResult.hasErrors()) {
 			
-			carreraService.edit(carreraDTO);
-			mensaje = "La carrera con código " + carreraDTO.getCodigo() + " fue modificada con exito!";
-			exito = true;
+			model.addAttribute("titulo", "Modificar Carrera");
+			model.addAttribute("edicion", true);
 			
-		}catch(Exception e) {
-			mensaje = e.getMessage();
-			e.printStackTrace();
+			return "carreraForm";
+			
+		}else {
+			
+			boolean exito = false;
+			String mensaje = "";
+			
+			try {
+				
+				carreraDTO.setActivo(true);
+				carreraService.edit(carreraDTO);
+				mensaje = "La carrera con código " + carreraDTO.getCodigo() + " fue modificada con exito!";
+				exito = true;
+				
+			}catch(Exception e) {
+				mensaje = e.getMessage();
+				e.printStackTrace();
+			}
+			
+			model.addAttribute("exito", exito);
+			model.addAttribute("mensaje", mensaje);
+			model.addAttribute("carreras", carreraService.findAll());
+			model.addAttribute("titulo", "Carreras Listado");
+			
+			return "carreraList";
+			
 		}
 		
-		model.addAttribute("exito", exito);
-		model.addAttribute("mensaje", mensaje);
-		model.addAttribute("carreras", carreraService.findAll());
-		model.addAttribute("titulo", "Carreras Listado");
 		
-		return "carreraList";
 	}
 	
 	@GetMapping("/eliminar/{codigo}")
