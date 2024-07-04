@@ -1,86 +1,50 @@
 package ar.edu.unju.fi.model;
 
+
 import org.springframework.stereotype.Component;
 
+import io.micrometer.common.lang.NonNull;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Component
+
+@Component 
+@Entity
+@Table(name = "DOCENTES")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Docente {
 	
-	//Se definen los atributos para esta clase
-	private short legajo;
+	@Id
+	@Column(name = "doc_legajo")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int legajo;
+	
+	@NonNull
+	@Column(name = "doc_nombre",nullable = false)
 	private String nombre;
+	
+	@NonNull
+	@Column(name = "doc_apellido",nullable = false)
 	private String apellido;
+	
+	@NonNull
+	@Column(name = "doc_email",nullable = false)
 	private String email;
-	private long telefono;
 	
-	//Constructo por defecto
-//	public Docente() {
-//		super();
-//	}
-//	
-	//Constructor parametrizado
-//	public Docente(short legajo, String nombre, String apellido, String email, long telefono) {
-//		super();
-//		this.legajo = legajo;
-//		this.nombre = nombre;
-//		this.apellido = apellido;
-//		this.email = email;
-//		this.telefono = telefono;
-//	}
+	@NonNull
+	@Column(name = "doc_telefono",nullable = false)
+	private String telefono;
 
-	//Getters and Setters
-//	public short getLegajo() {
-//		return legajo;
-//	}
-//
-//	public void setLegajo(short legajo) {
-//		this.legajo = legajo;
-//	}
-//
-//	public String getNombre() {
-//		return nombre;
-//	}
-//
-//	public void setNombre(String nombre) {
-//		this.nombre = nombre;
-//	}
-//
-//	public String getApellido() {
-//		return apellido;
-//	}
-//
-//	public void setApellido(String apellido) {
-//		this.apellido = apellido;
-//	}
-//
-//	public String getEmail() {
-//		return email;
-//	}
-//
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
-//
-//	public long getTelefono() {
-//		return telefono;
-//	}
-//
-//	public void setTelefono(long telefono) {
-//		this.telefono = telefono;
-//	}
-
-	//toString
-//	@Override
-//	public String toString() {
-//		return "Docente [legajo=" + legajo + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
-//				+ ", telefono=" + telefono + "]";
-//	}
-	
+	@Column(name = "doc_estado",nullable = false)
+	private boolean estado;
 
 }

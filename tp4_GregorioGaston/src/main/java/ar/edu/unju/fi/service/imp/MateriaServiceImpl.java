@@ -35,8 +35,8 @@ public class MateriaServiceImpl implements IMateriaService {
 	@Override
 	public boolean save(MateriaDTO materiaDTO) {
 		
-		boolean respuesta = CollectionMateria.agregarMateria(materiaMapper.toMateria(materiaDTO));
-		
+		//boolean respuesta = CollectionMateria.agregarMateria(materiaMapper.toMateria(materiaDTO));
+		boolean respuesta = true;
 		return respuesta;
 	}
 
@@ -50,7 +50,7 @@ public class MateriaServiceImpl implements IMateriaService {
 	@Override
 	public void edit(MateriaDTO materiaDTO) throws Exception {
 
-		CollectionMateria.modificarMateria(materiaMapper.toMateria(materiaDTO));
+		//CollectionMateria.modificarMateria(materiaMapper.toMateria(materiaDTO));
 
 	}
 

@@ -35,6 +35,7 @@ public class MateriaController {
 	private IMateriaService materiaService;
 	
 	@Autowired
+	@Qualifier("docenteServiceMysql")
 	private IDocenteService docenteService;
 	
 	@Autowired
