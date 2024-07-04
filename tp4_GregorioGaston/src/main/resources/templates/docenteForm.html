@@ -64,12 +64,13 @@
 				
 				<form  data-th-action="${edicion}?@{/docente/modificar} : @{/docente/guardar}" th:object="${docente}" method="post">
 					
-					<div class="row mb-3 justify-content-center">
+					<div th:if="${edicion}" class="row mb-3 justify-content-center">
 						
 						<label for="legajo" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Legajo</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="number" class="form-control" id="legajo" th:field="*{legajo}" th:disabled="${edicion}?true:false" required min="10000" max="99999">
+							<input type="number" class="form-control" id="legajo" th:field="*{legajo}" th:disabled="${edicion}?true:false">
 							<input type="hidden" class="form-control" id="lehajo" th:field="*{legajo}" th:if="${edicion}">
+							
 						</div>
 						
 					</div>
@@ -78,7 +79,12 @@
 						
 						<label for="nombre" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Nombre</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" required minlength="4" maxlength="20">
+							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" >
+							<div th:if="${#fields.hasErrors('nombre')}">
+								<ul class="p-0">
+									<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('nombre')}" th:text="${error}" ></li>
+								</ul>
+							</div>
 						</div>
 						
 					</div>
@@ -87,7 +93,12 @@
 						
 						<label for="apellido" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Apellido</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="text" class="form-control" id="apellido" th:field="*{apellido}" required minlength="4" maxlength="20">
+							<input type="text" class="form-control" id="apellido" th:field="*{apellido}" >
+							<div th:if="${#fields.hasErrors('apellido')}">
+								<ul class="p-0">
+									<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('apellido')}" th:text="${error}" ></li>
+								</ul>
+							</div>
 						</div>
 						
 					</div>
@@ -96,7 +107,12 @@
 						
 						<label for="email" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Email</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="email" class="form-control" id="email" th:field="*{email}" required>
+							<input type="email" class="form-control" id="email" th:field="*{email}">
+							<div th:if="${#fields.hasErrors('email')}">
+								<ul class="p-0">
+									<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('email')}" th:text="${error}" ></li>
+								</ul>
+							</div>
 						</div>
 						
 					</div>
@@ -105,7 +121,12 @@
 						
 						<label for="telefono" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Teléfono</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="number" class="form-control" id="telefono" th:field="*{telefono}" required min="3883999999" max="3889999999">
+							<input type="text" class="form-control" id="telefono" th:field="*{telefono}">
+							<div th:if="${#fields.hasErrors('telefono')}">
+								<ul class="p-0">
+									<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('telefono')}" th:text="${error}" ></li>
+								</ul>
+							</div>
 						</div>
 						
 					</div>

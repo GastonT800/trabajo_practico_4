@@ -50,20 +50,24 @@
 						      <th class="text-center" scope="col">Apellido</th>
 						      <th class="text-center" scope="col">Email</th>
 						      <th class="text-center" scope="col">Teléfono</th>
+						      <th class="text-center" scope="col">Estado</th>
 						      <th class="text-center" scope="col">Opciones</th>
 						    </tr>
 						  </thead>
 						  <tbody class="table-group-divider">
 						    <tr data-th-each="docente : ${docentes}">
+							  <!-- <div th:if="${docente.estado}" > -->
 						      <td class="text-center" data-th-text="${docente.legajo}"></td>
 						      <td class="text-center" data-th-text="${docente.nombre}"></td>
 						      <td class="text-center" data-th-text="${docente.apellido}"></td>
 						      <td class="text-center" data-th-text="${docente.email}"></td>
 						      <td class="text-center" data-th-text="${docente.telefono}"></td>
+						      <td class="text-center" data-th-text="${docente.estado}?'Activo':'Inactivo'"></td>
 							  <td class="text-center"><!-- Botones para Modificar o Eliminar -->
 								  <a class="btn btn-warning" data-th-href="@{/docente/modificar/}+${docente.legajo}" role="button">Editar</a>
 								  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-legjDocente="${docente.legajo}">Eliminar</button>
 							  </td>
+							  <!--</div> -->
 						    </tr>
 						    
 						  </tbody>

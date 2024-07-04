@@ -14,7 +14,6 @@ import ar.edu.unju.fi.model.Docente;
 
 public interface DocenteMapper {
 	
-	@Mapping(source = "legajo", target = "legajo")
 	DocenteDTO toDocenteDTO(Docente docente);
 	
 	@InheritInverseConfiguration

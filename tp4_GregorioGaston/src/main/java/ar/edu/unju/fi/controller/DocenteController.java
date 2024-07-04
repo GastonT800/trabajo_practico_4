@@ -1,8 +1,13 @@
 package ar.edu.unju.fi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.dto.DocenteDTO;
-import ar.edu.unju.fi.service.IDocenteService;
+import ar.edu.unju.fi.service.imp.DocenteServicelmp;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/docente")
@@ -21,7 +27,8 @@ public class DocenteController {
 	private DocenteDTO docenteDTO;
 	
 	@Autowired
-	private IDocenteService docenteService;
+	@Qualifier("docenteServiceMysql")
+	private DocenteServicelmp docenteService;
 	
 	@GetMapping("/listado")
 	public String getDocentePage(Model model) {
@@ -48,21 +55,36 @@ public class DocenteController {
 	}
 
 	@PostMapping("/guardar")
-	public ModelAndView guardarDocente(@ModelAttribute("docente") DocenteDTO docenteDTO, Model model) {
+	public ModelAndView guardarDocente(@Valid @ModelAttribute("docente") DocenteDTO docenteDTO, BindingResult result ,Model model) {
 		
 		ModelAndView modelView = new ModelAndView("docenteList");
-		String mensaje;
-		boolean exito = docenteService.save(docenteDTO);
-		if(exito) {
-			mensaje = "Docente guardado con éxito!";
-			
-		}else {
-			mensaje = "Docente no se pudo guardar";
+		String mensaje = "Docente no se pudo guardar";
+		boolean exito = false;
+		if (result.hasErrors()) {
+			model.addAttribute("docente", docenteDTO);
+			modelView = new ModelAndView("docenteForm");
+			List<FieldError> errors = result.getFieldErrors();
+			model.addAttribute("errors", errors);
+		} else {
+			try {
+				System.out.println("estoy acá 4");
+				docenteDTO.setEstado(true);
+				docenteService.save(docenteDTO);
+				mensaje = "Docente guardado con éxito!";
+				exito = true;
+			} catch (Exception e) {
+				System.out.println("estoy acá 5");
+				// TODO: handle exception
+				model.addAttribute("formDocenteErrorMessage", e.getMessage());
+				exito = false;
+				mensaje = "Docente no se pudo guardar";
+			}
+
 		}
 		modelView.addObject("exito", exito);
 		modelView.addObject("mensaje", mensaje);
 		modelView.addObject("docentes", docenteService.findAll());
-		
+
 		return modelView;
 	}
 	
@@ -102,7 +124,7 @@ public class DocenteController {
 	}
 	
 	@GetMapping("/eliminar/{legajo}")
-	public String eliminarDocente(@PathVariable(value="legajo") short legajo) {
+	public String eliminarDocente(@PathVariable(value="legajo") int legajo) {
 		
 		docenteService.deleteById(legajo);
 		
