@@ -23,15 +23,17 @@ public class CollectionCarrera {
 		
 		if(carreras.isEmpty()){
 			
-			carreras.add(new Carrera(1, "Licenciatura en Antropologia",(short) 5 ,true));
-			carreras.add(new Carrera(2, "Profesorado en Letras",(short) 5, false));
-			carreras.add(new Carrera(3, "Tecnicatura y Lic. en Turismo",(short) 4, true));
+			carreras.add(new Carrera(1, "Licenciatura en Antropologia",5 ,true, true));
+			carreras.add(new Carrera(2, "Profesorado en Letras",5, false, true));
+			carreras.add(new Carrera(3, "Tecnicatura y Lic. en Turismo",4, true, true));
 			
 			return carreras;
 			
 		}else {
 			return carreras;
 		}
+		
+		//return carreras;
 		
 	}
 	
@@ -105,6 +107,7 @@ public class CollectionCarrera {
 		}else {
 			return null;
 		}	
+		
 	}
 
 }

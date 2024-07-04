@@ -39,6 +39,7 @@ public class MateriaController {
 	private IDocenteService docenteService;
 	
 	@Autowired
+	@Qualifier("carreraServiceMysql")
 	private ICarreraService carreraService;
 	
 	@GetMapping("/listado")

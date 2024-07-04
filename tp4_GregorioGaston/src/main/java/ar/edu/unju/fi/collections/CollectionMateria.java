@@ -8,10 +8,10 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.Carrera;
-import ar.edu.unju.fi.model.Docente;
+//import ar.edu.unju.fi.model.Carrera;
+//import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.model.Materia;
-import ar.edu.unju.fi.model.Materia.Modalidad;
+//import ar.edu.unju.fi.model.Materia.Modalidad;
 
 @Component
 public class CollectionMateria {
@@ -24,7 +24,7 @@ public class CollectionMateria {
 	 * @return
 	 */
 	public static List<Materia> getMaterias(){
-		
+		/*
 		if(materias.isEmpty()) {
 			
 			//Docente docente = CollectionDocente.buscarDocente((short)2);
@@ -40,8 +40,9 @@ public class CollectionMateria {
 			
 		}else {
 			return materias;
-		}
+		}*/
 		
+		return materias;
 	}
 	
 	/**
@@ -118,6 +119,7 @@ public class CollectionMateria {
 		}else {
 			return null;
 		}
+		
 	}
 
 }
