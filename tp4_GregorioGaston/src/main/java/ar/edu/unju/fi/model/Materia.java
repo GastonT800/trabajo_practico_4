@@ -2,99 +2,60 @@ package ar.edu.unju.fi.model;
 
 import org.springframework.stereotype.Component;
 
+import io.micrometer.common.lang.NonNull;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Component
+@Entity
+@Table(name = "MATERIAS")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
 public class Materia {
 	
+	@Id
+	@Column(name = "mat_codigo")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codigo;
+	
+	@NonNull
+	@Column(name = "mat_nombre",nullable = false)
 	private String nombre;
+	
+	@NonNull
+	@Column(name = "mat_curso",nullable = false)
 	private String curso;
+	
+	@NonNull
+	@Column(name = "mat_cantidadHoras",nullable = false)
 	private short cantidadHoras;
+	
+	@NonNull
+	@Column(name = "mat_modalidad",nullable = false)
 	private Modalidad modalidad;
+	
+	@NonNull
+	@Column(name = "mat_docente",nullable = false)
 	private Docente docente;
+	
+	@NonNull
+	@Column(name = "mat_carrera",nullable = false)
 	private Carrera carrera;
+	
+	@Column(name = "mat_estado",nullable = false)
+	private boolean estado;
 		
 	//Se define enum Modalidad
 	public enum Modalidad {
 		VIRTUAL, PRESENCIAL, MIXTA
 	}
-
-	/*
-	
-	//Constructor por defecto
-	public Materia() {
-		super();
-	}
-	
-	//Constructor parametrizado
-	public Materia(int codigo, String nombre, String curso, short cantidadHoras, Modalidad modalidad,
-			Docente docente, Carrera carrera) {
-		super();
-		this.codigo = codigo;
-		this.nombre = nombre;
-		this.curso = curso;
-		this.cantidadHoras = cantidadHoras;
-		this.modalidad = modalidad;
-		this.docente = docente;
-		this.carrera = carrera;
-	}
-		
-	//Getters and Setters
-	public int getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getCurso() {
-		return curso;
-	}
-	public void setCurso(String curso) {
-		this.curso = curso;
-	}
-	public short getCantidadHoras() {
-		return cantidadHoras;
-	}
-	public void setCantidadHoras(short cantidadHoras) {
-		this.cantidadHoras = cantidadHoras;
-	}
-	public Modalidad getModalidad() {
-		return modalidad;
-	}
-	public void setModalidad(Modalidad modalidad) {
-		this.modalidad = modalidad;
-	}
-	public Docente getDocente() {
-		return docente;
-	}
-	public void setDocente(Docente docente) {
-		this.docente = docente;
-	}
-	public Carrera getCarrera() {
-		return carrera;
-	}
-	public void setCarrera(Carrera carrera) {
-		this.carrera = carrera;
-	}
-		
-	//toString
-	@Override
-	public String toString() {
-		return "Carrera [codigo=" + codigo + ", nombre=" + nombre + ", curso=" + curso + ", cantidadHoras=" + cantidadHoras + ", modalidad=" + modalidad + ", docente=" + docente
-				+ ", carrera=" + carrera + "]";
-	}*/
-		
 }

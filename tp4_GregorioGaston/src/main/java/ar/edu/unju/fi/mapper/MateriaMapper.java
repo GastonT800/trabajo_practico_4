@@ -17,8 +17,8 @@ public interface MateriaMapper {
 	@Mapping(source = "carrera", target = "carrera")
 	MateriaDTO toMateriaDTO(Materia materia);
 	
-	//@InheritConfiguration
-	//Materia toMateria(MateriaDTO materiaDTO);
+	@InheritConfiguration
+	Materia toMateria(MateriaDTO materiaDTO);
 	
 	List<MateriaDTO> toMateriaDTOList(List<Materia> materias);
 	
