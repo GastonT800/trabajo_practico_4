@@ -32,6 +32,7 @@ public class MateriaController {
 	private CarreraDTO carreraDTO;
 	
 	@Autowired
+	@Qualifier("materiaServiceCollection")
 	private IMateriaService materiaService;
 	
 	@Autowired
@@ -76,7 +77,8 @@ public class MateriaController {
 		docenteDTO = docenteService.findById(materiaDTO.getDocente().getLegajo());
 		materiaDTO.setCarrera(carreraDTO);
 		materiaDTO.setDocente(docenteDTO);
-		boolean exito = materiaService.save(materiaDTO);
+		//boolean exito = materiaService.save(materiaDTO);
+		boolean exito= false;
 		if(exito) {
 			mensaje = "Materia guardada con éxito!";
 			

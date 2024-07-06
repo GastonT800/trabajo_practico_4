@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 
 @Entity
-@Table(name = "carrera")
+@Table(name = "CARRERA")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

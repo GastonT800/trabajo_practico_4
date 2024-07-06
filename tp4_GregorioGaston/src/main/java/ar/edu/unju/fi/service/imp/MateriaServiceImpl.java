@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import ar.edu.unju.fi.collections.CollectionMateria;
 import ar.edu.unju.fi.dto.MateriaDTO;
 import ar.edu.unju.fi.mapper.MateriaMapper;
+import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.service.IMateriaService;
 
-@Service
+@Service("materiaServiceCollection")
 public class MateriaServiceImpl implements IMateriaService {
 	
 	@Autowired
@@ -33,11 +34,13 @@ public class MateriaServiceImpl implements IMateriaService {
 	}
 
 	@Override
-	public boolean save(MateriaDTO materiaDTO) {
+	public Materia save(MateriaDTO materiaDTO) {
 		
-		//boolean respuesta = CollectionMateria.agregarMateria(materiaMapper.toMateria(materiaDTO));
-		boolean respuesta = true;
-		return respuesta;
+		CollectionMateria.agregarMateria(materiaMapper.toMateria(materiaDTO));
+
+		Materia materia = CollectionMateria.buscarMateria(materiaDTO.getCodigo());
+		
+		return materia;
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public class Materia {
 	@Column(name = "mat_carrera",nullable = false)
 	private Carrera carrera;
 	
-	@Column(name = "mat_estado",nullable = false)
+	@Column(name = "mat_estado")
 	private boolean estado;
 		
 	//Se define enum Modalidad
