@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import ar.edu.unju.fi.dto.MateriaDTO;
 import ar.edu.unju.fi.service.ICarreraService;
 import ar.edu.unju.fi.service.IDocenteService;
 import ar.edu.unju.fi.service.IMateriaService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/materia")
@@ -32,7 +34,7 @@ public class MateriaController {
 	private CarreraDTO carreraDTO;
 	
 	@Autowired
-	@Qualifier("materiaServiceCollection")
+	@Qualifier("materiaServiceMysql")
 	private IMateriaService materiaService;
 	
 	@Autowired
@@ -69,28 +71,31 @@ public class MateriaController {
 	}
 	
 	@PostMapping("/guardar")
-	public ModelAndView guardarMateria(@ModelAttribute("materia") MateriaDTO materiaDTO, Model model) {
+	public ModelAndView guardarMateria(@Valid @ModelAttribute("materia") MateriaDTO materiaDTO,BindingResult result , Model model) {
 		
-		ModelAndView modelView = new ModelAndView("materiaList");
-		String mensaje;
-		carreraDTO = carreraService.findByCod(materiaDTO.getCarrera().getCodigo());
-		docenteDTO = docenteService.findById(materiaDTO.getDocente().getLegajo());
-		materiaDTO.setCarrera(carreraDTO);
-		materiaDTO.setDocente(docenteDTO);
-		//boolean exito = materiaService.save(materiaDTO);
-		boolean exito= false;
-		if(exito) {
-			mensaje = "Materia guardada con éxito!";
-			
+		ModelAndView modelView = new ModelAndView();
+		if(result.hasErrors()) {
+			modelView.setViewName("materiaForm");
 		}else {
-			mensaje = "Materia no se pudo guardar";
+			modelView.setViewName("materiaList"); //*
+			String mensaje;
+			boolean exito= false;
+			carreraDTO = carreraService.findByCod(materiaDTO.getCarrera().getCodigo());
+			docenteDTO = docenteService.findById(materiaDTO.getDocente().getLegajo());
+			materiaDTO.setCarrera(carreraDTO);
+			materiaDTO.setDocente(docenteDTO);
+			materiaDTO.setEstado(true);        //estado en true
+			if(materiaService.save(materiaDTO)!=null) {
+				mensaje = "Materia guardada con éxito!";
+				exito=true;
+			}else 
+				mensaje = "Materia no se pudo guardar";
+			modelView.addObject("exito", exito);
+			modelView.addObject("mensaje", mensaje);
+			modelView.addObject("materias", materiaService.findAll());
 		}
-		modelView.addObject("exito", exito);
-		modelView.addObject("mensaje", mensaje);
-		modelView.addObject("materias", materiaService.findAll());
 		
 		return modelView;
-		
 	}
 	
 	@GetMapping("/modificar/{codigo}")
@@ -109,32 +114,37 @@ public class MateriaController {
 	}
 	
 	@PostMapping("/modificar")
-	public String modificarMateria(@ModelAttribute("materia") MateriaDTO materiaDTO, Model model) {
+	public String modificarMateria(@Valid @ModelAttribute("materia") MateriaDTO materiaDTO,BindingResult result ,Model model) {
 		
-		carreraDTO = carreraService.findByCod(materiaDTO.getCarrera().getCodigo());
-		docenteDTO = docenteService.findById(materiaDTO.getDocente().getLegajo());
-		materiaDTO.setCarrera(carreraDTO);
-		materiaDTO.setDocente(docenteDTO);
-		boolean exito = false;
-		String mensaje = "";
-		
-		try {
+		if(result.hasErrors()) {
+			model.addAttribute("titulo", "Modificar Materia");
+			model.addAttribute("edicion", true);
+			return "materiaForm";
+		}else {
+			carreraDTO = carreraService.findByCod(materiaDTO.getCarrera().getCodigo());
+			docenteDTO = docenteService.findById(materiaDTO.getDocente().getLegajo());
+			materiaDTO.setCarrera(carreraDTO);
+			materiaDTO.setDocente(docenteDTO);
+			boolean exito = false;
+			String mensaje = "";
 			
-			materiaService.edit(materiaDTO);
-			mensaje = "La materia con código" + materiaDTO.getCodigo() + " fue modificada con exito!";
-			exito = true;
+			try {
+				materiaDTO.setEstado(true);
+				materiaService.edit(materiaDTO);
+				mensaje = "La materia con código" + materiaDTO.getCodigo() + " fue modificada con exito!";
+				exito = true;
+				
+			}catch(Exception e) {
+				mensaje = e.getMessage();
+				e.printStackTrace();
+			}
+			model.addAttribute("exito", exito);
+			model.addAttribute("mensaje", mensaje);
+			model.addAttribute("materias", materiaService.findAll());
+			model.addAttribute("titulo", "Materias Listado");
 			
-		}catch(Exception e) {
-			mensaje = e.getMessage();
-			e.printStackTrace();
+			return "materiaList";
 		}
-		model.addAttribute("exito", exito);
-		model.addAttribute("mensaje", mensaje);
-		model.addAttribute("materias", materiaService.findAll());
-		model.addAttribute("titulo", "Materias Listado");
-		
-		return "materiaList";
-		
 	}
 	
 	@GetMapping("/eliminar/{codigo}")

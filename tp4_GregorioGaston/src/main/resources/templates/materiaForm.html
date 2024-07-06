@@ -40,7 +40,8 @@
 						
 						<label for="nombre" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Nombre</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" required minlength="5" maxlength="30">
+							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
+							<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"  th:errors="*{nombre}"></p> 
 						</div>
 						
 					</div>
@@ -50,7 +51,7 @@
 						<label for="curso" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Curso</label>
 						<div class="col-sm-12 col-lg-4">
 							
-							<select name="curso" id="curso" class="form-select" th:field="*{curso}" required>
+							<select name="curso" id="curso" class="form-select" th:field="*{curso}" th:classappend="${#fields.hasErrors('curso')} ? 'is-invalid' : ''">
 								
 								<option value="" disabled selected>Selecciona un Curso</option>
 								<option th:value="PRIMERO">Primero</option>
@@ -60,7 +61,7 @@
 								<option th:value="QUINTO">Quinto</option>
 								
 							</select>
-							
+							<p class="form-text text-danger" th:if="${#fields.hasErrors('curso')}"  th:errors="*{curso}"></p> 
 						</div>
 					</div>
 					
@@ -68,7 +69,8 @@
 						
 						<label for="horas" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Cantidad de Horas</label>
 						<div class="col-sm-12 col-lg-4">
-							<input type="number" class="form-control" id="horas" th:field="*{cantidadHoras}" required min="20" max="60">
+							<input type="number" class="form-control" id="horas" th:field="*{cantidadHoras}" th:classappend="${#fields.hasErrors('cantidadHoras')} ? 'is-invalid' : ''">
+						    <p class="form-text text-danger" th:if="${#fields.hasErrors('cantidadHoras')}"  th:errors="*{cantidadHoras}"></p> 
 						</div>
 						
 					</div>
@@ -78,7 +80,7 @@
 						<label for="modalidad" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Modalidad</label>
 						<div class="col-sm-12 col-lg-4">
 							
-							<select name="modalidad" id="modalidad" class="form-select" th:field="*{modalidad}" required>
+							<select name="modalidad" id="modalidad" class="form-select" th:field="*{modalidad}" th:classappend="${#fields.hasErrors('modalidad')} ? 'is-invalid' : ''">
 								
 					            <option value="" disabled selected>Selecciona la Modalidad</option>
 					            <option th:value="${T(ar.edu.unju.fi.model.Materia$Modalidad).VIRTUAL}">Virtual</option>
@@ -87,7 +89,7 @@
 
 					            
 					        </select>
-							
+							 <p class="form-text text-danger" th:if="${#fields.hasErrors('modalidad')}"  th:errors="*{modalidad}"></p> 
 						</div>
 					</div>
 					
@@ -96,12 +98,13 @@
 						<label for="docente" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Docente</label>
 						<div class="col-sm-12 col-lg-4">
 							
-							<select id="docente" name="docente" class="form-select" th:field="*{docente.legajo}" required>
+							<select id="docente" name="docente" class="form-select" th:field="*{docente.legajo}" th:classappend="${#fields.hasErrors('docente')} ? 'is-invalid' : ''">
 								<!--<option value="" disabled selected>Seleccione un Docente</option>-->
 								<!-- CollectionDocente -->
 								<option th:each="docent : ${docentes}" th:value="${docent.legajo}" th:text="${docent.nombre + ' ' + docent.apellido}"></option>
 							</select>
 							<!--<input type="text" class="form-control" id="docente" th:field="*{docente}">-->
+							 <p class="form-text text-danger" th:if="${#fields.hasErrors('docente')}"  th:errors="*{docente}"></p> 
 						</div>
 						
 					</div>
@@ -111,12 +114,13 @@
 						<label for="carrera" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Carrera</label>
 						<div class="col-sm-12 col-lg-4">
 							
-							<select id="carrera" name="carrera" class="form-select" th:field="*{carrera.codigo}" required>
+							<select id="carrera" name="carrera" class="form-select" th:field="*{carrera.codigo}" th:classappend="${#fields.hasErrors('carrera')} ? 'is-invalid' : ''">
 								<!--<option value="" disabled selected>Seleccione una Carrera</option>-->
 								<!-- CollectionCarrera -->
 								<option th:each="carre : ${carreras}" th:value="${carre.codigo}" th:text="${carre.nombre}"></option>
 							</select>
 							<!--<input type="text" class="form-control" id="carrera" th:field="*{carrera}">-->
+							 <p class="form-text text-danger" th:if="${#fields.hasErrors('carrera')}"  th:errors="*{carrera}"></p> 
 						</div>
 						
 					</div>

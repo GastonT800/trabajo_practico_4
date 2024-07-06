@@ -48,4 +48,6 @@ public class MateriaDTO {
 	@NotEmpty(message = "Seleccione la Carrera a la que pertenece esta Materia.")
 	@NotBlank
 	private CarreraDTO carrera;
+	
+	private boolean estado;
 }
