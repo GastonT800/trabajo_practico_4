@@ -54,4 +54,10 @@ public class DocenteServicelmpl implements IDocenteService {
 		
 	}
 
+	@Override
+	public List<DocenteDTO> findDocentesWithoutMateria() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

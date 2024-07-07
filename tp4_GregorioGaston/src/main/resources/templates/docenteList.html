@@ -56,7 +56,7 @@
 						  </thead>
 						  <tbody class="table-group-divider">
 						    <tr data-th-each="docente : ${docentes}">
-							  <!-- <div th:if="${docente.estado}" > -->
+							   <div th:if="${docente.estado}" >
 						      <td class="text-center" data-th-text="${docente.legajo}"></td>
 						      <td class="text-center" data-th-text="${docente.nombre}"></td>
 						      <td class="text-center" data-th-text="${docente.apellido}"></td>
@@ -67,7 +67,7 @@
 								  <a class="btn btn-warning" data-th-href="@{/docente/modificar/}+${docente.legajo}" role="button">Editar</a>
 								  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-legjDocente="${docente.legajo}">Eliminar</button>
 							  </td>
-							  <!--</div> -->
+							  </div>
 						    </tr>
 						    
 						  </tbody>

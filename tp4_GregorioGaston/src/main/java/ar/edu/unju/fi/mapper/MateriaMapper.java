@@ -2,7 +2,7 @@ package ar.edu.unju.fi.mapper;
 
 import java.util.List;
 
-import org.mapstruct.InheritConfiguration;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -17,8 +17,8 @@ public interface MateriaMapper {
 	@Mapping(source = "carrera", target = "carrera")
 	MateriaDTO toMateriaDTO(Materia materia);
 	
-	//@InheritConfiguration
-	//Materia toMateria(MateriaDTO materiaDTO);
+	@InheritInverseConfiguration
+	Materia toMateria(MateriaDTO materiaDTO);
 	
 	List<MateriaDTO> toMateriaDTOList(List<Materia> materias);
 	

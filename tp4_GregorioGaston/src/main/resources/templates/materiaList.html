@@ -46,27 +46,27 @@
 					<table class="table table-striped table-hover">
 						
 						  <thead>
-						    <tr>
-						      <th class="text-center" scope="col">Código</th>
-						      <th class="text-center" scope="col">Nombre</th>
-						      <th class="text-center" scope="col">Curso</th>
-						      <th class="text-center" scope="col">Cantidad Horas</th>
-						      <th class="text-center" scope="col">Modalidad</th>
-						      <th class="text-center" scope="col">Docente</th>
-						      <th class="text-center" scope="col">Carrera</th>
-						      <th class="text-center"scope="col">Opciones</th>
+						    <tr class="text-center">
+						      <th scope="col">Código</th>
+						      <th scope="col">Nombre</th>
+						      <th scope="col">Curso</th>
+						      <th scope="col">Cantidad Horas</th>
+						      <th scope="col">Modalidad</th>
+						      <th scope="col">Docente</th>
+						      <th scope="col">Carrera</th>
+						      <th scope="col">Opciones</th>
 						    </tr>
 						  </thead>
 						  <tbody class="table-group-divider">
-						    <tr data-th-each="materia : ${materias}">
-						      <td class="text-center" data-th-text="${materia.codigo}"></td>
-						      <td class="text-center" data-th-text="${materia.nombre}"></td>
-						      <td class="text-center" data-th-text="${materia.curso}"></td>
-						      <td class="text-center" data-th-text="${materia.cantidadHoras}+' horas'"></td>
-						      <td class="text-center" data-th-text="${materia.modalidad}"></td>
-						      <td class="text-center" data-th-text="${materia.docente.apellido} + ', ' + ${materia.docente.nombre}"></td>
-						      <td class="text-center" data-th-text="${materia.carrera.nombre}"></td>
-							  <td class="text-center"><!-- Botones para Modificar o Eliminar -->
+						    <tr class="text-center" data-th-each="materia : ${materias}">
+						      <td data-th-text="${materia.codigo}"></td>
+						      <td data-th-text="${materia.nombre}"></td>
+						      <td data-th-text="${materia.curso}"></td>
+						      <td data-th-text="${materia.cantidadHoras}+' horas'"></td>
+						      <td data-th-text="${materia.modalidad}"></td>
+						      <td data-th-text="${materia.docente.apellido} + ', ' + ${materia.docente.nombre}"></td>
+						      <td data-th-text="${materia.carrera.nombre}"></td>
+							  <td ><!-- Botones para Modificar o Eliminar -->
 								  <a class="btn btn-warning" data-th-href="@{/materia/modificar/}+${materia.codigo}" role="button">Editar</a>
 								  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" th:data-codMateria="${materia.codigo}">Eliminar</button>
 							  </td>

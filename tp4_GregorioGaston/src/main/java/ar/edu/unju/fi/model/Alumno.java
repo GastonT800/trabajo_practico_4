@@ -1,13 +1,17 @@
 package ar.edu.unju.fi.model;
 
 import java.time.LocalDate;
-
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -47,5 +51,13 @@ public class Alumno {
 	private String domicilio;
 	@Column(name = "alu_estado")
 	private Boolean estado;
+	
+	@NonNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "carre_id")
+	private Carrera carrera;
+	
+	@ManyToMany(mappedBy = "alumnos")
+	private List<Materia> materias;
 	
 }

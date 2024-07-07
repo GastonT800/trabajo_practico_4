@@ -1,9 +1,12 @@
 package ar.edu.unju.fi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,7 @@ import ar.edu.unju.fi.dto.MateriaDTO;
 import ar.edu.unju.fi.service.ICarreraService;
 import ar.edu.unju.fi.service.IDocenteService;
 import ar.edu.unju.fi.service.IMateriaService;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/materia")
@@ -32,6 +36,7 @@ public class MateriaController {
 	private CarreraDTO carreraDTO;
 	
 	@Autowired
+	@Qualifier("materiaServiceMysql")
 	private IMateriaService materiaService;
 	
 	@Autowired
@@ -61,34 +66,51 @@ public class MateriaController {
 		model.addAttribute("materia", materiaDTO);
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("titulo", "Nueva Materia");
-		model.addAttribute("docentes", docenteService.findAll());
+		model.addAttribute("docentes", docenteService.findDocentesWithoutMateria());
 		model.addAttribute("carreras", carreraService.findAll());
 		
 		return "materiaForm";
 	}
 	
 	@PostMapping("/guardar")
-	public ModelAndView guardarMateria(@ModelAttribute("materia") MateriaDTO materiaDTO, Model model) {
+	public ModelAndView guardarMateria(@Valid @ModelAttribute("materia") MateriaDTO materiaDTO,BindingResult result , Model model) {
 		
-		ModelAndView modelView = new ModelAndView("materiaList");
-		String mensaje;
-		carreraDTO = carreraService.findByCod(materiaDTO.getCarrera().getCodigo());
-		docenteDTO = docenteService.findById(materiaDTO.getDocente().getLegajo());
-		materiaDTO.setCarrera(carreraDTO);
-		materiaDTO.setDocente(docenteDTO);
-		boolean exito = materiaService.save(materiaDTO);
-		if(exito) {
-			mensaje = "Materia guardada con éxito!";
-			
+		ModelAndView modelView = new ModelAndView();
+		
+		 if (materiaDTO.getDocente().getLegajo() == -1) {
+		        result.rejectValue("docente.legajo", "error.docente", "Seleccione un Docente válido"); // crea un error si no selecciono ningun docente
+		 }
+		 if (materiaDTO.getCarrera().getCodigo() == -1) {
+		        result.rejectValue("carrera.codigo", "error.carrera", "Seleccione una Carrera válida"); // crea un error si no selecciono ningun docente
+		  }
+		 
+		 if(materiaService.existsByNombre(materiaDTO.getNombre()))
+			 result.rejectValue("nombre", "error.nombre", "Existe una materia con este nombre");
+		if(result.hasErrors()) {
+			model.addAttribute("docentes", docenteService.findDocentesWithoutMateria());
+			model.addAttribute("carreras", carreraService.findAll());
+			System.out.println(materiaDTO.toString());
+			modelView.setViewName("materiaForm");
 		}else {
-			mensaje = "Materia no se pudo guardar";
+			modelView.setViewName("materiaList"); 
+			String mensaje;
+			boolean exito= false;
+			carreraDTO = carreraService.findByCod(materiaDTO.getCarrera().getCodigo());
+			docenteDTO = docenteService.findById(materiaDTO.getDocente().getLegajo());
+			materiaDTO.setCarrera(carreraDTO);
+			materiaDTO.setDocente(docenteDTO);
+			materiaDTO.setEstado(true);        //estado en true
+			if(materiaService.save(materiaDTO)!=null) {
+				mensaje = "Materia guardada con éxito!";
+				exito=true;
+			}else 
+				mensaje = "Materia no se pudo guardar";
+			modelView.addObject("exito", exito);
+			modelView.addObject("mensaje", mensaje);
+			modelView.addObject("materias", materiaService.findAll());
 		}
-		modelView.addObject("exito", exito);
-		modelView.addObject("mensaje", mensaje);
-		modelView.addObject("materias", materiaService.findAll());
 		
 		return modelView;
-		
 	}
 	
 	@GetMapping("/modificar/{codigo}")
@@ -96,43 +118,65 @@ public class MateriaController {
 		
 		boolean edicion = true;
 		MateriaDTO materiaEncontrada = materiaService.findByCod(codigo);
-
+        List<DocenteDTO> docentes = docenteService.findDocentesWithoutMateria(); 
+        docentes.add(materiaEncontrada.getDocente());
+		System.out.println(materiaEncontrada.toString());
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("materia", materiaEncontrada);
 		model.addAttribute("titulo", "Modificar Materia");
-		model.addAttribute("docentes", docenteService.findAll());
+		model.addAttribute("docentes", docentes);
 		model.addAttribute("carreras", carreraService.findAll());
 		
 		return "materiaForm";
 	}
 	
 	@PostMapping("/modificar")
-	public String modificarMateria(@ModelAttribute("materia") MateriaDTO materiaDTO, Model model) {
+	public String modificarMateria(@Valid @ModelAttribute("materia") MateriaDTO materiaDTO,BindingResult result ,Model model) {
 		
-		carreraDTO = carreraService.findByCod(materiaDTO.getCarrera().getCodigo());
-		docenteDTO = docenteService.findById(materiaDTO.getDocente().getLegajo());
-		materiaDTO.setCarrera(carreraDTO);
-		materiaDTO.setDocente(docenteDTO);
-		boolean exito = false;
-		String mensaje = "";
+		 if (materiaDTO.getDocente().getLegajo() == -1) {
+		        result.rejectValue("docente.legajo", "error.docente", "Seleccione un Docente válido"); // crea un error si el valor si no selecciono ningun docente
+		 }
+		 if (materiaDTO.getCarrera().getCodigo() == -1) {
+		        result.rejectValue("carrera.codigo", "error.carrera", "Seleccione una Carrera válida"); // crea un error si el valor si no selecciono ningun docente
+		  }
 		
-		try {
-			
-			materiaService.edit(materiaDTO);
-			mensaje = "La materia con código" + materiaDTO.getCodigo() + " fue modificada con exito!";
-			exito = true;
-			
-		}catch(Exception e) {
-			mensaje = e.getMessage();
-			e.printStackTrace();
+		MateriaDTO materiaOriginal = materiaService.findByCod(materiaDTO.getCodigo());
+		if (!(materiaOriginal.getNombre().equals(materiaDTO.getNombre()))) {      // solamente cambia valida que el nombre sea unico cuando es diferente al de la bd
+			if(materiaService.existsByNombre(materiaDTO.getNombre()))
+				 result.rejectValue("nombre", "error.nombre", "Existe una materia con este nombre");
 		}
-		model.addAttribute("exito", exito);
-		model.addAttribute("mensaje", mensaje);
-		model.addAttribute("materias", materiaService.findAll());
-		model.addAttribute("titulo", "Materias Listado");
 		
-		return "materiaList";
-		
+		if(result.hasErrors()) {
+			model.addAttribute("docentes", docenteService.findDocentesWithoutMateria());
+			model.addAttribute("carreras", carreraService.findAll());
+			model.addAttribute("titulo", "Modificar Materia");
+			model.addAttribute("edicion", true);
+			return "materiaForm";
+		}else {
+			carreraDTO = carreraService.findByCod(materiaDTO.getCarrera().getCodigo());
+			docenteDTO = docenteService.findById(materiaDTO.getDocente().getLegajo());
+			materiaDTO.setCarrera(carreraDTO);
+			materiaDTO.setDocente(docenteDTO);
+			boolean exito = false;
+			String mensaje = "";
+			
+			try {
+				materiaDTO.setEstado(true);
+				materiaService.edit(materiaDTO);
+				mensaje = "La materia con código" + materiaDTO.getCodigo() + " fue modificada con exito!";
+				exito = true;
+				
+			}catch(Exception e) {
+				mensaje = e.getMessage();
+				e.printStackTrace();
+			}
+			model.addAttribute("exito", exito);
+			model.addAttribute("mensaje", mensaje);
+			model.addAttribute("materias", materiaService.findAll());
+			model.addAttribute("titulo", "Materias Listado");
+			
+			return "materiaList";
+		}
 	}
 	
 	@GetMapping("/eliminar/{codigo}")
