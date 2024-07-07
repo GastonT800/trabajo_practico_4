@@ -51,14 +51,13 @@
 						<label for="curso" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Curso</label>
 						<div class="col-sm-12 col-lg-4">
 							
-							<select name="curso" id="curso" class="form-select" th:field="*{curso}" th:classappend="${#fields.hasErrors('curso')} ? 'is-invalid' : ''">
-								
-								<option value="" disabled selected>Selecciona un Curso</option>
-								<option th:value="PRIMERO">Primero</option>
-								<option th:value="SEGUNDO">Segundo</option>
-								<option th:value="TERCERO">Tercero</option>
-								<option th:value="CUARTO">Cuarto</option>
-								<option th:value="QUINTO">Quinto</option>
+							<select name="curso" id="curso" class="form-select" th:classappend="${#fields.hasErrors('curso')} ? 'is-invalid' : ''">
+								<option value="" selected disabled>Seleccione un Curso</option>
+								<option th:field="*{curso}" value="PRIMERO">Primero</option>
+								<option th:field="*{curso}" value="SEGUNDO">Segundo</option>
+								<option th:field="*{curso}" value="TERCERO">Tercero</option>
+								<option th:field="*{curso}" value="CUARTO">Cuarto</option>
+								<option th:field="*{curso}" value="QUINTO">Quinto</option>
 								
 							</select>
 							<p class="form-text text-danger" th:if="${#fields.hasErrors('curso')}"  th:errors="*{curso}"></p> 
@@ -80,12 +79,12 @@
 						<label for="modalidad" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Modalidad</label>
 						<div class="col-sm-12 col-lg-4">
 							
-							<select name="modalidad" id="modalidad" class="form-select" th:field="*{modalidad}" th:classappend="${#fields.hasErrors('modalidad')} ? 'is-invalid' : ''">
+							<select name="modalidad" id="modalidad" class="form-select"  th:classappend="${#fields.hasErrors('modalidad')} ? 'is-invalid' : ''">
 								
-					            <option value="" disabled selected>Selecciona la Modalidad</option>
-					            <option th:value="${T(ar.edu.unju.fi.model.Materia$Modalidad).VIRTUAL}">Virtual</option>
-								<option th:value="${T(ar.edu.unju.fi.model.Materia$Modalidad).PRESENCIAL}">Presencial</option>
-								<option th:value="${T(ar.edu.unju.fi.model.Materia$Modalidad).MIXTA}">Mixta</option>
+					            <option value="" disabled selected>Seleccione la Modalidad</option>
+					            <option th:field="*{modalidad}" th:value="${T(ar.edu.unju.fi.model.Materia$Modalidad).VIRTUAL}">Virtual</option>
+								<option th:field="*{modalidad}" th:value="${T(ar.edu.unju.fi.model.Materia$Modalidad).PRESENCIAL}">Presencial</option>
+								<option th:field="*{modalidad}" th:value="${T(ar.edu.unju.fi.model.Materia$Modalidad).MIXTA}">Mixta</option>
 
 					            
 					        </select>

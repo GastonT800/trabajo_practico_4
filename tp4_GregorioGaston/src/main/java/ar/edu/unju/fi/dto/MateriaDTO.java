@@ -25,7 +25,7 @@ public class MateriaDTO {
 	@Size(min = 5, max = 30, message = "Debe tener entre 5 y 30 caracteres.")
 	private String nombre;
 	
-	@NotBlank(message = "Ingrese el Curso.")
+	@NotBlank(message = "Seleccione un Curso.")
 	@Size(min = 5, max = 20, message = "Debe tener entre 5 y 20 caracteres.")
 	private String curso;
 	
@@ -33,13 +33,13 @@ public class MateriaDTO {
 	@Max(value=90, message= "Debe ingresar un número menor o igual a 90")
 	private int cantidadHoras;
 	
-	@NotNull(message = "Selecciona un tipo de modalidad")
+	@NotNull(message = "Seleccione un tipo de modalidad")
 	private Modalidad modalidad;
 	
-	@NotNull(message = "Selecciona un Docente")
+	@NotNull(message = "Seleccione un Docente")
 	private DocenteDTO docente;
 	
-	@NotNull(message = "Selecciona una Carrera")
+	@NotNull(message = "Seleccione una Carrera")
 	private CarreraDTO carrera;
 	
 	private boolean estado;
