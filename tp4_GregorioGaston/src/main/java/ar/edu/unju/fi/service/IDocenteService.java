@@ -17,4 +17,6 @@ public interface IDocenteService {
 	void deleteById(int id);
 
 	void edit(DocenteDTO docenteDTO) throws Exception;
+	
+	List<DocenteDTO> findDocentesWithoutMateria();
 }

@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -64,7 +66,7 @@ public class MateriaController {
 		model.addAttribute("materia", materiaDTO);
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("titulo", "Nueva Materia");
-		model.addAttribute("docentes", docenteService.findAll());
+		model.addAttribute("docentes", docenteService.findDocentesWithoutMateria());
 		model.addAttribute("carreras", carreraService.findAll());
 		
 		return "materiaForm";
@@ -74,10 +76,23 @@ public class MateriaController {
 	public ModelAndView guardarMateria(@Valid @ModelAttribute("materia") MateriaDTO materiaDTO,BindingResult result , Model model) {
 		
 		ModelAndView modelView = new ModelAndView();
+		
+		 if (materiaDTO.getDocente().getLegajo() == -1) {
+		        result.rejectValue("docente.legajo", "error.docente", "Seleccione un Docente válido"); // crea un error si no selecciono ningun docente
+		 }
+		 if (materiaDTO.getCarrera().getCodigo() == -1) {
+		        result.rejectValue("carrera.codigo", "error.carrera", "Seleccione una Carrera válida"); // crea un error si no selecciono ningun docente
+		  }
+		 
+		 if(materiaService.existsByNombre(materiaDTO.getNombre()))
+			 result.rejectValue("nombre", "error.nombre", "Existe una materia con este nombre");
 		if(result.hasErrors()) {
+			model.addAttribute("docentes", docenteService.findDocentesWithoutMateria());
+			model.addAttribute("carreras", carreraService.findAll());
+			System.out.println(materiaDTO.toString());
 			modelView.setViewName("materiaForm");
 		}else {
-			modelView.setViewName("materiaList"); //*
+			modelView.setViewName("materiaList"); 
 			String mensaje;
 			boolean exito= false;
 			carreraDTO = carreraService.findByCod(materiaDTO.getCarrera().getCodigo());
@@ -103,11 +118,13 @@ public class MateriaController {
 		
 		boolean edicion = true;
 		MateriaDTO materiaEncontrada = materiaService.findByCod(codigo);
-
+        List<DocenteDTO> docentes = docenteService.findDocentesWithoutMateria(); 
+        docentes.add(materiaEncontrada.getDocente());
+		System.out.println(materiaEncontrada.toString());
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("materia", materiaEncontrada);
 		model.addAttribute("titulo", "Modificar Materia");
-		model.addAttribute("docentes", docenteService.findAll());
+		model.addAttribute("docentes", docentes);
 		model.addAttribute("carreras", carreraService.findAll());
 		
 		return "materiaForm";
@@ -116,7 +133,22 @@ public class MateriaController {
 	@PostMapping("/modificar")
 	public String modificarMateria(@Valid @ModelAttribute("materia") MateriaDTO materiaDTO,BindingResult result ,Model model) {
 		
+		 if (materiaDTO.getDocente().getLegajo() == -1) {
+		        result.rejectValue("docente.legajo", "error.docente", "Seleccione un Docente válido"); // crea un error si el valor si no selecciono ningun docente
+		 }
+		 if (materiaDTO.getCarrera().getCodigo() == -1) {
+		        result.rejectValue("carrera.codigo", "error.carrera", "Seleccione una Carrera válida"); // crea un error si el valor si no selecciono ningun docente
+		  }
+		
+		MateriaDTO materiaOriginal = materiaService.findByCod(materiaDTO.getCodigo());
+		if (!(materiaOriginal.getNombre().equals(materiaDTO.getNombre()))) {      // solamente cambia valida que el nombre sea unico cuando es diferente al de la bd
+			if(materiaService.existsByNombre(materiaDTO.getNombre()))
+				 result.rejectValue("nombre", "error.nombre", "Existe una materia con este nombre");
+		}
+		
 		if(result.hasErrors()) {
+			model.addAttribute("docentes", docenteService.findDocentesWithoutMateria());
+			model.addAttribute("carreras", carreraService.findAll());
 			model.addAttribute("titulo", "Modificar Materia");
 			model.addAttribute("edicion", true);
 			return "materiaForm";

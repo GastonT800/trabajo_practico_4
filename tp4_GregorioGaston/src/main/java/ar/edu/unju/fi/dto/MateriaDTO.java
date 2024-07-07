@@ -36,10 +36,10 @@ public class MateriaDTO {
 	@NotNull(message = "Seleccione un tipo de modalidad")
 	private Modalidad modalidad;
 	
-	@NotNull(message = "Seleccione un Docente")
+	//@NotNull(message = "Seleccione un Docente")
 	private DocenteDTO docente;
 	
-	@NotNull(message = "Seleccione una Carrera")
+	//@NotNull(message = "Seleccione una Carrera")
 	private CarreraDTO carrera;
 	
 	private boolean estado;

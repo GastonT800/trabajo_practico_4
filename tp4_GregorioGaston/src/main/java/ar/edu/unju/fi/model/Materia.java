@@ -36,7 +36,7 @@ public class Materia {
 	private int codigo;
 	
 	@NonNull
-	@Column(name = "mat_nombre",nullable = false)
+	@Column(name = "mat_nombre",nullable = false, unique = true)
 	private String nombre;
 	
 	@NonNull

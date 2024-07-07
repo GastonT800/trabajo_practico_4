@@ -57,4 +57,10 @@ public class MateriaServiceImpl implements IMateriaService {
 
 	}
 
+	@Override
+	public boolean existsByNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

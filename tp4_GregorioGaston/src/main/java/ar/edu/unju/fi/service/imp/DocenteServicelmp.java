@@ -80,4 +80,11 @@ public class DocenteServicelmp implements IDocenteService {
 		logger.info("Se edito con exito el obejto Docente con legajo " + docenteDTO.getLegajo());
 	}
 
+	@Override
+	public List<DocenteDTO> findDocentesWithoutMateria() {
+		List<Docente> docentes = docenteRepository.findDocentesWithoutMateria();
+	    List<DocenteDTO> docentesDTO = docenteMapper.toDocenteDTOList(docentes);
+		return docentesDTO;
+	}
+
 }

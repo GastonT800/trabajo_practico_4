@@ -11,5 +11,7 @@ import ar.edu.unju.fi.model.Materia;
 public interface MateriaRepository extends JpaRepository<Materia, Integer>{
 	
 	List<Materia> findByEstado(Boolean estado);
+	
+	boolean existsByNombre(String nombre); //verifica si existe una materia con ese nombre
 
 }

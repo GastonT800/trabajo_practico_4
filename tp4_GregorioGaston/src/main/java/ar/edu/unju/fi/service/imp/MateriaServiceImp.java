@@ -76,4 +76,12 @@ public class MateriaServiceImp implements IMateriaService {
 		
 	}
 
+	/**
+	 * Verifica si existe una materia con ese nombre
+	 */
+	@Override
+	public boolean existsByNombre(String nombre) {   
+		return materiaRepository.existsByNombre(nombre);
+	}
+
 }

@@ -18,5 +18,7 @@ public interface IMateriaService {
 	void deleteByCod(int codigo);
 	
 	void edit(MateriaDTO materiaDTO) throws Exception;
+	
+	boolean existsByNombre(String nombre);
 
 }
