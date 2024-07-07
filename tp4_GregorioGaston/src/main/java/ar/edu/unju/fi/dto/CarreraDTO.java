@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 //import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -21,7 +21,7 @@ public class CarreraDTO {
 	private int codigo;
 	
 	
-	@NotBlank(message="Debe de ingresar un nombre valido para este campo")
+	@NotEmpty(message="Debe de ingresar un nombre valido para este campo")
 	@Size(min=15, max=40, message="El nombre debe de comprender entre 15 a 40 caracteres")
 	private String nombre;
 
