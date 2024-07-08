@@ -1,14 +1,18 @@
 package ar.edu.unju.fi.service.imp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.dto.AlumnoDTO;
 import ar.edu.unju.fi.dto.CarreraDTO;
+import ar.edu.unju.fi.mapper.AlumnoMapper;
 import ar.edu.unju.fi.mapper.CarreraMapper;
+import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.repository.CarreraRepository;
 import ar.edu.unju.fi.service.ICarreraService;
@@ -23,6 +27,9 @@ public class CarreraServiceImp implements ICarreraService {
 	
 	@Autowired
 	private CarreraMapper carreraMapper;
+	
+	@Autowired
+	private AlumnoMapper alumnoMapper;
 
 	@Override
 	public List<CarreraDTO> findAll() {
@@ -76,4 +83,13 @@ public class CarreraServiceImp implements ICarreraService {
 		
 	}
 
+	@Override
+	public List<AlumnoDTO> findAlumnosByCarrera(int codigo) {
+		Optional<Carrera> carrera = carreraRepository.findByIdWithAlumnos(codigo);
+		if(carrera.isPresent()) {
+			List<Alumno> alumnos = carrera.get().getAlumnos();
+			return alumnoMapper.toAlumnoDTOList(alumnos);
+		}else 
+			return List.of();
+	}
 }

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.dto.AlumnoDTO;
+import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.service.IAlumnoService;
+import ar.edu.unju.fi.service.ICarreraService;
 import jakarta.validation.Valid;
 
 
@@ -23,6 +25,10 @@ public class AlumnoController {
 	
 	@Autowired
 	private AlumnoDTO alumnoDTO;
+	
+	@Autowired
+	@Qualifier("carreraServiceMysql")
+	private ICarreraService carreraService;
 	
 	@Autowired
 	@Qualifier("alumnoServiceMysql")
@@ -47,6 +53,7 @@ public class AlumnoController {
 		model.addAttribute("alumno", alumnoDTO);
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("titulo", "Nuevo Alumno");
+		model.addAttribute("carreras", carreraService.findAll());
 		
 		return "alumnoForm";
 	}
@@ -55,7 +62,13 @@ public class AlumnoController {
 	public ModelAndView guardarAlumno(@Valid @ModelAttribute("alumno") AlumnoDTO alumnoDTO, BindingResult result, Model model) {
 		
 		ModelAndView modelView = new ModelAndView();
+		
+		 if (alumnoDTO.getCarrera().getCodigo() == -1) {
+		        result.rejectValue("carrera.codigo", "error.carrera", "Seleccione una carrera válida"); // crea un error si no selecciono ningun docente
+		 }
+		
 		if (result.hasErrors()) {
+			model.addAttribute("carreras", carreraService.findAll());
 			modelView.setViewName("alumnoForm");
 		}else {
 			modelView = new ModelAndView("alumnoList");
