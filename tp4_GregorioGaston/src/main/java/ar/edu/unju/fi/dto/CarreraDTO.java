@@ -1,7 +1,11 @@
 package ar.edu.unju.fi.dto;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
+import ar.edu.unju.fi.model.Alumno;
+import ar.edu.unju.fi.model.Materia;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -36,5 +40,8 @@ public class CarreraDTO {
 	 * Este atributo me permite saber el estado del carrera en la Base de Datos
 	 */
 	private boolean activo;
+	
+	private List<Materia> materias;
+	private List<Alumno> alumnos;
 
 }

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+import ar.edu.unju.fi.model.Carrera;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -52,4 +53,6 @@ public class AlumnoDTO {
 	@NotEmpty(message = "Por favor, ingrese un domicilio.")
 	private String domicilio;
 	private Boolean estado;
+	
+	private Carrera carrera;
 }

@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.dto.AlumnoDTO;
 import ar.edu.unju.fi.dto.CarreraDTO;
+import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.service.ICarreraService;
 import jakarta.validation.Valid;
 
@@ -144,6 +148,31 @@ public class CarreraController {
 		carreraService.deleteByCod(codigo);
 		
 		return "redirect:/carrera/listado";
+	}
+	
+	@GetMapping("/alumnos")
+	public String getalumnosXCarreraPage(Model model) {
+		
+		model.addAttribute("alumnos", null);
+		model.addAttribute("carrera", carreraDTO);
+		model.addAttribute("titulo", "Alumnos por Carrera");
+		model.addAttribute("carreras", carreraService.findAll());
+		
+		return "alumnosXCarrera";
+	}
+	
+	@PostMapping("/alumnos")
+	public ModelAndView listarAlumnosPorCarrera(@ModelAttribute("carrera") CarreraDTO carreraDTO, Model model) {
+		ModelAndView modelAndView = new ModelAndView();
+		CarreraDTO carreraEncontrada = carreraService.findByCod(carreraDTO.getCodigo());
+		
+		List<AlumnoDTO> alumnos = carreraService.findAlumnosByCarrera(carreraEncontrada.getCodigo());
+		model.addAttribute("alumnos", alumnos);
+		model.addAttribute("titulo", "Alumnos por Carrera");
+		model.addAttribute("carreras", carreraService.findAll());
+		model.addAttribute("carrera", carreraEncontrada);
+		modelAndView.setViewName("alumnosXCarrera");
+		return modelAndView;
 	}
 
 }

@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -52,7 +53,7 @@ public class Carrera {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Materia> materias;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Alumno> alumnos;
+	@OneToMany(mappedBy = "carrera", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Alumno> alumnos = new ArrayList<>();
 	
 }
