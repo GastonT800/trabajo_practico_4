@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.dto.AlumnoDTO;
+import ar.edu.unju.fi.dto.MateriaDTO;
 import ar.edu.unju.fi.service.IAlumnoService;
 import ar.edu.unju.fi.service.ICarreraService;
+import ar.edu.unju.fi.service.IMateriaService;
 import jakarta.validation.Valid;
 
 
@@ -26,12 +28,20 @@ public class AlumnoController {
 	private AlumnoDTO alumnoDTO;
 	
 	@Autowired
+	private MateriaDTO materiaDTO;
+	
+	@Autowired
 	@Qualifier("carreraServiceMysql")
 	private ICarreraService carreraService;
 	
 	@Autowired
 	@Qualifier("alumnoServiceMysql")
 	private IAlumnoService alumnoService;
+	
+	@Autowired
+	@Qualifier("materiaServiceMysql")
+	private IMateriaService materiaService;
+	
 	
 	@GetMapping("/listado")
 	public String getAlumnoPage(Model model) {
@@ -138,6 +148,39 @@ public class AlumnoController {
 		alumnoService.deleteByLu(lu);
 		
 		return "redirect:/alumno/listado";
+	}
+	
+	@GetMapping("/inscripcion")
+	public String getInscripcionAlumnoPage(Model model) {
+
+		
+		model.addAttribute("alumno", alumnoDTO);
+		model.addAttribute("materia", materiaDTO);
+		model.addAttribute("titulo", "Inscripcion a Materia");
+		model.addAttribute("alumnos", alumnoService.findAll());
+		model.addAttribute("materias", materiaService.findAll());
+
+		return "alumnoMateriaForm";
+	}
+
+	@PostMapping("/inscripcion/materia")
+	public String inscribirAlumnoMateria(@ModelAttribute("alumno") AlumnoDTO alumnoDTO, @ModelAttribute("materia") MateriaDTO materiaDTO, Model model) {
+	    String mensaje;
+	    boolean exito=false;
+	    try {
+	        alumnoService.agregarMateria(alumnoDTO.getLu(), materiaDTO.getCodigo());
+	        mensaje = "Alumno inscripto correctamente";
+	        exito=true;
+	    } catch (Exception e) {
+	        mensaje = "El alumno no se pudo inscribir";
+	        exito=false;
+	    }
+
+	    model.addAttribute("materias", materiaService.findAll());
+	    model.addAttribute("alumnos", alumnoService.findAll());
+	    model.addAttribute("mensaje", mensaje);
+	    model.addAttribute("exito", exito);
+	    return "materiaAlumnoList";
 	}
 
 }

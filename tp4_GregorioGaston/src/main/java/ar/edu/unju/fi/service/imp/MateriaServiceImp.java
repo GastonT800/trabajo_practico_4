@@ -58,7 +58,7 @@ public class MateriaServiceImp implements IMateriaService {
 		if(materia !=null) {
 			logger.info("El objeto materia se guardó con exito");
 		}else {
-			logger.error("El objeto materia no se pudo guardar");
+			logger.warn("El objeto materia no se pudo guardar");
 		}
 		
 		return materia;

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.dto.AlumnoDTO;
 import ar.edu.unju.fi.dto.CarreraDTO;
-import ar.edu.unju.fi.model.Alumno;
+//import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.service.ICarreraService;
 import jakarta.validation.Valid;
 

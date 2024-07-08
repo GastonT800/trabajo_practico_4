@@ -14,7 +14,9 @@ import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.mapper.AlumnoMapper;
 import ar.edu.unju.fi.mapper.CarreraMapper;
 import ar.edu.unju.fi.model.Alumno;
+import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.repository.AlumnoRepository;
+import ar.edu.unju.fi.repository.MateriaRepository;
 import ar.edu.unju.fi.service.IAlumnoService;
 import ar.edu.unju.fi.service.ICarreraService;
 
@@ -26,6 +28,9 @@ public class AlumnoServiceImp implements IAlumnoService {
 	
 	@Autowired
 	private AlumnoRepository alumnoRepository;
+	
+	@Autowired
+	private MateriaRepository materiaRepository;
 	
 	@Autowired
 	@Qualifier("carreraServiceMysql")
@@ -89,4 +94,16 @@ public class AlumnoServiceImp implements IAlumnoService {
 		logger.info("Se edito con exito el obejto Alumno con libreta " + alumnoDTO.getLu());
 	}
 
+	@Override
+	public void agregarMateria(Integer lu , int codigo) {
+		Alumno alumno = alumnoRepository.findById(lu).get();
+		Materia materia = materiaRepository.findById(codigo).get();
+		alumno.getMaterias().add(materia);
+		alumnoRepository.save(alumno);
+		materia.getAlumnos().add(alumno);
+		materiaRepository.save(materia);
+		logger.info("Inscripcion a Materia con exito!");
+	}
+
+	
 }

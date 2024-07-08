@@ -59,7 +59,7 @@ public class CarreraServiceImp implements ICarreraService {
 		if(carrera !=null) {
 			logger.info("El objeto carrera se guardó con exito");
 		}else {
-			logger.error("El objeto carrera no se pudo guardar");
+			logger.warn("El objeto carrera no se pudo guardar");
 		}
 		
 		return carrera;
