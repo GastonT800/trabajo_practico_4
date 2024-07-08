@@ -166,17 +166,20 @@ public class AlumnoController {
 	@PostMapping("/inscripcion/materia")
 	public String inscribirAlumnoMateria(@ModelAttribute("alumno") AlumnoDTO alumnoDTO, @ModelAttribute("materia") MateriaDTO materiaDTO, Model model) {
 	    String mensaje;
+	    boolean exito=false;
 	    try {
 	        alumnoService.agregarMateria(alumnoDTO.getLu(), materiaDTO.getCodigo());
 	        mensaje = "Alumno inscripto correctamente";
+	        exito=true;
 	    } catch (Exception e) {
 	        mensaje = "El alumno no se pudo inscribir";
+	        exito=false;
 	    }
 
 	    model.addAttribute("materias", materiaService.findAll());
 	    model.addAttribute("alumnos", alumnoService.findAll());
 	    model.addAttribute("mensaje", mensaje);
-
+	    model.addAttribute("exito", exito);
 	    return "materiaAlumnoList";
 	}
 

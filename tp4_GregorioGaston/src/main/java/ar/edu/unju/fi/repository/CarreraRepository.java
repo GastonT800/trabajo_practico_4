@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Carrera;
 
 @Repository
@@ -16,6 +15,7 @@ public interface CarreraRepository extends JpaRepository<Carrera, Integer>{
 
 	List<Carrera> findByActivo(boolean activo);
 	
+	//ES UNA SECUENCIA SQL QUE BUSCA LA COINCIDENCIA ENTRE CARRERAS ALUMNOS POR ID
 	@Query("SELECT c FROM Carrera c LEFT JOIN FETCH c.alumnos a WHERE c.codigo = :id")
 	Optional<Carrera> findByIdWithAlumnos(@Param("id") int id);
 	

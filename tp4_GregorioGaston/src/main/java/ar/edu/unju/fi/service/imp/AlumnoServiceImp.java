@@ -19,7 +19,6 @@ import ar.edu.unju.fi.repository.AlumnoRepository;
 import ar.edu.unju.fi.repository.MateriaRepository;
 import ar.edu.unju.fi.service.IAlumnoService;
 import ar.edu.unju.fi.service.ICarreraService;
-import jakarta.persistence.EntityNotFoundException;
 
 
 @Service("alumnoServiceMysql")
@@ -96,24 +95,14 @@ public class AlumnoServiceImp implements IAlumnoService {
 	}
 
 	@Override
-	public void agregarMateria(Integer lu, int codigo) {
-	    // Buscar el alumno por su LU
-	    Optional<Alumno> optionalAlumno = alumnoRepository.findById(lu);
-	    
-	    Alumno alumno = optionalAlumno.get();
-
-	    // Buscar la materia por su código
-	    Optional<Materia> optionalMateria = materiaRepository.findById(codigo);
-	    
-	    Materia materia = optionalMateria.get();
-
-	    // Asociar el alumno con la materia
-	    alumno.getMaterias().add(materia);
-	    materia.getAlumnos().add(alumno);
-
-	    // Guardar los cambios en la base de datos
-	    alumnoRepository.save(alumno);
-	    materiaRepository.save(materia);
+	public void agregarMateria(Integer lu , int codigo) {
+		Alumno alumno = alumnoRepository.findById(lu).get();
+		Materia materia = materiaRepository.findById(codigo).get();
+		alumno.getMaterias().add(materia);
+		alumnoRepository.save(alumno);
+		materia.getAlumnos().add(alumno);
+		materiaRepository.save(materia);
+		logger.info("Inscripcion a Materia con exito!");
 	}
 
 	
