@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -20,7 +21,6 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-
 @Entity(name = "ALUMNOS")
 public class Alumno {
 	
@@ -58,6 +58,6 @@ public class Alumno {
 	private Carrera carrera;
 	
 	@ManyToMany(mappedBy = "alumnos")
-	private List<Materia> materias;
+	private List<Materia> materias = new ArrayList<>();
 	
 }

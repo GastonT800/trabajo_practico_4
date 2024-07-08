@@ -2,6 +2,7 @@ package ar.edu.unju.fi.service;
 
 import java.util.List;
 
+import ar.edu.unju.fi.dto.AlumnoDTO;
 import ar.edu.unju.fi.dto.MateriaDTO;
 import ar.edu.unju.fi.model.Materia;
 
@@ -21,4 +22,5 @@ public interface IMateriaService {
 	
 	boolean existsByNombre(String nombre);
 
+	public List<AlumnoDTO> getALumnosMateria(int codigo);
 }

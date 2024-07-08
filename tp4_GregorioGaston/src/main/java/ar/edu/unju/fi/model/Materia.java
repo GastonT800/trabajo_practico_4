@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
@@ -23,11 +25,10 @@ import lombok.NonNull;
 
 @Component
 @Entity
-@Table(name = "MATERIAS")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Table(name = "MATERIAS")
 public class Materia {
 	
 	@Id
@@ -61,7 +62,10 @@ public class Materia {
 	private Carrera carrera;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Alumno> alumnos;
+	@JoinTable(name = "materias_alumnos",
+	joinColumns= @JoinColumn(name = "Codigo_materia"),
+	inverseJoinColumns = @JoinColumn(name="Lu_alumno"))
+	private List<Alumno> alumnos = new ArrayList<>();
 	
 	@Column(name = "mat_estado",nullable = false)
 	private boolean estado;
