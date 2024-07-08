@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.collections.CollectionMateria;
+import ar.edu.unju.fi.dto.AlumnoDTO;
 import ar.edu.unju.fi.dto.MateriaDTO;
 import ar.edu.unju.fi.mapper.MateriaMapper;
 import ar.edu.unju.fi.model.Materia;
@@ -61,6 +62,12 @@ public class MateriaServiceImpl implements IMateriaService {
 	public boolean existsByNombre(String nombre) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<AlumnoDTO> getALumnosMateria(int codigo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

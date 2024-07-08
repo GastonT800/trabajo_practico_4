@@ -186,5 +186,20 @@ public class MateriaController {
 		
 		return "redirect:/materia/listado";
 	}
+	
+	@GetMapping("/listado/{codigo}")
+	public String getMateriaALumnoPage(Model model, @PathVariable(value="codigo") int codigo) {
+		
+		MateriaDTO materiaEncontrada = materiaService.findByCod(codigo);
+		model.addAttribute("materia", materiaEncontrada);
+		model.addAttribute("materias", materiaService.findAll());
+		model.addAttribute("alumnos", materiaService.getALumnosMateria(codigo));
+		model.addAttribute("titulo", "Materias Listado");
+		model.addAttribute("exito", false);
+		model.addAttribute("mensaje", "");
+		
+		return ("materiaAlumnoList");
+		
+	}
 
 }

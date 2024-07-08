@@ -17,6 +17,8 @@ public interface AlumnoMapper {
 	@Mapping(source = "fechaNacimiento", target = "fechaNacimiento", dateFormat = "yyyy-MM-dd")
 	AlumnoDTO toAlumnoDTO(Alumno alumno);
 	
+	@Mapping(target = "carrera", ignore = true)
+	@Mapping(target = "materias", ignore = true)
 	@InheritInverseConfiguration
 	Alumno toAlumno(AlumnoDTO alumnoDTO);
 	
