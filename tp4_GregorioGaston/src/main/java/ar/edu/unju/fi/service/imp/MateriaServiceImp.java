@@ -35,7 +35,7 @@ public class MateriaServiceImp implements IMateriaService {
 		List<MateriaDTO> materiaDTO = materiaMapper.toMateriaDTOList(materiaRepository.findByEstado(true));
 		
 		if(materiaDTO.isEmpty())
-			logger.error("La lista de materias se encuentra vacia");
+			logger.warn("La lista de materias se encuentra vacia");
 		else
 			logger.info("La lista de materias fue cargada con exito!");
 		

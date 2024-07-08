@@ -22,15 +22,16 @@
 			
 			<div class="row">
 				
-				<form data-th-action="@{/alumno/insripcion}" method="post">
+				<form data-th-action="@{/alumno/inscripcion}" method="post">
 				
 					<div class="row mb-3 justify-content-center">
 
 						<label for="alumno" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Alumno</label>
 						<div class="col-sm-12 col-lg-4">
+							<p>LISTA DE ALUMNOS</p>
 							<select id="alumno" name="alumno" class="form-select" th:field="*{alumno.lu}">
 								<option value="-1">Seleccione un Alumno</option>
-								<option th:each="alumno : ${alumnos}" th:value="${alumno.lu}" th:text="${alumn.nombre}"></option>
+								<option th:each="alumn : ${alumnos}" th:value="${alumn.lu}" th:text="${alumn.nombre}"></option>
 							</select>
 						</div>
 
@@ -40,6 +41,7 @@
 
 						<label for="materia" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Materia</label>
 						<div class="col-sm-12 col-lg-4">
+							<P>lista de materias</P>
 							<select id="materia" name="materia" class="form-select" th:field="*{materia.codigo}">
 								<option value="-1">Seleccione una Materia</option>
 								<option th:each="materia : ${materias}" th:value="${materia.codigo}" th:text="${materia.nombre}"></option>
@@ -50,9 +52,9 @@
 						
 					<div class="row mb-3 justify-content-center">
 					    <div class="col-12 text-center">
-					        <p class="text-center"><input type="submit" class="btn btn-primary" th:value="${edicion}?'Modificar':'Inscribirse'"></p>
+					        <p class="text-center"><input type="submit" class="btn btn-primary" th:value="Inscribirse"></p>
 					        <p class="text-center mt-3">
-					            <a th:href="@{/alumno/listado}" id="cancel" name="cancel" class="btn btn-secondary">Cancelar</a>
+					            <a th:href="@{/materia/listado}" id="cancel" name="cancel" class="btn btn-secondary">Cancelar</a>
 					        </p>
 					    </div>
 					</div>

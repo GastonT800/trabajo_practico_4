@@ -37,7 +37,7 @@ public class CarreraServiceImp implements ICarreraService {
 		List<CarreraDTO> carreraDTO = carreraMapper.toCarreraDTOList(carreraRepository.findByActivo(true));
 		
 		if(carreraDTO.isEmpty()) {
-			logger.error("La lista de carreras se encuentra vacia");
+			logger.warn("La lista de carreras se encuentra vacia");
 		}else {
 			logger.info("La lista de carreras fue cargada con exito!");
 		}

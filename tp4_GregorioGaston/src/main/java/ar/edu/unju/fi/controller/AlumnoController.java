@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.dto.AlumnoDTO;
-import ar.edu.unju.fi.dto.CarreraDTO;
+import ar.edu.unju.fi.dto.MateriaDTO;
 import ar.edu.unju.fi.service.IAlumnoService;
 import ar.edu.unju.fi.service.ICarreraService;
+import ar.edu.unju.fi.service.IMateriaService;
 import jakarta.validation.Valid;
 
 
@@ -25,6 +26,13 @@ public class AlumnoController {
 	
 	@Autowired
 	private AlumnoDTO alumnoDTO;
+	
+	@Autowired
+	private MateriaDTO materiaDTO;
+	
+	@Autowired
+	@Qualifier("materiaServiceMysql")
+	private IMateriaService materiaService;
 	
 	@Autowired
 	@Qualifier("carreraServiceMysql")
@@ -42,7 +50,7 @@ public class AlumnoController {
 		model.addAttribute("exito", false);
 		model.addAttribute("mensaje", "");
 		
-		return ("alumnoList");
+		return ("alumnoMateria");
 		
 	}
 	
@@ -56,6 +64,36 @@ public class AlumnoController {
 		model.addAttribute("carreras", carreraService.findAll());
 		
 		return "alumnoForm";
+	}
+	
+	@GetMapping("/inscripcion")
+	public String getInscripcionAlumnoPage(Model model) {
+		
+		boolean edicion=false;
+		model.addAttribute("edicion", edicion);
+		model.addAttribute("alumno", alumnoDTO);
+		model.addAttribute("materia", materiaDTO);
+		model.addAttribute("titulo", "Inscripcion a Materia");
+		model.addAttribute("alumnos", alumnoService.findAll());
+		model.addAttribute("materias", materiaService.findAll());
+		
+		return "alumnoMateriaForm";
+	}
+	
+	@PostMapping("/inscripcion/materia")
+	public String getInscripcionesMateriaPage(@ModelAttribute("alumno") AlumnoDTO alumnoDTO, MateriaDTO materiaDTO, Model model) {
+		
+		AlumnoDTO alumnoEncontrado = alumnoService.findByLu(alumnoDTO.getLu());
+		MateriaDTO materiaEncontrada = materiaService.findByCod(materiaDTO.getCodigo());
+		
+		
+		model.addAttribute("alumno", alumnoDTO);
+		model.addAttribute("materia", materiaDTO);
+		model.addAttribute("titulo", "Alumnos Inscito en Materia");
+		model.addAttribute("alumno", alumnoEncontrado);
+		model.addAttribute("materia", materiaEncontrada);
+		
+		return "materiaList";
 	}
 	
 	@PostMapping("/guardar")
