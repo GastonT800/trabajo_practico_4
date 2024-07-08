@@ -89,11 +89,10 @@ public class AlumnoController {
 		
 		model.addAttribute("alumno", alumnoDTO);
 		model.addAttribute("materia", materiaDTO);
-		model.addAttribute("titulo", "Alumnos Inscito en Materia");
+		model.addAttribute("titulo", "Alumnos Inscripto en Materia");
 		model.addAttribute("alumno", alumnoEncontrado);
 		model.addAttribute("materia", materiaEncontrada);
-		
-		return "materiaList";
+		return "alumnoMateriaForm";
 	}
 	
 	@PostMapping("/guardar")
@@ -163,6 +162,8 @@ public class AlumnoController {
 			model.addAttribute("exito", exito);
 			model.addAttribute("mensaje", mensaje);
 			model.addAttribute("alumnos", alumnoService.findAll());
+
+			model.addAttribute("carreras", carreraService.findAll());
 			model.addAttribute("titulo", "Alumnos Listado");
 			
 			return "alumnoList";
