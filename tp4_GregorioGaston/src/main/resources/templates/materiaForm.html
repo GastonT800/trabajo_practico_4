@@ -16,18 +16,20 @@
         
         <!-- Formulario para Materia-->
         
-        <div class="row py-5 m">
+        <div class="row py-5 m col-12 d-flex aling-items-center justify-content-center">
 			
 			<div class="row mb-5">
 				<h2 data-th-text="${edicion}?'Modificar Materia':'Nueva Materia'" class="text-center"></h2>
 			</div>
 			
-			<div class="row">
+			<!--<div class="row">			 Formulario para Materia-->
 				
-				<form data-th-action="${edicion}?@{/materia/modificar} : @{/materia/guardar}" th:object="${materia}" method="post">
+				<form data-th-action="${edicion}?@{/materia/modificar} : @{/materia/guardar}" th:object="${materia}" method="post" 				
+					class="container-fluid py-5 mb-5 row col-10 col-md-7 d-flex flex-column align-items-center rounded-4 border border-4 border-primary bg-light f">
+					
 					
 					 <div class="row mb-3 justify-content-center" th:if="${edicion}">
-					    <label for="codigo" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Código</label>
+					    <label for="codigo" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Código</label>
 					    <div class="col-sm-12 col-lg-4">
 					         <input type="hidden" th:field="*{codigo}">
 					        <input type="text" class="form-control" th:value="*{codigo}" disabled>
@@ -36,17 +38,21 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="nombre" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Nombre</label>
+						<label for="nombre" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Nombre:</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
-							<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"  th:errors="*{nombre}"></p> 
+							<div th:if="${#fields.hasErrors('nombre')}">
+								<ul class="p-0">
+									<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('nombre')}" th:text="${error}" ></li>
+								</ul>
+							</div>
 						</div>
 						
 					</div>
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="curso" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Curso</label>
+						<label for="curso" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Curso</label>
 						<div class="col-sm-12 col-lg-4">
 							
 							<select name="curso" id="curso" class="form-select" th:classappend="${#fields.hasErrors('curso')} ? 'is-invalid' : ''">
@@ -58,23 +64,31 @@
 								<option th:field="*{curso}" value="QUINTO">Quinto</option>
 								
 							</select>
-							<p class="form-text text-danger" th:if="${#fields.hasErrors('curso')}"  th:errors="*{curso}"></p> 
+							<div th:if="${#fields.hasErrors('curso')}">
+								<ul class="p-0">
+									<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('curso')}" th:text="${error}" ></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="horas" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Cantidad de Horas</label>
+						<label for="horas" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Cantidad de Horas</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="number" class="form-control" id="horas" th:field="*{cantidadHoras}" th:classappend="${#fields.hasErrors('cantidadHoras')} ? 'is-invalid' : ''">
-						    <p class="form-text text-danger" th:if="${#fields.hasErrors('cantidadHoras')}"  th:errors="*{cantidadHoras}"></p> 
+							<div th:if="${#fields.hasErrors('cantidadHoras')}">
+								<ul class="p-0">
+									<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('cantidadHoras')}" th:text="${error}" ></li>
+								</ul>
+							</div>
 						</div>
 						
 					</div>
 					
 					<div class="row mb-3 justify-content-center">
 
-						<label for="modalidad" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Modalidad</label>
+						<label for="modalidad" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Modalidad</label>
 						<div class="col-sm-12 col-lg-4">
 							
 							<select name="modalidad" id="modalidad" class="form-select"  th:classappend="${#fields.hasErrors('modalidad')} ? 'is-invalid' : ''">
@@ -86,41 +100,53 @@
 
 					            
 					        </select>
-							 <p class="form-text text-danger" th:if="${#fields.hasErrors('modalidad')}"  th:errors="*{modalidad}"></p> 
+							 <div th:if="${#fields.hasErrors('modalidad')}">
+ 								<ul class="p-0">
+ 									<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('modalidad')}" th:text="${error}" ></li>
+ 								</ul>
+ 							</div>
 						</div>
 					</div>
 					
 					<div class="row mb-3 justify-content-center">
-					    <label for="docente" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Docente</label>
+					    <label for="docente" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Docente</label>
 					    <div class="col-sm-12 col-lg-4">
 					        <select class="form-select" id="docente" name="docente" th:field="*{docente.legajo}">
 					            <option value="-1">Seleccione un Docente</option>
 					            <option th:each="docente : ${docentes}" th:value="${docente.legajo}" th:text="${docente.nombre} + ' ' + ${docente.apellido}"></option>
 					        </select>
-					        <p class="form-text text-danger" th:if="${#fields.hasErrors('docente.legajo')}" th:errors="*{docente.legajo}"></p>
+							<div th:if="${#fields.hasErrors('docente.legajo')}">
+ 								<ul class="p-0">
+ 									<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('docente.legajo')}" th:text="${error}" ></li>
+ 								</ul>
+ 							</div>
 					    </div>
 					</div>
 
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="carrera" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Carrera</label>
+						<label for="carrera" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Carrera</label>
 						<div class="col-sm-12 col-lg-4">
 							
 							<select id="carrera" name="carrera" class="form-select" th:field="*{carrera.codigo}">
 								<option value="-1">Seleccione una Carrera</option>
 								<option th:each="carre : ${carreras}" th:value="${carre.codigo}" th:text="${carre.nombre}"></option>
 							</select>
-							 <p class="form-text text-danger" th:if="${#fields.hasErrors('carrera.codigo')}"  th:errors="*{carrera.codigo}"></p> 
+							 <div th:if="${#fields.hasErrors('carrera.codigo')}">
+  								<ul class="p-0">
+  									<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('carrera.codigo')}" th:text="${error}" ></li>
+  								</ul>
+  							</div>
 						</div>
 						
 					</div>
 						
-					<p class="text-center"><input type="submit" class="btn btn-primary" th:value="${edicion}?'Modificar':'Guardar'"></p>
+					<p class="text-center"><input type="submit" class="btn btn-primary col-3 b" th:value="${edicion}?'Modificar':'Guardar'"></p>
 					
 				</form>
 				
-			</div>
+			<!--</div>-->
 			
 		</div>
         

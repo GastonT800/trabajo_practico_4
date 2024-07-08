@@ -17,6 +17,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
@@ -55,9 +56,11 @@ public class Alumno {
 	@NonNull
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "carre_id")
+	@ToString.Exclude
     private Carrera carrera;
 	
 	@ManyToMany(mappedBy = "alumnos")
 	private List<Materia> materias = new ArrayList<>();
+
 	
 }

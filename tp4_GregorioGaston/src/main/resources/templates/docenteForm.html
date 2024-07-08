@@ -16,15 +16,16 @@
         
         <!-- Formulario para Docente -->
         
-        <div class="row py-5 m">
+        <div class="row py-5 m 		col-12 d-flex aling-items-center justify-content-center">
 			
 			<div class="row mb-5">
 				<h2 data-th-text="${edicion}?'Modificar Docente':'Nuevo Docente'" class="text-center"></h2>
 			</div>
 			
-			<div class="row">
 				
-				<form  data-th-action="${edicion}?@{/docente/modificar} : @{/docente/guardar}" th:object="${docente}" method="post">
+				<form  data-th-action="${edicion}?@{/docente/modificar} : @{/docente/guardar}" th:object="${docente}" method="post"
+				class="container-fluid py-5 mb-5 row col-10 col-md-7 d-flex flex-column align-items-center rounded-4 border border-4 border-primary bg-light f">
+					
 					
 					<div th:if="${edicion}" class="row mb-3 justify-content-center">
 						
@@ -39,7 +40,7 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="nombre" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Nombre</label>
+						<label for="nombre" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Nombre</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="text" class="form-control" id="nombre" th:field="*{nombre}" >
 							<div th:if="${#fields.hasErrors('nombre')}">
@@ -53,7 +54,7 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="apellido" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Apellido</label>
+						<label for="apellido" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Apellido</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="text" class="form-control" id="apellido" th:field="*{apellido}" >
 							<div th:if="${#fields.hasErrors('apellido')}">
@@ -67,7 +68,7 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="email" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Email</label>
+						<label for="email" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Email</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="email" class="form-control" id="email" th:field="*{email}">
 							<div th:if="${#fields.hasErrors('email')}">
@@ -81,7 +82,7 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="telefono" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Teléfono</label>
+						<label for="telefono" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Teléfono</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="text" class="form-control" id="telefono" th:field="*{telefono}">
 							<div th:if="${#fields.hasErrors('telefono')}">
@@ -93,11 +94,10 @@
 						
 					</div>
 					
-					<p class="text-center"><input type="submit" class="btn btn-primary" th:value="${edicion}?'Modificar':'Guardar'"></p>
+					<p class="text-center"><input type="submit" class="btn btn-primary col-3 b" th:value="${edicion}?'Modificar':'Guardar'"></p>
 					
 				</form>
 				
-			</div>
 			
 		</div>
         

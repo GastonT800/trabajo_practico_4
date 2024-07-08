@@ -17,19 +17,18 @@
         <!-- Formulario para Alumno-->
      
         
-        <div class="row py-5 m">
+        <div class="row py-5 m col-12 d-flex aling-items-center justify-content-center">
 			
 			<div class="row mb-5">
 				<h2 data-th-text="${edicion}?'Modificar Alumno':'Nuevo Alumno'" class="text-center"></h2>
 			</div>
 			
-			<div class="row">
-				
-				<form data-th-action="${edicion}?@{/alumno/modificar} : @{/alumno/guardar}" th:object="${alumno}" method="post">
+				<form data-th-action="${edicion}?@{/alumno/modificar} : @{/alumno/guardar}" th:object="${alumno}" method="post"
+				 class="container-fluid py-5 mb-5 row col-10 col-md-7 d-flex flex-column align-items-center rounded-4 border border-4 border-primary bg-light f">
 				
 				<!--   <input type="hidden" th:field="*{lu}">-->
 				  <div class="row mb-3 justify-content-center" th:if="${edicion}">
-				    <label for="lu" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Libreta Universitaria</label>
+				    <label for="lu" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Libreta Universitaria</label>
 				    <div class="col-sm-12 col-lg-4">
 				         <input type="hidden" th:field="*{lu}">
 				        <input type="text" class="form-control" th:value="*{lu}" disabled>
@@ -37,16 +36,20 @@
 				 </div>
 					
 					<div class="row mb-3 justify-content-center">
-				    <label for="nombre" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Nombre</label>
+				    <label for="nombre" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Nombre</label>
 				    <div class="col-sm-12 col-lg-4">
 				        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''">
-				        <p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"  th:errors="*{nombre}"></p> 
+						<div th:if="${#fields.hasErrors('nombre')}">
+							<ul class="p-0">
+								<li class="bg-danger p-1 rounded text-light text-center my-1 list-group-item" th:each="error : ${#fields.errors('nombre')}" th:text="${error}" ></li>
+							</ul>
+						</div>
 				    </div>
 				</div>
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="apellido" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Apellido</label>
+						<label for="apellido" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Apellido</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="text" class="form-control" id="apellido" th:field="*{apellido}" th:classappend="${#fields.hasErrors('apellido')} ? 'is-invalid' : ''">
 							<p class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"  th:errors="*{apellido}"></p> 
@@ -56,7 +59,7 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="dni" class="col-sm-12 col-lg-2 col-form-label text-lg-end">DNI</label>
+						<label for="dni" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">DNI</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="number" class="form-control" id="dni" th:field="*{dni}" th:classappend="${#fields.hasErrors('dni')} ? 'is-invalid' : ''">
 							<p class="form-text text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></p> 
@@ -66,7 +69,7 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="email" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Email</label>
+						<label for="email" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Email</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="email" class="form-control" id="email" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''">
 							<p class="form-text text-danger" th:if="${#fields.hasErrors('email')}"  th:errors="*{email}"></p> 
@@ -77,7 +80,7 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="fechaNacimiento" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Fecha Nacimiento</label>
+						<label for="fechaNacimiento" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Fecha Nacimiento</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="date" class="form-control" id="fechaNacimiento" th:field="*{fechaNacimiento}"  th:classappend="${#fields.hasErrors('fechaNacimiento')} ? 'is-invalid' : ''">
 						    <p class="form-text text-danger" th:if="${#fields.hasErrors('fechaNacimiento')}"  th:errors="*{fechaNacimiento}"></p> 
@@ -87,7 +90,7 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="telefono" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Teléfono</label>
+						<label for="telefono" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Teléfono</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="number" class="form-control" id="telefono" th:field="*{telefono}" th:classappend="${#fields.hasErrors('telefono')} ? 'is-invalid' : ''">
 						    <p class="form-text text-danger" th:if="${#fields.hasErrors('telefono')}"  th:errors="*{telefono}"></p> 
@@ -97,7 +100,7 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="domicilio" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Domicilio</label>
+						<label for="domicilio" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Domicilio</label>
 						<div class="col-sm-12 col-lg-4">
 							<input type="text" class="form-control" id="domicilio" th:field="*{domicilio}" th:classappend="${#fields.hasErrors('domicilio')} ? 'is-invalid' : ''">
 							<p class="form-text text-danger" th:if="${#fields.hasErrors('domicilio')}"  th:errors="*{domicilio}"></p> 
@@ -108,7 +111,7 @@
 					
 					<div class="row mb-3 justify-content-center">
 						
-						<label for="carrera" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Carrera</label>
+						<label for="carrera" class="col-sm-12 col-lg-2 col-form-label text-lg-stard">Carrera</label>
 						<div class="col-sm-12 col-lg-4">
 							<select id="carrera" name="carrera" class="form-select" th:field="*{carrera.codigo}">
 								<option value="-1">Seleccione una Carrera</option>
@@ -119,11 +122,9 @@
 						
 					</div>
 						
-					<p class="text-center"><input type="submit" class="btn btn-primary" th:value="${edicion}?'Modificar':'Guardar'"></p>
+					<p class="text-center"><input type="submit" class="btn btn-primary col-3 " th:value="${edicion}?'Modificar':'Guardar'"></p>
 					
 				</form>
-				
-			</div>
 			
 		</div>
         
