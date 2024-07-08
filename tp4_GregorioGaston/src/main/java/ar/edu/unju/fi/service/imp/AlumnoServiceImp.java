@@ -6,13 +6,17 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.dto.AlumnoDTO;
+import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.mapper.AlumnoMapper;
+import ar.edu.unju.fi.mapper.CarreraMapper;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.repository.AlumnoRepository;
 import ar.edu.unju.fi.service.IAlumnoService;
+import ar.edu.unju.fi.service.ICarreraService;
 
 
 @Service("alumnoServiceMysql")
@@ -24,7 +28,14 @@ public class AlumnoServiceImp implements IAlumnoService {
 	private AlumnoRepository alumnoRepository;
 	
 	@Autowired
+	@Qualifier("carreraServiceMysql")
+	private ICarreraService carreraService;
+	
+	@Autowired
 	private AlumnoMapper alumnoMapper;
+	
+	@Autowired
+	private CarreraMapper carreraMapper;
 
 	@Override
 	public List<AlumnoDTO> findAll() {
@@ -48,7 +59,10 @@ public class AlumnoServiceImp implements IAlumnoService {
 
 	@Override
 	public Alumno save(AlumnoDTO alumnoDTO) {
-	    Alumno alumno = alumnoRepository.save(alumnoMapper.toAlumno(alumnoDTO));
+		CarreraDTO carreraDTO = carreraService.findByCod(alumnoDTO.getCarrera().getCodigo());
+		Alumno alumno = alumnoMapper.toAlumno(alumnoDTO);
+		alumno.setCarrera(carreraMapper.toCarrera(carreraDTO));
+	    alumno = alumnoRepository.save(alumno);
 	    if(alumno != null)
 	    	logger.info("El objeto Alumno se guardo con exito");
 	    else 
