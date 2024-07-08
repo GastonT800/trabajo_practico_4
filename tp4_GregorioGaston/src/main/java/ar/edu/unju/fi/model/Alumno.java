@@ -54,8 +54,8 @@ public class Alumno {
 	
 	@NonNull
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "carre_id")
-	private Carrera carrera;
+    @JoinColumn(name = "carre_id")
+    private Carrera carrera;
 	
 	@ManyToMany(mappedBy = "alumnos")
 	private List<Materia> materias = new ArrayList<>();
