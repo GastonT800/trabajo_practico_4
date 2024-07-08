@@ -95,6 +95,8 @@ public class AlumnoController {
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("alumno", alumnoEncontradoDTO);
 		model.addAttribute("titulo", "Modificar Alumno");
+
+		model.addAttribute("carreras", carreraService.findAll());
 		
 		return "alumnoForm";
 		
