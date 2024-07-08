@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.dto.AlumnoDTO;
 import ar.edu.unju.fi.dto.MateriaDTO;
+import ar.edu.unju.fi.mapper.AlumnoMapper;
 import ar.edu.unju.fi.mapper.MateriaMapper;
 import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.repository.MateriaRepository;
@@ -23,6 +25,9 @@ public class MateriaServiceImp implements IMateriaService {
 	
 	@Autowired
 	private MateriaMapper materiaMapper;
+	
+	@Autowired
+	private AlumnoMapper alumnoMapper;
 
 	@Override
 	public List<MateriaDTO> findAll() {
@@ -82,6 +87,13 @@ public class MateriaServiceImp implements IMateriaService {
 	@Override
 	public boolean existsByNombre(String nombre) {   
 		return materiaRepository.existsByNombre(nombre);
+	}
+
+	@Override
+	public List<AlumnoDTO> getALumnosMateria(int codigo) {
+		Materia materia = materiaRepository.findById(codigo).get();
+		List<AlumnoDTO> alumnos = alumnoMapper.toAlumnoDTOList(materia.getAlumnos());
+		return alumnos;
 	}
 
 }

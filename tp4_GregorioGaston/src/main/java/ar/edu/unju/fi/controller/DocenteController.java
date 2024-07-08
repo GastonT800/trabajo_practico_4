@@ -74,7 +74,6 @@ public class DocenteController {
 				exito = true;
 			} catch (Exception e) {
 				System.out.println("estoy acá 5");
-				// TODO: handle exception
 				model.addAttribute("formDocenteErrorMessage", e.getMessage());
 				exito = false;
 				mensaje = "Docente no se pudo guardar";
@@ -106,7 +105,7 @@ public class DocenteController {
 		boolean exito = false;
 		String mensaje = "";
 		try {
-			
+			docenteDTO.setEstado(true);
 			docenteService.edit(docenteDTO);
 			mensaje = "El docente con legajo " + docenteDTO.getLegajo() + " fue modificada con exito!";
 			exito = true;		
