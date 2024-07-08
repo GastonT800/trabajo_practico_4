@@ -28,9 +28,9 @@
 
 						<label for="alumno" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Alumno</label>
 						<div class="col-sm-12 col-lg-4">
-							<select id="alumno" name="alumno" class="form-select" >
-								<option value="" selected disabled>Seleccione un Alumno</option>
-								<option th:each="alumn : ${alumnos}" th:value="${alumn.lu}" th:text="${alumn.nombre}" th:field="*{alumno.lu}"></option>
+							<select id="alumno" name="alumno" class="form-select" th:field="*{alumno.lu}">
+								<option value="-1">Seleccione un Alumno</option>
+								<option th:each="alumn : ${alumnos}" th:value="${alumn.lu}" th:text="${alumn.apellido} + ', ' + ${alumn.nombre}"></option>
 							</select>
 						</div>
 
@@ -40,9 +40,9 @@
 
 						<label for="materia" class="col-sm-12 col-lg-2 col-form-label text-lg-end">Materia</label>
 						<div class="col-sm-12 col-lg-4">
-							<select id="materia" name="materia" class="form-select" >
-								<option value="" selected disabled>Seleccione una Materia</option>
-								<option th:each="materi : ${materias}" th:value="${materi.codigo}" th:text="${materi.nombre}" th:field="*{materia.codigo}"></option>
+							<select id="materia" name="materia" class="form-select" th:field="*{materia.codigo}">
+								<option value="-1">Seleccione una Materia</option>
+								<option th:each="materi : ${materias}" th:value="${materi.codigo}" th:text="${materi.nombre}"></option>
 							</select>
 						</div>
 
