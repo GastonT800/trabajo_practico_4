@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.collections.CollectionCarrera;
+import ar.edu.unju.fi.dto.AlumnoDTO;
 import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.mapper.CarreraMapper;
 import ar.edu.unju.fi.model.Carrera;
@@ -56,5 +57,13 @@ public class CarreraServiceImpl implements ICarreraService {
 		CollectionCarrera.modificarCarrera(carreraMapper.toCarrera(carreraDTO));
 
 	}
+
+	@Override
+	public List<AlumnoDTO> findAlumnosByCarrera(int codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
