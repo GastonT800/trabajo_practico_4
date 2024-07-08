@@ -14,9 +14,12 @@ import ar.edu.unju.fi.dto.CarreraDTO;
 import ar.edu.unju.fi.mapper.AlumnoMapper;
 import ar.edu.unju.fi.mapper.CarreraMapper;
 import ar.edu.unju.fi.model.Alumno;
+import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.repository.AlumnoRepository;
+import ar.edu.unju.fi.repository.MateriaRepository;
 import ar.edu.unju.fi.service.IAlumnoService;
 import ar.edu.unju.fi.service.ICarreraService;
+import jakarta.persistence.EntityNotFoundException;
 
 
 @Service("alumnoServiceMysql")
@@ -26,6 +29,9 @@ public class AlumnoServiceImp implements IAlumnoService {
 	
 	@Autowired
 	private AlumnoRepository alumnoRepository;
+	
+	@Autowired
+	private MateriaRepository materiaRepository;
 	
 	@Autowired
 	@Qualifier("carreraServiceMysql")
@@ -89,4 +95,26 @@ public class AlumnoServiceImp implements IAlumnoService {
 		logger.info("Se edito con exito el obejto Alumno con libreta " + alumnoDTO.getLu());
 	}
 
+	@Override
+	public void agregarMateria(Integer lu, int codigo) {
+	    // Buscar el alumno por su LU
+	    Optional<Alumno> optionalAlumno = alumnoRepository.findById(lu);
+	    
+	    Alumno alumno = optionalAlumno.get();
+
+	    // Buscar la materia por su código
+	    Optional<Materia> optionalMateria = materiaRepository.findById(codigo);
+	    
+	    Materia materia = optionalMateria.get();
+
+	    // Asociar el alumno con la materia
+	    alumno.getMaterias().add(materia);
+	    materia.getAlumnos().add(alumno);
+
+	    // Guardar los cambios en la base de datos
+	    alumnoRepository.save(alumno);
+	    materiaRepository.save(materia);
+	}
+
+	
 }

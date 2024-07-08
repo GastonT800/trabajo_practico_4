@@ -17,4 +17,6 @@ public interface IAlumnoService {
 	void deleteByLu(int lu);
 	
 	void edit(AlumnoDTO alumnoDTO) throws Exception;
+	
+	void agregarMateria(Integer lu,  int codigo);
 }
